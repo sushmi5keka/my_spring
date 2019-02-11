@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.Date;
 
 @Controller
 public class HomeController {
@@ -18,26 +19,31 @@ public class HomeController {
     @Autowired
     private StudentRepo repo;
 
-    @GetMapping("/")
+    @GetMapping(value = "/")
     public String index(Model model){
         model.addAttribute("list",this.repo.findAll());
+        this.repo.findAll().forEach((c)-> {
+            System.out.println(c.toString());
+        });
         return "index";
     }
 
-    @GetMapping("/add")
+    @GetMapping(value = "/add")
     public String showForm(Student student){
         return "create";
     }
 
-    @PostMapping("/add")
+    @PostMapping(value = "/add")
     public String save(@Valid Student student, BindingResult bindingResult,
                        Model model){
         if (bindingResult.hasErrors()){
             return "create";
+        }else {
+            student.setRegiDate(new Date());
+            this.repo.save(student);
+            model.addAttribute("student", new Student());
+            model.addAttribute("msg", "Congratulation !!!");
         }
-        this.repo.save(student);
-        model.addAttribute("student",new Student());
-        model.addAttribute("mms","Congratulation !!!");
         return "create";
     }
 
@@ -48,13 +54,13 @@ public class HomeController {
     }
 
     @PostMapping("/edit/{id}")
-    public String updateForm(@Valid Student student, BindingResult bindingResult,
-                       Model model){
+    public String updateForm(@Valid Student student, BindingResult bindingResult
+                       ){
         if (bindingResult.hasErrors()){
             return "update";
+        }else {
+            this.repo.save(student);
         }
-        this.repo.save(student);
-        model.addAttribute("student",new Student());
         return "redirect:/";
     }
 

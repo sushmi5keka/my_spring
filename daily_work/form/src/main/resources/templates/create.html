@@ -4,13 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <title>create</title>
+    <style type="text/css">
+        .error{
+            color: red;
+        }
+        #container{
+            width: 100px;
+            height: auto;
+        }
+        #left{
+            width: 60px;
+        }
+        #right{
+            width: 40px;
+        }
+    </style>
 </head>
 <body>
-    <input th:action="@{/add}" th:object="${student}" method="post">
+
+<span th:class="sm" th:text="msg"}></span>
+<form  th:object="${student}" method="post" th:action="@{/add}">
+
+
         Name :
         <input type="text" th:field="*{name}"/>
-        <p  th:class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
-        <br/>
+    <p  th:class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+   <br/>
         <br/>
         Email :
         <input type="email" th:field="*{email}"/>
@@ -30,7 +49,7 @@
         Gender :
         <input type="radio" th:value="male" th:field="*{gender}"/>Male
         <input type="radio" th:value="female" th:field="*{gender}"/>Female
-        <p  th:class="error" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></p>
+       <p th:class="error" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></p>
         <br/>
         <br/>
         Course :
@@ -42,7 +61,7 @@
         <br/>
         Round :
         <select th:field="*{round}">
-            <option th:value=" ">select a round</option>
+            <option th:value="select">select a round</option>
             <option th:value="31 ">31-round</option>
             <option th:value="32 ">32-round</option>
              <option th:value="33 ">33-round</option>
@@ -50,10 +69,17 @@
         <p  th:class="error" th:if="${#fields.hasErrors('round')}" th:errors="*{round}"></p>
         <br/>
         <br/>
-        <button type="submit" value="Submit"></button>
+        Birth Date :
+        <input type="date" th:field="*{birthDate}"/>
+        <p  th:class="error" th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></p>
+        <br/>
+        <br/>
+        <button type="submit">Submit</button>
         <br/>
         <br/>
         <a th:href="@{/}">Student List</a>
     </form>
+</form>
+
 </body>
 </html>

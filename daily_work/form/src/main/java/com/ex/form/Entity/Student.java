@@ -1,13 +1,14 @@
 package com.ex.form.Entity;
 
 
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -21,7 +22,8 @@ public class Student {
     @Size(min = 3,max = 30,message = "must use letter size between 3-30")
     private String name;
 
-    @NotNull(message = "Enter an email Address")
+    @NotEmpty(message = "Enter an email Address")
+    @Email
     @Column(name = "email",unique = true)
     private String email;
 
@@ -35,11 +37,27 @@ public class Student {
     @NotNull(message = "enter your gender")
     private String gender;
 
-    @NotNull(message =" enter your courses")
+    @NotEmpty(message =" enter your courses")
     private String[] courses;
 
     @NotNull(message = "enter your round")
     private String round;
+
+    @NotNull(message =" enter your birthdate")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date birthDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date regiDate;
+
+    @LastModifiedDate
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date lastModifiedDate= new Date();
+
+
 
     public void setId(Long id) {
         this.id = id;
@@ -71,6 +89,18 @@ public class Student {
 
     public void setRound(String round) {
         this.round = round;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public void setRegiDate(Date regiDate) {
+        this.regiDate = regiDate;
+    }
+
+    public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
     }
 
     public Long getId() {
@@ -105,6 +135,18 @@ public class Student {
         return round;
     }
 
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public Date getRegiDate() {
+        return regiDate;
+    }
+
+    public Date getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -117,12 +159,15 @@ public class Student {
                 Objects.equals(age, student.age) &&
                 Objects.equals(gender, student.gender) &&
                 Arrays.equals(courses, student.courses) &&
-                Objects.equals(round, student.round);
+                Objects.equals(round, student.round) &&
+                Objects.equals(birthDate, student.birthDate) &&
+                Objects.equals(regiDate, student.regiDate) &&
+                Objects.equals(lastModifiedDate, student.lastModifiedDate);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(id, name, email, mobile, age, gender, round);
+        int result = Objects.hash(id, name, email, mobile, age, gender, round, birthDate, regiDate, lastModifiedDate);
         result = 31 * result + Arrays.hashCode(courses);
         return result;
     }
@@ -138,6 +183,9 @@ public class Student {
                 ", gender='" + gender + '\'' +
                 ", courses=" + Arrays.toString(courses) +
                 ", round='" + round + '\'' +
+                ", birthDate=" + birthDate +
+                ", regiDate=" + regiDate +
+                ", lastModifiedDate=" + lastModifiedDate +
                 '}';
     }
 }
