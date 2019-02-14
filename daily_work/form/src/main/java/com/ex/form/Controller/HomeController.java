@@ -1,6 +1,7 @@
 package com.ex.form.Controller;
 
 import com.ex.form.Entity.Student;
+import com.ex.form.Repository.RoleRepo;
 import com.ex.form.Repository.StudentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,9 @@ public class HomeController {
     @Autowired
     private StudentRepo repo;
 
+    @Autowired
+    private RoleRepo roleRepo;
+
     @GetMapping(value = "/")
     public String index(Model model){
         model.addAttribute("list",this.repo.findAll());
@@ -29,7 +33,8 @@ public class HomeController {
     }
 
     @GetMapping(value = "/add")
-    public String showForm(Student student){
+    public String showForm(Student student,Model model){
+        model.addAttribute("roleList",this.roleRepo.findAll());
         return "create";
     }
 
@@ -40,10 +45,17 @@ public class HomeController {
             return "create";
         }else {
             student.setRegiDate(new Date());
-            this.repo.save(student);
-            model.addAttribute("student", new Student());
-            model.addAttribute("msg", "Congratulation !!!");
+            try{
+                this.repo.save(student);
+                model.addAttribute("student", new Student());
+                model.addAttribute("roleList",this.roleRepo.findAll());
+                model.addAttribute("msg", "Congratulation !!!");
+            }catch (Exception e){
+                e.getStackTrace();
+            }
+
         }
+        model.addAttribute("roleList",this.roleRepo.findAll());
         return "create";
     }
 

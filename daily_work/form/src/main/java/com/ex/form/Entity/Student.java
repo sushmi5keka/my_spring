@@ -10,6 +10,7 @@ import javax.validation.constraints.*;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "stu")
@@ -58,6 +59,21 @@ public class Student {
     private Date lastModifiedDate= new Date();
 
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "student_role",
+            joinColumns = @JoinColumn(name = "stu_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles;
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 
     public void setId(Long id) {
         this.id = id;
