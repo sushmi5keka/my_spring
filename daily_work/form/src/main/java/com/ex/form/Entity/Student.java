@@ -58,6 +58,7 @@ public class Student {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date lastModifiedDate= new Date();
 
+    private Set<Role> roles;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -65,7 +66,7 @@ public class Student {
             joinColumns = @JoinColumn(name = "stu_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    private Set<Role> roles;
+
 
     public Set<Role> getRoles() {
         return roles;
