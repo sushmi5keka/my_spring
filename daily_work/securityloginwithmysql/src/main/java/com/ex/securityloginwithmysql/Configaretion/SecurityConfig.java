@@ -1,6 +1,5 @@
 package com.ex.securityloginwithmysql.Configaretion;
 
-import com.ex.securityloginwithmysql.Entity.CustomerUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,12 +11,8 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -25,6 +20,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableJpaRepositories(basePackageClasses = com.ex.securityloginwithmysql.Repo.UserRepo.class)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private LoggingAccessDeniedHandler accessDeniedHandler;
 
     @Autowired
     CustomerUserDetailsService customerUserDetailsService;
@@ -56,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity
                 .authorizeRequests()
                 .antMatchers("/public/**","/login","/","/user-save","/role-save").permitAll()
-                .antMatchers("/super_admin/**").hasRole("SUPERADMIN")
+                .antMatchers("/super_admin/**","/role/**","/user/**").hasRole("SUPERADMIN")
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/user/**").hasRole("USER")
                 .antMatchers("/secure/**").hasAnyRole("ADMIN","USER","SUPERADMIN")
@@ -72,7 +70,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login?logout")
-                .permitAll();
+                .permitAll()
+                .and()
+                .exceptionHandling()
+                .accessDeniedHandler(accessDeniedHandler);
+
     }
 
 //    @Bean

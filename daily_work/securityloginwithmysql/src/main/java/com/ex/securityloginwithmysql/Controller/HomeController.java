@@ -1,10 +1,19 @@
 package com.ex.securityloginwithmysql.Controller;
 
+import com.ex.securityloginwithmysql.Entity.User;
+import com.ex.securityloginwithmysql.Repo.UserRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
+
+    @Autowired
+    private UserRepo repo;
 
     @GetMapping(value = "/user")
     public  String userView(){
@@ -12,7 +21,11 @@ public class HomeController {
     }
 
     @GetMapping(value = "/secure")
-    public  String secureView() {
+    public  String secureView(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("usernam",auth.getName());
+        User user=repo.findByUserName(auth.getName());
+        model.addAttribute("name",user.getName());
         return  "secure/secure";
     }
 
@@ -27,5 +40,7 @@ public class HomeController {
 
         return  "superadmin/superadmin";
     }
+
+
 
 }

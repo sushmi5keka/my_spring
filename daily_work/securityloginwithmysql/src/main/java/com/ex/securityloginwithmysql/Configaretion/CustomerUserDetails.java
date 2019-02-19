@@ -1,5 +1,6 @@
-package com.ex.securityloginwithmysql.Entity;
+package com.ex.securityloginwithmysql.Configaretion;
 
+import com.ex.securityloginwithmysql.Entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

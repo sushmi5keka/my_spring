@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/user/edit/}+${id}" th:object="${user}" method="POST">
+
+    <input type="hidden" th:field="*{id}" th:value="${user.id}"/>
+
+    Role :
+    <select th:field="*{roles}" multiple>
+        <option th:each="role : ${roleList}" th:value="${role.id}">
+                <span th:text="${role.roleName}">
+                </span>
+        </option>
+    </select>
+    <b th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></b>
+
+    <br/>
+    <br/>
+
+    <br/>
+    <br/>
+    Name :
+    <input type="text" th:field="*{name}"/>
+    <p th:class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+    <br/>
+    <br/>
+    User Name :
+    <input type="text" th:field="*{userName}"/>
+    <p th:class="error" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></p>
+    <br/>
+    <br/>
+    Password :
+    <input type="text" th:field="*{password}"/>
+    <p th:class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+    <br/>
+    <br/>
+    Email :
+    <input type="email" th:field="*{email}"/>
+    <p th:class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+    <br/>
+    <br/>
+    Status :
+    <input type="text" th:field="*{status}"/>
+    <p th:class="error" th:if="${#fields.hasErrors('status')}" th:errors="*{status}"></p>
+    <br/>
+    <br/>
+
+    <button type="submit">Submit</button>
+    <br/>
+    <br/>
+    <a th:href="@{/}">Student List</a>
+</form>
+</body>
+</html>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:th="http://www.thymeleaf.org">
+        xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -23,7 +24,7 @@
     <br/>
     <br/>
 
-    Email :
+    Password :
     <input type="password" name="password"/>
     <br/>
     <br/>
@@ -32,7 +33,9 @@
     <br/>
     <br/>
 
-    <a th:href="@{/}">Student List</a>
+    <a th:href="@{/}">Home</a>
+    <br/>
+    <h1><a th:href="@{/logout}"></a></h1>
 
 </form>
 </body>

@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:th="http://www.thymeleaf.org"
+      xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-User
-can access me
+    <h1>you can not access with this URL...... </h1>
 
-<h1><a th:href="@{/logout}"></a></h1>
+<a th:href="@{/}">Home</a>
+
+    <h1><a th:href="@{/logout}"></a></h1>
 </body>
 </html>

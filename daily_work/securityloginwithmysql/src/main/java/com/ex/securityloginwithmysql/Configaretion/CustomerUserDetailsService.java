@@ -1,5 +1,6 @@
-package com.ex.securityloginwithmysql.Entity;
+package com.ex.securityloginwithmysql.Configaretion;
 
+import com.ex.securityloginwithmysql.Entity.User;
 import com.ex.securityloginwithmysql.Repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
