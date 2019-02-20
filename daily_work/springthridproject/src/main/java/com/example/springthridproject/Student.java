@@ -1,7 +1,7 @@
 package com.example.springthridproject;
 
 public class Student {
-    private  int id;
+    private int id;
     private String name;
 
     public Student() {

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -14,35 +14,35 @@
     <br/>
     Name :
     <input type="text" th:field="*{name}"/>
-    <p  th:class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+    <p th:class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
     <br/>
     <br/>
     Email :
     <input type="email" th:field="*{email}"/>
-    <p  th:class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+    <p th:class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
     <br/>
     <br/>
     Mobile :
     <input type="text" th:field="*{mobile}"/>
-    <p  th:class="error" th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}"></p>
+    <p th:class="error" th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}"></p>
     <br/>
     <br/>
     Age :
     <input type="text" th:field="*{age}"/>
-    <p  th:class="error" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></p>
+    <p th:class="error" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></p>
     <br/>
     <br/>
     Gender :
     <input type="radio" th:value="male" th:field="*{gender}"/>Male
     <input type="radio" th:value="female" th:field="*{gender}"/>Female
-    <p  th:class="error" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></p>
+    <p th:class="error" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></p>
     <br/>
     <br/>
     Course :
     <input type="checkbox" th:value="ssc" th:field="*{courses}">SSC
     <input type="checkbox" th:value="hsc" th:field="*{courses}">HSC
     <input type="checkbox" th:value="bba" th:field="*{courses}">BBA
-    <p  th:class="error" th:if="${#fields.hasErrors('courses')}" th:errors="*{courses}"></p>
+    <p th:class="error" th:if="${#fields.hasErrors('courses')}" th:errors="*{courses}"></p>
     <br/>
     <br/>
     Round :
@@ -52,12 +52,12 @@
         <option th:value="32 ">32-round</option>
         <option th:value="33 ">33-round</option>
     </select>
-    <p  th:class="error" th:if="${#fields.hasErrors('round')}" th:errors="*{round}"></p>
+    <p th:class="error" th:if="${#fields.hasErrors('round')}" th:errors="*{round}"></p>
     <br/>
     <br/>
     Birth Date :
     <input type="date" th:field="*{birthDate}"/>
-    <p  th:class="error" th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></p>
+    <p th:class="error" th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></p>
     <br/>
     <br/>
     <button type="submit">Submit</button>

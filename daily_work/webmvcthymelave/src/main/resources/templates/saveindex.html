@@ -12,24 +12,26 @@
 <form action="#" th:object="${save}" th:action="@{/}" th:method="POST">
     <table>
         <tr>
-           <td> Name :</td>
+            <td> Name :</td>
             <td><input type="text" th:field="*{name}"/></td>
-            <td th:class="err" th:if="${#fields.hasErrors('name')}" th:errors ="*{name}"></td>
-         </tr>
+            <td th:class="err" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+        </tr>
 
         <tr>
-           <td>Age :</td>
+            <td>Age :</td>
             <td><input type="text" th:field="*{age}"/></td>
-            <td th:class="err" th:if="${#fields.hasErrors('age')}" th:errors ="*{age}"></td>
+            <td th:class="err" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></td>
         </tr>
 
         <tr>
-           <td>Email :</td>
+            <td>Email :</td>
             <td><input type="email" th:field="*{email}"/></td>
-            <td th:class="err" th:if="${#fields.hasErrors('email')}" th:errors ="*{email}"></td>
+            <td th:class="err" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
         </tr>
         <tr>
-            <td><button type="submit">Submit</button></td>
+            <td>
+                <button type="submit">Submit</button>
+            </td>
         </tr>
 
     </table>

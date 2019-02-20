@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class CustomerUserDetails extends User implements UserDetails {
 
 
-    public CustomerUserDetails(final User user){
+    public CustomerUserDetails(final User user) {
 
         super(user);
     }
@@ -26,9 +26,8 @@ public class CustomerUserDetails extends User implements UserDetails {
     }
 
 
-
     @Override
-    public  String getPassword(){
+    public String getPassword() {
 
         return super.getPassword();
     }

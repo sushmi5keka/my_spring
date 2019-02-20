@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-            xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>roleform</title>
@@ -10,7 +10,7 @@
 <form th:object="${role}" method="post" th:action="@{/add-role}">
     Name :
     <input type="text" th:field="*{rolename}"/>
-    <span th:if="${#fields.hasErrors('rolename')}" th:errors="*{rolename}" ></span>
+    <span th:if="${#fields.hasErrors('rolename')}" th:errors="*{rolename}"></span>
     <i th:text="${scMsg}"></i>
     <br/>
     <button type="submit">SaveRole</button>

@@ -29,13 +29,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     @Bean
-    public PasswordEncoder passwordEco(){
+    public PasswordEncoder passwordEco() {
         return new BCryptPasswordEncoder();
     }
 
 
     @Override
-    public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception{
+    public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         authenticationManagerBuilder
                 .userDetailsService(customerUserDetailsService)
                 .passwordEncoder(passwordEco());
@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean(BeanIds.AUTHENTICATION_MANAGER)
     @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception{
+    public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
 
@@ -53,11 +53,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeRequests()
-                .antMatchers("/public/**","/login","/","/user-save","/role-save").permitAll()
-                .antMatchers("/super_admin/**","/role/**","/user/**").hasRole("SUPERADMIN")
+                .antMatchers("/public/**", "/login", "/", "/user-save", "/role-save", "/test").permitAll()
+                .antMatchers("/super_admin/**", "/role/**", "/user/**").hasRole("SUPERADMIN")
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/user/**").hasRole("USER")
-                .antMatchers("/secure/**").hasAnyRole("ADMIN","USER","SUPERADMIN")
+                .antMatchers("/u/**").hasRole("USER")
+                .antMatchers("/secure/**").hasAnyRole("ADMIN", "USER", "SUPERADMIN")
+                .antMatchers("/guest/**").hasRole("GUEST")
                 .anyRequest()
                 .authenticated()
                 .and()

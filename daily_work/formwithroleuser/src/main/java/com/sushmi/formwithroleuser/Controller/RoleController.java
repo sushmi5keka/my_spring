@@ -18,23 +18,23 @@ public class RoleController {
     private RoleRepo repo;
 
     @GetMapping(value = "/add-role")
-    public String viewAddRole(Role role){
+    public String viewAddRole(Role role) {
         return "addRole";
     }
 
     @PostMapping(value = "/add-role")
-    public String addRole(@Valid Role role, BindingResult result, Model model){
-        if (result.hasErrors()){
+    public String addRole(@Valid Role role, BindingResult result, Model model) {
+        if (result.hasErrors()) {
             return "addRole";
-        }else {
-            if (role != null){
+        } else {
+            if (role != null) {
                 Role role1 = this.repo.findByRolename(role.getRolename());
-                if (role1 != null){
-                    model.addAttribute("exMsg","role name already exist...");
-                }else {
+                if (role1 != null) {
+                    model.addAttribute("exMsg", "role name already exist...");
+                } else {
                     this.repo.save(role);
-                    model.addAttribute("role",new Role());
-                    model.addAttribute("scMsg","role name add successfull...");
+                    model.addAttribute("role", new Role());
+                    model.addAttribute("scMsg", "role name add successfull...");
                 }
             }
         }
@@ -42,8 +42,8 @@ public class RoleController {
     }
 
     @GetMapping(value = "/role-list")
-    public String viewRoleList(Model model){
-        model.addAttribute("rlist",this.repo.findAll());
+    public String viewRoleList(Model model) {
+        model.addAttribute("rlist", this.repo.findAll());
         return "listOfRole";
     }
 

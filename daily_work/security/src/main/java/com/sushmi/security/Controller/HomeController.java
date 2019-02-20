@@ -8,22 +8,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
     @GetMapping(value = {"/", "/login"})
-    public String login(){
+    public String login() {
         return "login";
     }
 
     @GetMapping(value = "/user/u")
-    public String user(){
+    public String user() {
         return "user/user";
     }
 
     @GetMapping(value = "/admin/h")
-    public String home(){
+    public String home() {
         return "admin/home";
     }
 
     @GetMapping(value = "/public/r")
-    public String regi(){
+    public String regi() {
         return "public/regi";
     }
 }

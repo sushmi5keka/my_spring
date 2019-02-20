@@ -2,7 +2,7 @@ package com.example.beanlifecycle;
 
 public class SimpleBean {
 
-    private final String DEFULT_NAME="moli";
+    private final String DEFULT_NAME = "moli";
 
     private String name = null;
 
@@ -25,13 +25,13 @@ public class SimpleBean {
                 '}';
     }
 
-    public  void  inti(){
+    public void inti() {
         System.out.println("Initializing bean");
-        if(name== null){
+        if (name == null) {
             System.out.println("Using default name");
             name = DEFULT_NAME;
         }
-        if (age == Integer.MIN_VALUE){
+        if (age == Integer.MIN_VALUE) {
             throw new IllegalArgumentException("you must set the age property of habijabi...");
         }
     }

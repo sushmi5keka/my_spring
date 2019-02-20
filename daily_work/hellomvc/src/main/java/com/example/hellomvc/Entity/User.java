@@ -7,8 +7,8 @@ import java.util.Objects;
 public class User {
 
     private Long id;
-    private  String username;
-    private  String mobile;
+    private String username;
+    private String mobile;
 
     public User() {
     }

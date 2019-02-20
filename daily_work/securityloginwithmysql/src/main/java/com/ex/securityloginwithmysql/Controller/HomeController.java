@@ -15,32 +15,37 @@ public class HomeController {
     @Autowired
     private UserRepo repo;
 
-    @GetMapping(value = "/user")
-    public  String userView(){
-        return  "user/user";
+    @GetMapping(value = "/u")
+    public String userView() {
+        return "user/user";
     }
 
     @GetMapping(value = "/secure")
-    public  String secureView(Model model) {
+    public String secureView(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("usernam",auth.getName());
-        User user=repo.findByUserName(auth.getName());
-        model.addAttribute("name",user.getName());
-        return  "secure/secure";
+        model.addAttribute("usernam", auth.getName());
+        User user = repo.findByUserName(auth.getName());
+        model.addAttribute("name", user.getName());
+        return "secure/secure";
     }
 
     @GetMapping(value = "/admin")
-    public  String adminView(){
+    public String adminView() {
 
-        return  "admin/admin";
+        return "admin/admin";
+    }
+
+    @GetMapping(value = "/guest")
+    public String guestView() {
+
+        return "guest/guest";
     }
 
     @GetMapping(value = "/super_admin")
-    public  String superaadminView(){
+    public String superaadminView() {
 
-        return  "superadmin/superadmin";
+        return "superadmin/superadmin";
     }
-
 
 
 }

@@ -9,13 +9,13 @@
 
 <span th:text="${successMsg}"></span>
 <form th:object="${role}" method="post" th:action="@{/role/add-role}">
-       Name :
-        <input type="text" th:field="*{roleName}"/>
-        <td th:class="error" th:if="${#fields.hasErrors('roleName')}" th:errors="*{roleName}"/>
-        <i th:class="error" th:text="${exMsg}"></i>
+    Name :
+    <input type="text" th:field="*{roleName}"/>
+    <td th:class="error" th:if="${#fields.hasErrors('roleName')}" th:errors="*{roleName}"/>
+    <i th:class="error" th:text="${exMsg}"></i>
 
     <button type="submit">Save</button>
-<br/>
+    <br/>
     <a th:href="@{/}">Home</a>
 </form>
 </body>

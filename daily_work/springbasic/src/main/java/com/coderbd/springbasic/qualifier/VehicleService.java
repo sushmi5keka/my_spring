@@ -10,7 +10,7 @@ public class VehicleService {
     @Qualifier(value = "hondaBean")
     private Vehicle vehicle;
 
-    public void service(){
+    public void service() {
         vehicle.start();
         vehicle.stop();
     }

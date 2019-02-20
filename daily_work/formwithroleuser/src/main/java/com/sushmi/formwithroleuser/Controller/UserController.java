@@ -22,32 +22,32 @@ public class UserController {
     private RoleRepo roleRepo;
 
     @GetMapping(value = "/")
-    public  String showUserList(Model model){
-       model.addAttribute("ulist",this.repo.findAll());
-       this.repo.findAll().forEach((c)-> {
-           System.out.println(c.toString());
-       });
+    public String showUserList(Model model) {
+        model.addAttribute("ulist", this.repo.findAll());
+        this.repo.findAll().forEach((c) -> {
+            System.out.println(c.toString());
+        });
         return "index";
     }
 
     @GetMapping(value = "/add-user")
-    public  String addUser(Model model){
-       model.addAttribute("roleList",this.roleRepo.findAll());
+    public String addUser(Model model) {
+        model.addAttribute("roleList", this.roleRepo.findAll());
         return "addUser";
     }
 
     @PostMapping(value = "/add-user")
-    public  String viewAddUser(@Valid User user, BindingResult result, Model model){
-        if(result.hasErrors()){
+    public String viewAddUser(@Valid User user, BindingResult result, Model model) {
+        if (result.hasErrors()) {
             return "addUser";
-        }else {
+        } else {
             this.repo.save(user);
             model.addAttribute("user", new User());
             model.addAttribute("roleList", this.roleRepo.findAll());
             model.addAttribute("msg", "Congratulation...");
 
         }
-        model.addAttribute("roleList",this.roleRepo.findAll());
+        model.addAttribute("roleList", this.roleRepo.findAll());
         return "addUser";
     }
 

@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="emp" class="com.example.beanlifecycle2.Employee">
-            <property name="id" value="101"></property>
+        <property name="id" value="101"></property>
         <property name="posion" value="manager"></property>
     </bean>
 

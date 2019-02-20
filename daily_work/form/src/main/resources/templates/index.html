@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns = "http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -8,48 +8,48 @@
 <body>
 
 
-    <a th:href="@{/add}" >Add Student</a>
-    <a th:href="@{/role-list}" >Show Roles</a>
+<a th:href="@{/add}">Add Student</a>
+<a th:href="@{/role-list}">Show Roles</a>
 
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Mobile</th>
-                <th>Age</th>
-                <th>Gender</th>
-                <th>Course</th>
-                <th>Round</th>
-                <th>Birth Date</th>
-                <th>Role Name</th>
-                <th>Update</th>
-                <th>Delete</th>
-            </tr>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Course</th>
+        <th>Round</th>
+        <th>Birth Date</th>
+        <th>Role Name</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
 
-            <tr th:each="u : ${list}">
-                <td th:text="${u.id}"></td>
-                <td th:text="${u.name}"></td>
-                <td th:text="${u.email}"></td>
-                <td th:text="${u.mobile}"></td>
-                <td th:text="${u.age}"></td>
-                <td th:text="${u.gender}"></td>
-                <td><span th:each="c : ${u.courses}">
+    <tr th:each="u : ${list}">
+        <td th:text="${u.id}"></td>
+        <td th:text="${u.name}"></td>
+        <td th:text="${u.email}"></td>
+        <td th:text="${u.mobile}"></td>
+        <td th:text="${u.age}"></td>
+        <td th:text="${u.gender}"></td>
+        <td><span th:each="c : ${u.courses}">
                     <span th:text="${c}">
                     </span>
                 </span>
-                </td>
-                <td th:text="${u.round}"></td>
-                <td th:text="${u.birthDate}" th:pattern="yyyy-MM-dd"></td>
-                <td>
+        </td>
+        <td th:text="${u.round}"></td>
+        <td th:text="${u.birthDate}" th:pattern="yyyy-MM-dd"></td>
+        <td>
                     <span th:each="rr: ${u.roles}">
                         <span th:text="${rr.roleName}"></span>
                     </span>
-                </td>
-                <td><a th:href="@{'/edit/' + ${u.id}}">Update</a></td>
-                <td><a th:href="@{'/del/' + ${u.id}}">Delete</a></td>
-            </tr>
-        </table>
+        </td>
+        <td><a th:href="@{'/edit/' + ${u.id}}">Update</a></td>
+        <td><a th:href="@{'/del/' + ${u.id}}">Delete</a></td>
+    </tr>
+</table>
 
 
 </body>

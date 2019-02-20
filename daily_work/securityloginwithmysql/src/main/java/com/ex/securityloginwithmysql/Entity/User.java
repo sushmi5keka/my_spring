@@ -95,7 +95,7 @@ public class User {
         this.password = user.password;
         this.email = user.email;
         this.status = user.status;
-        this.roles=user.roles;
+        this.roles = user.roles;
     }
 
 

@@ -18,23 +18,23 @@ public class RoleController {
     private RoleRepo repo;
 
     @GetMapping(value = "/add-role")
-    public String viewAddRole(Role role){
+    public String viewAddRole(Role role) {
         return "role/add-role";
     }
 
     @PostMapping(value = "/add-role")
-    public String addRole(@Valid Role role, BindingResult result, Model model){
-        if (result.hasErrors()){
+    public String addRole(@Valid Role role, BindingResult result, Model model) {
+        if (result.hasErrors()) {
             return "role/add-role";
-        }else {
-            if (role != null){
+        } else {
+            if (role != null) {
                 Role role1 = this.repo.findByRoleName(role.getRoleName());
-                if (role1 != null){
-                    model.addAttribute("exMsg","role name already exist...");
-                }else {
+                if (role1 != null) {
+                    model.addAttribute("exMsg", "role name already exist...");
+                } else {
                     this.repo.save(role);
-                    model.addAttribute("role",new Role());
-                    model.addAttribute("successMsg","role name add successfull...");
+                    model.addAttribute("role", new Role());
+                    model.addAttribute("successMsg", "role name add successfull...");
                 }
             }
         }
@@ -42,15 +42,15 @@ public class RoleController {
     }
 
     @GetMapping(value = "/role-list")
-    public String viewRoleList(Model model){
-        model.addAttribute("list",this.repo.findAll());
+    public String viewRoleList(Model model) {
+        model.addAttribute("list", this.repo.findAll());
         return "role/list";
     }
 
 
     @GetMapping(value = "/edit-role/{id}")
-    public String editRoleView(@PathVariable("id") Long id,Model model) {
-        model.addAttribute("role",this.repo.getOne(id));
+    public String editRoleView(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("role", this.repo.getOne(id));
         return "role/edit";
     }
 
@@ -75,8 +75,8 @@ public class RoleController {
         return "redirect:/role/role-list";
     }
 
-    @RequestMapping(value = "/role-del/{id}",method = RequestMethod.GET)
-    public String delRole(@PathVariable("id") Long id){
+    @RequestMapping(value = "/role-del/{id}", method = RequestMethod.GET)
+    public String delRole(@PathVariable("id") Long id) {
         this.repo.deleteById(id);
         return "redirect:/role/role-list";
 

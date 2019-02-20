@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+
 @Controller
 public class SaveController {
 
@@ -21,36 +22,36 @@ public class SaveController {
     private SaveRepo repo;
 
     @GetMapping(value = "/add")
-    public String showForm(Save save){
+    public String showForm(Save save) {
         return "add-page";
     }
 
 
     @PostMapping(value = "/add")
-        public String save(@Valid Save save, BindingResult bindingResult, Model model){
+    public String save(@Valid Save save, BindingResult bindingResult, Model model) {
 
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "add-page";
         }
         this.repo.save(save);
-        model.addAttribute("save",new Save());
-        model.addAttribute("successfully","Congratulation");
+        model.addAttribute("save", new Save());
+        model.addAttribute("successfully", "Congratulation");
         return "add-page";
-        }
+    }
 
     @GetMapping(value = "/edit")
-    public String editForm(Save save){
+    public String editForm(Save save) {
         return "edit-page";
     }
 
     @PostMapping(value = "/edit")
-    public String edit(@Valid Save save, BindingResult bindingResult, Model model){
+    public String edit(@Valid Save save, BindingResult bindingResult, Model model) {
 
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "edit-page";
         }
         this.repo.save(save);
-        model.addAttribute("save",new Save());
+        model.addAttribute("save", new Save());
         return "edit-page";
     }
 
@@ -60,17 +61,18 @@ public class SaveController {
 //    }
 
     @GetMapping(value = "/result")
-    public String showResult(){
+    public String showResult() {
         return "result";
     }
+
     @GetMapping(value = "/")
-    public String index(Model model){
-        model.addAttribute("list",this.repo.findAll());
+    public String index(Model model) {
+        model.addAttribute("list", this.repo.findAll());
         return "form";
     }
 
-    public String del(@PathVariable("id") Long id){
-        if(id != null){
+    public String del(@PathVariable("id") Long id) {
+        if (id != null) {
             this.repo.deleteById(id);
 
         }

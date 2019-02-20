@@ -17,7 +17,7 @@ public class User {
     @NotNull(message = "enter your name...")
     private String username;
 
-    @NotNull( message = "enter your mobile number...")
+    @NotNull(message = "enter your mobile number...")
     @Size(min = 11, message = "use at least 11 charecter...")
     private int mobile;
 

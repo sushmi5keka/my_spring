@@ -33,64 +33,64 @@ public class UserConteoller {
     private RoleRepo roleRepo;
 
     @GetMapping(value = "/index")
-    public String index(Model model){
-        model.addAttribute("list",this.repo.findAll());
-        this.repo.findAll().forEach((c)-> {
+    public String index(Model model) {
+        model.addAttribute("list", this.repo.findAll());
+        this.repo.findAll().forEach((c) -> {
             System.out.println(c.toString());
         });
         return "usercrud/index";
     }
 
     @GetMapping(value = "/add")
-    public String showForm(User user,Model model){
-        model.addAttribute("roleList",this.roleRepo.findAll());
+    public String showForm(User user, Model model) {
+        model.addAttribute("roleList", this.roleRepo.findAll());
         return "usercrud/create";
     }
 
     @PostMapping(value = "/add")
     public String save(@Valid User user, BindingResult bindingResult,
-                       Model model){
-        if (bindingResult.hasErrors()){
+                       Model model) {
+        if (bindingResult.hasErrors()) {
             return "usercrud/create";
-        }else {
+        } else {
 
-            try{
+            try {
                 user.setPassword(passwordEncoder.encode(user.getPassword()));
                 this.repo.save(user);
                 model.addAttribute("user", new User());
-                model.addAttribute("roleList",this.roleRepo.findAll());
+                model.addAttribute("roleList", this.roleRepo.findAll());
                 model.addAttribute("msg", "Congratulation !!!");
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.getStackTrace();
             }
 
         }
-        model.addAttribute("roleList",this.roleRepo.findAll());
+        model.addAttribute("roleList", this.roleRepo.findAll());
         return "usercrud/create";
     }
 
     @GetMapping("/edit/{id}")
-    public String editForm(Model model, @PathVariable("id") Long id){
-        model.addAttribute("user",this.repo.getOne(id));
-        model.addAttribute("roleList",this.roleRepo.findAll());
+    public String editForm(Model model, @PathVariable("id") Long id) {
+        model.addAttribute("user", this.repo.getOne(id));
+        model.addAttribute("roleList", this.roleRepo.findAll());
         return "usercrud/update";
     }
 
     @PostMapping("/edit/{id}")
     public String updateForm(@Valid User user, BindingResult bindingResult,
-    Model model){
-        if (bindingResult.hasErrors()){
+                             Model model) {
+        if (bindingResult.hasErrors()) {
             return "usercrud/update";
-        }else {
+        } else {
             this.repo.save(user);
-            model.addAttribute("roleList",this.roleRepo.findAll());
+            model.addAttribute("roleList", this.roleRepo.findAll());
         }
         return "redirect:/user/index";
     }
 
     @GetMapping("/del/{id}")
-    public String deleteForm(@PathVariable("id") Long id){
-        if(id != null){
+    public String deleteForm(@PathVariable("id") Long id) {
+        if (id != null) {
             this.repo.deleteById(id);
         }
         return "redirect:/user/index";

@@ -13,7 +13,6 @@ public class Test {
         System.out.println(emp);
 
 
-
         Employee emp1 = (Employee) context.getBean("em1");
         System.out.println(emp1);
         context.close();

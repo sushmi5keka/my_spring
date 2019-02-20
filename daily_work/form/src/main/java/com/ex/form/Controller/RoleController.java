@@ -41,21 +41,21 @@ public class RoleController {
     }
 
     @GetMapping(value = "/role-list")
-    public String roleList(Model model){
+    public String roleList(Model model) {
         model.addAttribute("list", this.repo.findAll());
         return "Role/list";
     }
 
     @GetMapping(value = "/edit-role/{id}")
-    public String editRoleView(@PathVariable("id") Long id,Model model) {
-       model.addAttribute("role",this.repo.getOne(id));
+    public String editRoleView(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("role", this.repo.getOne(id));
         return "Role/edit";
     }
 
     @PostMapping(value = "/edit-role/{id}")
     public String editRole(@Valid Role role,
-                          BindingResult bindingResult,
-                          Model model) {
+                           BindingResult bindingResult,
+                           Model model) {
         if (bindingResult.hasErrors()) {
             return "Role/edit";
         } else {
@@ -73,8 +73,8 @@ public class RoleController {
         return "redirect:/role-list";
     }
 
-    @RequestMapping(value = "/role-del/{id}",method = RequestMethod.GET)
-    public String delRole(@PathVariable("id") Long id){
+    @RequestMapping(value = "/role-del/{id}", method = RequestMethod.GET)
+    public String delRole(@PathVariable("id") Long id) {
         this.repo.deleteById(id);
         return "redirect:/role-list";
 

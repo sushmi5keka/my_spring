@@ -20,31 +20,31 @@ public class Student {
     private Long id;
 
     @NotNull
-    @Size(min = 3,max = 30,message = "must use letter size between 3-30")
+    @Size(min = 3, max = 30, message = "must use letter size between 3-30")
     private String name;
 
     @NotEmpty(message = "Enter an email Address")
     @Email
-    @Column(name = "email",unique = true)
+    @Column(name = "email", unique = true)
     private String email;
 
-    @Size(min = 11,message = "use 11 charecter for mobile number")
+    @Size(min = 11, message = "use 11 charecter for mobile number")
     private String mobile;
 
     @NotNull
-    @Min(value = 18,message = "minimum age 18")
+    @Min(value = 18, message = "minimum age 18")
     private String age;
 
     @NotNull(message = "enter your gender")
     private String gender;
 
-    @NotEmpty(message =" enter your courses")
+    @NotEmpty(message = " enter your courses")
     private String[] courses;
 
     @NotNull(message = "enter your round")
     private String round;
 
-    @NotNull(message =" enter your birthdate")
+    @NotNull(message = " enter your birthdate")
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthDate;
@@ -56,7 +56,7 @@ public class Student {
     @LastModifiedDate
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date lastModifiedDate= new Date();
+    private Date lastModifiedDate = new Date();
 
     private Set<Role> roles;
 

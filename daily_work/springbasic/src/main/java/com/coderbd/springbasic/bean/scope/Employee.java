@@ -6,6 +6,4 @@ public class Employee {
     private String deps;
 
 
-
-
 }

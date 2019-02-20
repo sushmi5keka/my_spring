@@ -11,13 +11,13 @@ import java.util.Objects;
 public class Save {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-     private Long id;
+    private Long id;
 
     @NotNull
-    @Size(min = 2, max =  30,message = "size must be between 2-30")
+    @Size(min = 2, max = 30, message = "size must be between 2-30")
     private String name;
 
-    @Min(value = 18,message = "Hey,Minimum Age is 18")
+    @Min(value = 18, message = "Hey,Minimum Age is 18")
     private byte age;
 
     @NotNull(message = "Enter an Email Address")

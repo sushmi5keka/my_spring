@@ -14,7 +14,7 @@ public class Role {
     private Long id;
 
     @NotEmpty(message = "enter role")
-    @Column(unique = true,name = "role_name")
+    @Column(unique = true, name = "role_name")
     private String rolename;
 
     public Long getId() {

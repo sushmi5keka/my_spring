@@ -8,10 +8,10 @@ import java.util.Objects;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+    private Long id;
 
     @NotEmpty(message = "enter role")
-    @Column(unique = true,name = "role_name")
+    @Column(unique = true, name = "role_name")
     private String roleName;
 
     public Long getId() {

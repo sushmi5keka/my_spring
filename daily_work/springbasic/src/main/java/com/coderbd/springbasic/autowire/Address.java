@@ -5,10 +5,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Address {
-    private  String houseNo;
-    private  String country;
+    private String houseNo;
+    private String country;
 
-    public Address(){
+    public Address() {
         System.out.println("Object created...");
     }
 
@@ -28,7 +28,7 @@ public class Address {
         this.country = country;
     }
 
-    public void  show(){
+    public void show() {
         System.out.println("Show.....");
     }
 }
