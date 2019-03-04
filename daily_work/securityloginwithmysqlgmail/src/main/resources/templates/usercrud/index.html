@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+
+
+<a th:href="@{/add}">Add Student</a>
+<a th:href="@{/role-list}">Show Roles</a>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>User Name</th>
+        <th>Password</th>
+        <th>Email</th>
+        <th>Status</th>
+        <th>Role Name</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+
+    <tr th:each="u : ${list}">
+        <td th:text="${u.id}"></td>
+        <td th:text="${u.name}"></td>
+        <td th:text="${u.userName}"></td>
+        <td th:text="${u.password}"></td>
+        <td th:text="${u.email}"></td>
+        <td th:text="${u.status}"></td>
+
+
+        <td>
+                    <span th:each="rr: ${u.roles}">
+                        <span th:text="${rr.roleName}"></span>
+                    </span>
+        </td>
+
+        <td><a th:href="@{'/user/edit/' + ${u.id}}">Update</a></td>
+        <td><a th:href="@{'/user/del/' + ${u.id}}">Delete</a></td>
+    </tr>
+</table>
+
+
+</body>
+</html>
