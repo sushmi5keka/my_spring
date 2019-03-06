@@ -9,94 +9,87 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
-@RequestMapping(value = "/role")
+@RequestMapping(value = "/role/")
 public class RoleController {
 
     @Autowired
     private RoleRepo repo;
 
-    @GetMapping(value = "/add-role")
-    public String viewAddRole(Role role) {
-        return "role/add-role";
+    @GetMapping(value = "add")
+    public String viewAdd(Model model){
+        model.addAttribute("role",new Role());
+        return "roles/add";
     }
-
-    @PostMapping(value = "/add-role")
-    public String addRole(@Valid Role role, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "role/add-role";
-        } else {
-            if (role != null) {
-                Role role1 = this.repo.findByRoleName(role.getRoleName());
-                if (role1 != null) {
-                    model.addAttribute("exMsg", "role name already exist...");
-                } else {
-                    this.repo.save(role);
-                    model.addAttribute("role", new Role());
-                    model.addAttribute("successMsg", "role name add successfull...");
-                }
-            }
+    @PostMapping(value = "add")
+    public String add(@Valid Role role, BindingResult result, Model model){
+        if(result.hasErrors()){
+            return "roles/add";
         }
-        return "role/add-role";
-    }
-
-    @GetMapping(value = "/role-list")
-    public String viewRoleList(Model model) {
-        model.addAttribute("list", this.repo.findAll());
-        return "role/list";
-    }
-
-
-    @GetMapping(value = "/edit-role/{id}")
-    public String editRoleView(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("role", this.repo.getOne(id));
-        return "role/edit";
-    }
-
-    @PostMapping(value = "/edit-role/{id}")
-    public String editRole(@Valid Role role,
-                           BindingResult bindingResult,
-                           Model model) {
-        if (bindingResult.hasErrors()) {
-            return "role/edit";
-        } else {
-            if (role != null) {
-                Role role1 = this.repo.findByRoleName(role.getRoleName());
-                if (role1 != null) {
-                    model.addAttribute("existMsg", "RoleName is exist...");
-                } else {
-                    this.repo.save(role);
-                    model.addAttribute("role", "new Role()");
-                    model.addAttribute("successMsg", "Already Success");
-                }
-            }
+        if(repo.existsRoleByRoleName(role.getRoleName())){
+            model.addAttribute("rejectMsg","Already Have This Entry");
+        }else{
+            role.setRoleName(role.getRoleName().toUpperCase());
+            this.repo.save(role);
+            model.addAttribute("successMsg","Successfully Saved!");
         }
-        return "redirect:/role/role-list";
+
+        return "roles/add";
+    }
+    @GetMapping(value = "edit/{id}")
+    public String viewEdit(Model model, @PathVariable("id") Long id){
+        model.addAttribute("role",repo.getOne(id));
+        return "roles/edit";
+    }
+    @PostMapping(value = "edit/{id}")
+    public String edit(@Valid Role role, BindingResult result, Model model,@PathVariable("id") Long id){
+        if(result.hasErrors()){
+            return "roles/edit";
+        }
+        Optional<Role> rol = this.repo.findByRoleName(role.getRoleName());
+        if(rol.get().getId() != id){
+            model.addAttribute("rejectMsg","Already Have This Entry");
+            return "roles/edit";
+        }else{
+            role.setId(id);
+            role.setRoleName(role.getRoleName().toUpperCase());
+            this.repo.save(role);
+        }
+
+        return "redirect:/role/list";
     }
 
-    @RequestMapping(value = "/role-del/{id}", method = RequestMethod.GET)
-    public String delRole(@PathVariable("id") Long id) {
-        this.repo.deleteById(id);
-        return "redirect:/role/role-list";
-
+    @GetMapping(value = "del/{id}")
+    public String del(@PathVariable("id") Long id){
+        if(id != null) {
+            this.repo.deleteById(id);
+        }
+        return "redirect:/role/list";
     }
+
+    @GetMapping(value = "list")
+    public String list(Model model){
+        model.addAttribute("list",this.repo.findAll());
+        return "roles/list";
+    }
+
+}
 
 //    @GetMapping(value = "/role-save")
-//    public String  saveRole(){
-//
-//        Role role= new Role();
+//    public String saveRole(){
+//        Role role=new Role();
 //        role.setRoleName("SUPERADMIN");
 //        repo.save(role);
 //
-//        Role role1= new Role();
-//        role1.setRoleName("ADMIN");
-//        repo.save(role1);
-//
-//        Role role2= new Role();
-//        role2.setRoleName("USER");
+//        Role role2=new Role();
+//        role2.setRoleName("ADMIN");
 //        repo.save(role2);
+//
+//        Role role3=new Role();
+//        role3.setRoleName("USER");
+//        repo.save(role3);
 //
 //        return "success";
 //    }
-}

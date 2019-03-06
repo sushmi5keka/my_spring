@@ -2,6 +2,7 @@ package com.israt.carrentalproject.Entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
@@ -10,15 +11,20 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "enter role")
-    @Column(unique = true, name = "role_name")
+
+    @Column(nullable = false)
+    @NotEmpty(message = "Enter Role Name")
+    @Size(min = 2,max = 20,message = "Rolename must be between 2 and 20 Characters")
     private String roleName;
 
     public Role() {
     }
-
     public Role(Long id) {
-        this.id = id;
+        this.id=id;
+    }
+
+    public Role(String roleName) {
+        this.roleName = roleName;
     }
 
     public Long getId() {
@@ -36,27 +42,6 @@ public class Role {
     public void setRoleName(String roleName) {
         this.roleName = roleName;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Role role = (Role) o;
-        return Objects.equals(id, role.id) &&
-                Objects.equals(roleName, role.roleName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, roleName);
-    }
-
-    @Override
-    public String toString() {
-        return "Role{" +
-                "id=" + id +
-                ", roleName='" + roleName + '\'' +
-                '}';
-    }
 }
+
 

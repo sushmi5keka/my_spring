@@ -90,52 +90,75 @@
 
 <h2>Jahan Car Rental</h2>
 <div class="bg-img">
-    <span th:class="sm" th:text="msg" }></span>
-    <form th:object="${user}" method="post" th:action="@{/user/add}">
+    <h1>Sign Up</h1>
+    <form>
+        <input type="text" name="email" placeholder="Name" required="">
+        <input type="text" name="email" placeholder="Email" required="">
+        <input type="password" name="password" class="lock" placeholder="Password">
+        <div class="forgot-top-grids">
+            <div class="forgot-grid">
+                <ul>
+                    <li>
+                        <input type="checkbox" id="brand1" value="">
+                        <label for="brand1"><span></span>I agree to the terms</label>
+                    </li>
+                </ul>
+            </div>
 
-        Role :
-        <select th:field="*{roles}" multiple>
-            <option th:each="role : ${roleList}" th:value="${role.id}">
-                <span th:text="${role.roleName}">
-                </span>
-            </option>
-        </select>
-        <b th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></b>
-
-        <br/>
-        <br/>
-        Name :
-        <input type="text" th:field="*{name}"/>
-        <p th:class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
-        <br/>
-        <br/>
-        User Name :
-        <input type="text" th:field="*{userName}"/>
-        <p th:class="error" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></p>
-        <br/>
-        <br/>
-        Password :
-        <input type="text" th:field="*{password}"/>
-        <p th:class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
-        <br/>
-        <br/>
-        Email :
-        <input type="email" th:field="*{email}"/>
-        <p th:class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
-        <br/>
-        <br/>
-        Status :
-        <input type="text" th:field="*{status}"/>
-        <p th:class="error" th:if="${#fields.hasErrors('status')}" th:errors="*{status}"></p>
-        <br/>
-        <br/>
-
-
-        <button type="submit">Submit</button>
-        <br/>
-        <br/>
-        <a th:href="@{/}">Student List</a>
+            <div class="clearfix"> </div>
+        </div>
+        <input type="submit" name="Sign In" value="Register">
+    <p>
+        <h4>Already have an account? <a th:href="@{/login}"> Login here.</a></h4>
+        <h5><a href="index.html">Go Back to Home</a></h5>
+        </p>
     </form>
+    <!--<span th:class="sm" th:text="msg" }></span>-->
+    <!--<form th:object="${user}" method="post" th:action="@{/user/add}">-->
+
+        <!--Role :-->
+        <!--<select th:field="*{roles}" multiple>-->
+            <!--<option th:each="role : ${roleList}" th:value="${role.id}">-->
+                <!--<span th:text="${role.roleName}">-->
+                <!--</span>-->
+            <!--</option>-->
+        <!--</select>-->
+        <!--<b th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></b>-->
+
+        <!--<br/>-->
+        <!--<br/>-->
+        <!--Name :-->
+        <!--<input type="text" th:field="*{name}"/>-->
+        <!--<p th:class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>-->
+        <!--<br/>-->
+        <!--<br/>-->
+        <!--User Name :-->
+        <!--<input type="text" th:field="*{userName}"/>-->
+        <!--<p th:class="error" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></p>-->
+        <!--<br/>-->
+        <!--<br/>-->
+        <!--Password :-->
+        <!--<input type="text" th:field="*{password}"/>-->
+        <!--<p th:class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>-->
+        <!--<br/>-->
+        <!--<br/>-->
+        <!--Email :-->
+        <!--<input type="email" th:field="*{email}"/>-->
+        <!--<p th:class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>-->
+        <!--<br/>-->
+        <!--<br/>-->
+        <!--Status :-->
+        <!--<input type="text" th:field="*{status}"/>-->
+        <!--<p th:class="error" th:if="${#fields.hasErrors('status')}" th:errors="*{status}"></p>-->
+        <!--<br/>-->
+        <!--<br/>-->
+
+
+        <!--<button type="submit">Submit</button>-->
+        <!--<br/>-->
+        <!--<br/>-->
+        <!--<a th:href="@{/}">Student List</a>-->
+    <!--</form>-->
 
 
 </div>

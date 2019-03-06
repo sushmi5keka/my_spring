@@ -21,7 +21,7 @@
             /* The image used */
             background-image: url('../assets/img/home-bg.jpg');
 
-            min-height: 500px;
+            min-height: 600px;
 
             /* Center and scale the image nicely */
             background-position: center;
@@ -37,7 +37,7 @@
             margin: 20px;
             max-width: 300px;
             padding: 16px;
-            background-color: rgba(247, 251, 246, 0.25);
+            background-color: rgba(247,251,246,0.35);
         }
 
         /* Full-width input fields */
@@ -70,7 +70,10 @@
         }
         a{
 
-            color: #05AE0E;
+            color: gold;
+        }
+        a:hover{
+            color: yellowgreen;
         }
 
         p{
@@ -78,20 +81,27 @@
 
           }
 
-        h2{
-           position: center;
+        h1{
+
             color: red;
             font-style: italic;
  }
+
+        .btn:hover {
+            background-color: rgba(213,15,27,0.67);
+            color:black; }
 
     </style>
 </head>
 <body>
 
-<h2>Jahan Car Rental</h2>
 <div class="bg-img">
+
+<br/>
+    <h1>&nbsp;&nbsp;&nbsp;Jahan Car Rental</h1>
+
     <form th:action="@{/login}" method="post" class="container">
-        <h1>Login</h1>
+        <h2>Login</h2>
 
         <!--<label for="email"><b>Email</b></label>-->
         <label ><b>User Name</b></label>
@@ -99,16 +109,19 @@
 
         <!--<label for="psw"><b>Password</b></label>-->
         <label ><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" required>
+        <input type="password" placeholder="Enter your password" name="password" required>
 
-        <button type="submit" value="login" class="btn">Sign In</button>
+        <!--<button type="submit" value="Login" class="btn">Sign In</button>-->
+        <b><input type="submit" name="Sign In" value="Sign in" class="btn"></b>
 
         <p>
             <b>If you have an account with us,please Sign-In.
             <br/>
                 If you have not an account please
              <br/>
-                <a th:href="@{/signup.html}">Sign-Up</a></b>
+                <a th:href="@{/register}">Sign-Up</a>
+            <br/>
+            <a href="#">Forgot password ?</a></b>
         </p>
     </form>
 

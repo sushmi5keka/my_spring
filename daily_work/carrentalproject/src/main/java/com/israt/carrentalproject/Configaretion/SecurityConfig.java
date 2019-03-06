@@ -15,32 +15,29 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-@Configuration
-@EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableWebSecurity
 @EnableJpaRepositories(basePackageClasses = com.israt.carrentalproject.Repo.UserRepo.class)
+@Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private LoggingAccessDeniedHandler accessDeniedHandler;
+    private LoggingAccessDeniedHandler loggingAccessDeniedHandler;
 
     @Autowired
-    CustomerUserDetailsService customerUserDetailsService;
-
+    CustomerUserDetailsService customUserDetailsService;
 
     @Bean
-    public PasswordEncoder passwordEco() {
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 
     @Override
     public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         authenticationManagerBuilder
-                .userDetailsService(customerUserDetailsService)
-                .passwordEncoder(passwordEco());
+                .userDetailsService(customUserDetailsService)
+                .passwordEncoder(passwordEncoder());
     }
-
 
     @Bean(BeanIds.AUTHENTICATION_MANAGER)
     @Override
@@ -51,14 +48,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity
-                .authorizeRequests()
-                .antMatchers("/assets/**","/documentation/**","/public/**", "/login","/signup", "/", "/user-save", "/role-save", "/test").permitAll()
-                .antMatchers("/super_admin/**", "/role/**", "/user/**").hasRole("SUPERADMIN")
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/u/**").hasRole("USER")
-                .antMatchers("/secure/**").hasAnyRole("ADMIN", "USER", "SUPERADMIN")
-                .antMatchers("/guest/**").hasRole("GUEST")
+        httpSecurity.authorizeRequests()
+                .antMatchers(
+                        "/assets/**","/documentation/**","/user-save","/login","/register","/sign-up","/confirm/**"
+                ).permitAll()
+                .antMatchers("/role/**","/user/**").hasRole("SUPERADMIN")
+                .antMatchers(
+                        "/company/**"
+                ).hasAnyRole("CADMIN","PM","TEAMLEAD","DEVELOPER")
+                .antMatchers("/super/**").hasRole(
+                "SUPERADMIN")
+                .antMatchers("/admin/**").hasRole(
+                "ADMIN")
+                .antMatchers("/user/**").hasRole(
+                "USER")
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -74,21 +77,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .exceptionHandling()
-                .accessDeniedHandler(accessDeniedHandler);
-
+                .accessDeniedHandler(loggingAccessDeniedHandler);
     }
 
-//    @Bean
-//    @Override
-//    public UserDetailsService userDetailsService() {
-//        UserDetails user =
-//                User.withDefaultPasswordEncoder()
-//                        .username("user")
-//                        .password("password")
-//                        .roles("USER")
-//                        .build();
-//        return new InMemoryUserDetailsManager();
-//
-//    }
 
 }
+
+
+
+

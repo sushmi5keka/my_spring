@@ -14,10 +14,11 @@ import java.util.Set;
 public interface UserRepo extends JpaRepository<User, Long> {
 
     Optional<User> findByUserNameOrEmail(String userName, String email);
-
-    User findByUserName(String username);
-
-    List<User>findByRoles(Set<Role> roles);
+    Optional<User> findByUserName(String username);
+    Optional<User> findByEmail(String email);
+    List<User> findAllByRoles(Set<Role> roles);
+    boolean existsByEmail(String email);
+    User findByConfirmationToken(String token);
     //////////////////////////
 
 //    User findByNameAndUserName(String name, String username);
