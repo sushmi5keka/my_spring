@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
 </head>
 <body>
-<div class="sidebar" data-color="black" data-image="assets/img/sidebar-7.jpg" th:fragment="sidebar">
+<div class="sidebar" data-color="black" data-image="/assets/img/sidebar-7.jpg" th:fragment="sidebar">
 
     <!--
 
@@ -29,11 +30,31 @@
                     <p>Dashboard</p>
                 </a>
             </li>
-            <li>
-                <a href="/user">
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="pe-7s-graph"></i>
+                    <p>Role</p>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a style="color: black!important;" href="/role/add">Add role</a></li>
+                    <li><a style="color: black!important;" href="/role/list">Role list</a></li>
+                </ul>
+            </li>
+
+
+
+            <li class="dropdown ">
+                <a class="dropdown-toggle" data-toggle="dropdown">
                     <i class="pe-7s-user"></i>
                     <p>User Profile</p>
-                </a>
+
+                    </a>
+                <ul class="dropdown-menu shusmo-dropdown" >
+                    <li><a style="color: black!important;" th:href="@{/user/add}">Add user</a></li>
+                    <li><a style="color: black!important;" href="#">Update user</a></li>
+                    <li><a style="color: black!important;" href="#">Delete user</a></li>
+                </ul>
             </li>
             <li>
                 <a href="table.html">

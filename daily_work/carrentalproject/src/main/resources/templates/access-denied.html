@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		body, html {
+			height: 100%;
+
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		.bg-img {
+			/* The image used */
+			background-image: url('../assets/img/home-bg.jpg');
+
+			min-height: 600px;
+
+			/* Center and scale the image nicely */
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			position: relative;
+		}
+
+		/* Add styles to the form container */
+		.container {
+			position: absolute;
+			right: 0;
+			margin: 20px;
+			max-width: 500px;
+			padding: 16px;
+			background-color: rgba(247,251,246,0.35);
+		}
+
+		a{
+
+			color: gold;
+		}
+		a:hover{
+			color: yellowgreen;
+		}
+
+		p{
+			color:floralwhite ;
+
+		}
+
+		h1{
+
+			color: red;
+			font-style: italic;
+		}
+
+
+	</style>
+</head>
+<body>
+
+<div class="bg-img">
+
+	<br/>
+	<h1>&nbsp;&nbsp;&nbsp;Jahan Car Rental</h1>
+
+
+
+	<form  method="post" class="container">
+
+
+		<p>
+			<b><h2>You do not have permission to view that page.</h2>
+				<br/>
+				Go back to Home
+				<br/>
+				<a th:href="@{/}">Home</a>
+				<br/>
+			</b>
+		</p>
+	</form>
+
+
+</div>
+
+
+
+</body>
+</html>
+
+
+                      
+						

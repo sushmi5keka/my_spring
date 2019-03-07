@@ -21,10 +21,10 @@ public class HomeController {
         return "index";
     }
 
-//    @GetMapping(value = "/user")
-//    public String user() {
-//        return "userprofile";
-//    }
+    @GetMapping(value = "/about")
+    public String user() {
+        return "about";
+    }
 //
 //    @GetMapping(value = "/login")
 //    public String login() {

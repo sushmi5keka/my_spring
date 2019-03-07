@@ -21,7 +21,7 @@
             /* The image used */
             background-image: url('../assets/img/home-bg.jpg');
 
-            min-height: 500px;
+            min-height: 800px;
 
             /* Center and scale the image nicely */
             background-position: center;
@@ -33,15 +33,15 @@
         /* Add styles to the form container */
         .container {
             position: absolute;
-            right: 0;
+            right : 0;
             margin: 20px;
-            max-width: 300px;
+            max-width: 500px;
             padding: 16px;
-            background-color: rgba(247, 251, 246, 0.25);
+            background-color: rgba(247,251,246,0.35);
         }
 
         /* Full-width input fields */
-        input[type=text], input[type=password] {
+        input[type=text], input[type=password], input[type=email], input[type=date] {
             width: 100%;
             padding: 15px;
             margin: 5px 0 22px 0;
@@ -49,10 +49,17 @@
             background: #f1f1f1;
         }
 
-        input[type=text]:focus, input[type=password]:focus {
+        input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, input[type=date]:focus {
             background-color: #ddd;
             outline: none;
         }
+
+        input[type=email]:focus, input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+
 
         /* Set a style for the submit button */
         .btn {
@@ -70,7 +77,10 @@
         }
         a{
 
-            color: #05AE0E;
+            color: gold;
+        }
+        a:hover{
+            color: yellowgreen;
         }
 
         p{
@@ -78,92 +88,83 @@
 
         }
 
-        h2{
-            position: center;
+        h1{
+
             color: red;
             font-style: italic;
         }
+
+        .btn:hover {
+            background-color: rgba(213,15,27,0.67);
+            color:black; }
 
     </style>
 </head>
 <body>
 
-<h2>Jahan Car Rental</h2>
+
 <div class="bg-img">
-    <h1>Sign Up</h1>
-    <form>
-        <input type="text" name="email" placeholder="Name" required="">
-        <input type="text" name="email" placeholder="Email" required="">
-        <input type="password" name="password" class="lock" placeholder="Password">
-        <div class="forgot-top-grids">
-            <div class="forgot-grid">
-                <ul>
-                    <li>
-                        <input type="checkbox" id="brand1" value="">
-                        <label for="brand1"><span></span>I agree to the terms</label>
-                    </li>
-                </ul>
-            </div>
+    <br/>
+    <h1>&nbsp;&nbsp;&nbsp;Jahan Car Rental</h1>
 
-            <div class="clearfix"> </div>
-        </div>
-        <input type="submit" name="Sign In" value="Register">
-    <p>
-        <h4>Already have an account? <a th:href="@{/login}"> Login here.</a></h4>
-        <h5><a href="index.html">Go Back to Home</a></h5>
+    <form th:object="${user}" th:action="@{/sign-up}" method="post" class="container">
+        <h2>Sign Up</h2>
+
+        <!--<label for="email"><b>Email</b></label>-->
+        <label ><b>First Name</b></label>
+        <input type="text"  th:field="*{firstName}" placeholder="Enter First Name" required="true">
+
+        <!--<label for="psw"><b>Password</b></label>-->
+        <label ><b>Last Name</b></label>
+        <input type="text"  th:field="*{lastName}" placeholder="Enter Last Name" required="true">
+
+        <!--<label for="email"><b>Email</b></label>-->
+        <label ><b>Email</b></label>
+        <input type="email"  th:field="*{email}" placeholder="Enter Email" required="true">
+
+        <!--<label for="psw"><b>Password</b></label>-->
+        <label ><b>Date of Birth</b></label>
+        <input type="date" th:text="${#dates.format(user.birthDate, 'yyyy-MM-dd')}" th:field="*{birthDate}"  class="fa-calendar" placeholder="Enter Birth Date">
+
+        <!--<div class="">-->
+            <!--<ul>-->
+                <!--<li>-->
+        <label ><b>Gender</b></label>
+        <br/><br/>
+                    <input type="radio" id="m" name="gender" value="m" th:field="*{gender}">
+                    <label for="m"><span></span><b>Male</b></label>
+        &nbsp;&nbsp;
+                <!--</li>-->
+                <!--<li>-->
+                    <input type="radio" id="f" name="gender" value="f" th:field="*{gender}">
+                    <label for="f"><span></span><b>Female</b></label>
+        &nbsp;&nbsp;
+                <!--</li>-->
+                <!--<li>-->
+                    <input type="radio" id="o" name="gender" value="o" th:field="*{gender}">
+                    <label for="o"><span></span><b>Other</b></label>
+        &nbsp;&nbsp;
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+<br/><br/>
+        <!--<button type="submit" value="Login" class="btn">Sign In</button>-->
+        <b><input type="submit" name="Sign Up" value="Sign up" class="btn"></b>
+
+        <p>
+            <b>Already have an account ?
+                <br/>
+                <a th:href="@{/login}"> Login here.</a>
+                <br/>
+                <a href="index.html">Go Back to Home</a>
+               </b>
         </p>
+        <span th:class="succes" th:text="${successMsg}"></span>
+        <span th:class="err" th:text="${rejectMsg}"></span>
+
     </form>
-    <!--<span th:class="sm" th:text="msg" }></span>-->
-    <!--<form th:object="${user}" method="post" th:action="@{/user/add}">-->
-
-        <!--Role :-->
-        <!--<select th:field="*{roles}" multiple>-->
-            <!--<option th:each="role : ${roleList}" th:value="${role.id}">-->
-                <!--<span th:text="${role.roleName}">-->
-                <!--</span>-->
-            <!--</option>-->
-        <!--</select>-->
-        <!--<b th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></b>-->
-
-        <!--<br/>-->
-        <!--<br/>-->
-        <!--Name :-->
-        <!--<input type="text" th:field="*{name}"/>-->
-        <!--<p th:class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>-->
-        <!--<br/>-->
-        <!--<br/>-->
-        <!--User Name :-->
-        <!--<input type="text" th:field="*{userName}"/>-->
-        <!--<p th:class="error" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></p>-->
-        <!--<br/>-->
-        <!--<br/>-->
-        <!--Password :-->
-        <!--<input type="text" th:field="*{password}"/>-->
-        <!--<p th:class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>-->
-        <!--<br/>-->
-        <!--<br/>-->
-        <!--Email :-->
-        <!--<input type="email" th:field="*{email}"/>-->
-        <!--<p th:class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>-->
-        <!--<br/>-->
-        <!--<br/>-->
-        <!--Status :-->
-        <!--<input type="text" th:field="*{status}"/>-->
-        <!--<p th:class="error" th:if="${#fields.hasErrors('status')}" th:errors="*{status}"></p>-->
-        <!--<br/>-->
-        <!--<br/>-->
-
-
-        <!--<button type="submit">Submit</button>-->
-        <!--<br/>-->
-        <!--<br/>-->
-        <!--<a th:href="@{/}">Student List</a>-->
-    <!--</form>-->
-
 
 </div>
-
-
 
 </body>
 </html>
