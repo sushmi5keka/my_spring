@@ -14,33 +14,33 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="header">
-                            <h4 class="title">Update User</h4>
+                            <h4 class="title">Update Address</h4>
                         </div>
                         <div class="content">
-                            <form th:object="${user}" th:action="@{/user/edit/}+${id}" method="post">
+                            <form th:object="${address}" th:action="@{/address/edit/}+${id}" method="post">
                                 <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label><b>Role</b></label>
-                                            <div >
-                                                <select th:field="*{roles}" class="form-control" multiple>
+                                    <!--<div class="col-md-4">-->
+                                        <!--<div class="form-group">-->
+                                            <!--<label><b>Role</b></label>-->
+                                            <!--<div >-->
+                                                <!--<select th:field="*{}" class="form-control" multiple>-->
 
-                                                    <option th:each="role : ${rolelist}" th:value="${role.id}"><span th:text="${role.roleName}"></span></option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
+                                                    <!--<option th:each="role : ${rolelist}" th:value="${role.id}"><span th:text="${role.roleName}"></span></option>-->
+                                                <!--</select>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <label><b>First Name</b></label>
-                                            <input type="text"  th:field="*{firstName}" class="form-control" placeholder="Enter First Name" required="true">
+                                            <label><b>Location</b></label>
+                                            <input type="text"  th:field="*{location}" class="form-control" placeholder="Enter location" required="true">
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <!--<label for="exampleInputEmail1">Email address</label>-->
-                                            <label ><b>Last Name</b></label>
-                                            <input type="text"  th:field="*{lastName}"class="form-control"  placeholder="Enter Last Name" required="true">
+                                            <label ><b>City</b></label>
+                                            <input type="text"  th:field="*{city}"class="form-control"  placeholder="Enter City" required="true">
                                         </div>
                                     </div>
                                 </div>
@@ -48,20 +48,20 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label ><b>Email</b></label>
-                                            <input type="email"  th:field="*{email}" class="form-control"  placeholder="Enter Email" required="true">
+                                            <label ><b>District</b></label>
+                                            <input type="text"  th:field="*{district}" class="form-control"  placeholder="Enter district" required="true">
                                         </div>
                                     </div>
                                     <!--<div class="col-md-4">-->
-                                        <!--<div class="form-group">-->
-                                            <!--<label ><b>Mobile Number</b></label>-->
-                                            <!--<input type="text"  th:field="*{mobile}" class="form-control"  placeholder="Enter Mobile number" required="true">-->
-                                        <!--</div>-->
+                                    <!--<div class="form-group">-->
+                                    <!--<label ><b>Mobile Number</b></label>-->
+                                    <!--<input type="text"  th:field="*{mobile}" class="form-control"  placeholder="Enter Mobile number" required="true">-->
+                                    <!--</div>-->
                                     <!--</div>-->
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label ><b>Date of Birth</b></label>
-                                            <input type="date" th:text="${#dates.format(user.birthDate, 'yyyy-MM-dd')}" th:field="*{birthDate}"  class="fa-calendar form-control" placeholder="Enter Birth Date">
+                                            <label ><b>Division</b></label>
+                                            <input type="text" th:field="*{division}"  class="form-control" placeholder="Enter Division">
                                         </div>
                                     </div>
                                 </div>
@@ -69,25 +69,8 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label ><b>Gender</b></label>
-                                            <br/><br/>
-                                            <input type="radio" id="m" name="gender" value="m" th:field="*{gender}">
-                                            <label for="m"><span></span><b>Male</b></label>
-                                            &nbsp;&nbsp;
-                                            <!--</li>-->
-                                            <!--<li>-->
-                                            <input type="radio" id="f" name="gender" value="f" th:field="*{gender}">
-                                            <label for="f"><span></span><b>Female</b></label>
-                                            &nbsp;&nbsp;
-                                            <!--</li>-->
-                                            <!--<li>-->
-                                            <input type="radio" id="o" name="gender" value="o" th:field="*{gender}">
-                                            <label for="o"><span></span><b>Other</b></label>
-                                            &nbsp;&nbsp;
-                                            <!--</li>-->
-                                            <!--</ul>-->
-                                            <!--</div>-->
-                                            <br/><br/>
+                                            <label ><b>Country</b></label>
+                                            <input type="text" th:field="*{country}"  class="form-control" placeholder="Enter Country">
                                         </div>
                                     </div>
                                 </div>
@@ -125,7 +108,7 @@
 
 
 
-                                <button type="submit" class="btn btn-info btn-fill pull-right">Add User</button>
+                                <button type="submit" class="btn btn-info btn-fill pull-right">Update</button>
 
                                 <span th:class="succes" th:text="${successMsg}"></span>
                                 <span th:class="err" th:text="${rejectMsg}"></span>

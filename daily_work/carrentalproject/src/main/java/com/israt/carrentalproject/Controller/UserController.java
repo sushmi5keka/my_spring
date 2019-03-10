@@ -53,8 +53,10 @@ public class UserController {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             user.setConfirmationToken(UUID.randomUUID().toString());
             this.repo.save(user);
+            model.addAttribute("user",new User());
             model.addAttribute("successMsg","Successfully Saved!");
             model.addAttribute("rolelist",roleRepo.findAll());
+
         }
 
         return "users/add";
@@ -64,20 +66,30 @@ public class UserController {
     @GetMapping(value = "edit/{id}")
     public String viewEdit(Model model, @PathVariable("id") Long id){
         model.addAttribute("user",repo.getOne(id));
+        model.addAttribute("rolelist",roleRepo.findAll());
         return "users/edit";
     }
     @PostMapping(value = "edit/{id}")
     public String edit(@Valid User user, BindingResult result, Model model,@PathVariable("id") Long id){
         if(result.hasErrors()){
+            model.addAttribute("rolelist",roleRepo.findAll());
             return "users/edit";
         }
         Optional<User> u = this.repo.findByEmail(user.getEmail());
         if(u.get().getId() != id){
             model.addAttribute("rejectMsg","Already Have This Entry");
+            model.addAttribute("rolelist",roleRepo.findAll());
             return "users/edit";
         }else{
             user.setId(id);
+            user.setUserName(u.get().getUserName());
+            user.setPassword(u.get().getPassword());
+            user.setEmail(u.get().getEmail());
+            user.setRegiDate(u.get().getRegiDate());
             this.repo.save(user);
+            model.addAttribute("user",new User());
+            model.addAttribute("successMsg","Successfully Saved!");
+            model.addAttribute("rolelist",roleRepo.findAll());
         }
 
         return "redirect:/user/list";

@@ -36,9 +36,12 @@ public class User {
     @NotEmpty(message = "Enter An Email")
     @Column(nullable = false, unique = true)
     private String email;
+
     @Column(unique = true)
     private String mobile;
 
+    @Column
+    private String address;
 
     private String gender;
 
@@ -58,6 +61,7 @@ public class User {
 
     //////Token Activation ==============
     private boolean enabled;
+
     @Column(nullable = false)
     private String confirmationToken;
 
@@ -98,6 +102,7 @@ public class User {
         this.password = user.password;
         this.email = user.email;
         this.mobile = user.mobile;
+        this.address = user.address;
         this.gender = user.gender;
         this.regiDate = user.regiDate;
         this.lastModifiedDate = user.lastModifiedDate;
@@ -166,6 +171,10 @@ public class User {
     public void setMobile(String mobile) {
         this.mobile = mobile;
     }
+
+    public String getAddress() { return address; }
+
+    public void setAddress(String address) { this.address = address; }
 
     public String getGender() {
         return gender;
@@ -260,29 +269,29 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return isEnabled() == user.isEnabled() &&
-                getFileSize() == user.getFileSize() &&
-                Objects.equals(getId(), user.getId()) &&
-                Objects.equals(getFirstName(), user.getFirstName()) &&
-                Objects.equals(getLastName(), user.getLastName()) &&
-                Objects.equals(getUserName(), user.getUserName()) &&
-                Objects.equals(getPassword(), user.getPassword()) &&
-                Objects.equals(getEmail(), user.getEmail()) &&
-                Objects.equals(getMobile(), user.getMobile()) &&
-                Objects.equals(getGender(), user.getGender()) &&
-                Objects.equals(getRegiDate(), user.getRegiDate()) &&
-                Objects.equals(getLastModifiedDate(), user.getLastModifiedDate()) &&
-                Objects.equals(getBirthDate(), user.getBirthDate()) &&
-                Objects.equals(getConfirmationToken(), user.getConfirmationToken()) &&
-                Objects.equals(getFileName(), user.getFileName()) &&
-                Objects.equals(getFilePath(), user.getFilePath()) &&
-                Objects.equals(getFileExtension(), user.getFileExtension()) &&
-                Objects.equals(getRoles(), user.getRoles());
+        return enabled == user.enabled &&
+                fileSize == user.fileSize &&
+                Objects.equals(id, user.id) &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(userName, user.userName) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(mobile, user.mobile) &&
+                Objects.equals(address, user.address) &&
+                Objects.equals(gender, user.gender) &&
+                Objects.equals(regiDate, user.regiDate) &&
+                Objects.equals(lastModifiedDate, user.lastModifiedDate) &&
+                Objects.equals(birthDate, user.birthDate) &&
+                Objects.equals(confirmationToken, user.confirmationToken) &&
+                Objects.equals(fileName, user.fileName) &&
+                Objects.equals(filePath, user.filePath) &&
+                Objects.equals(fileExtension, user.fileExtension) &&
+                Objects.equals(roles, user.roles);
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(getId(), getFirstName(), getLastName(), getUserName(), getPassword(), getEmail(), getMobile(), getGender(), getRegiDate(), getLastModifiedDate(), getBirthDate(), isEnabled(), getConfirmationToken(), getFileSize(), getFileName(), getFilePath(), getFileExtension(), getRoles());
+        return Objects.hash(id, firstName, lastName, userName, password, email, mobile, address, gender, regiDate, lastModifiedDate, birthDate, enabled, confirmationToken, fileSize, fileName, filePath, fileExtension, roles);
     }
 }

@@ -1,6 +1,7 @@
 package com.israt.carrentalproject.Controller;
 
 import com.israt.carrentalproject.Entity.Role;
+
 import com.israt.carrentalproject.Repo.RoleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,6 +34,7 @@ public class RoleController {
         }else{
             role.setRoleName(role.getRoleName().toUpperCase());
             this.repo.save(role);
+            model.addAttribute("role",new Role());
             model.addAttribute("successMsg","Successfully Saved!");
         }
 

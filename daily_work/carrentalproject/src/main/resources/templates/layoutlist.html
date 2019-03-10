@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layoutlist">
 <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="/assets/img/favicon.ico" th:href="@{/assets/img/favicon.ico}">
@@ -30,7 +30,12 @@
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" th:href="@{http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css}">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css' th:href="@{http://fonts.googleapis.com/css?family=Roboto:400,700,300}">
-    <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" th:href="@{/assets/css/pe-icon-7-stroke.css}"/>
+    <link href="/assets/css/pe-icon-7-stroke.css" rel="stylesheet" th:href="@{/assets/css/pe-icon-7-stroke.css}"/>
+
+<!--list table-->
+    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>-->
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
+
 
 </head>
 <body>
@@ -70,7 +75,7 @@
 
 <!--   Core JS Files   -->
 <script src="/assets/js/jquery.3.2.1.min.js" type="text/javascript" th:src="@{/assets/js/jquery.3.2.1.min.js}"></script>
-<script src="/assets/js/bootstrap.min.js" type="text/javascript" th:src="@{/assets/js/bootstrap.min.js}"></script>
+<!--<script src="assets/js/bootstrap.min.js" type="text/javascript" th:src="@{/assets/js/bootstrap.min.js}"></script>-->
 
 <!--  Charts Plugin -->
 <script src="/assets/js/chartist.min.js" th:src="@{/assets/js/chartist.min.js}"></script>
@@ -102,6 +107,16 @@
         });
 
     });
+</script>
+
+<!--list table-->
+<!--<script src="https://code.jquery.com/jquery-3.3.1.js"></script>-->
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
 </script>
 
 </html>

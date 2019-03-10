@@ -33,7 +33,7 @@
 
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="pe-7s-graph"></i>
+                    <i class="pe-7s-users"></i>
                     <p>Role</p>
                 </a>
                 <ul class="dropdown-menu">
@@ -52,10 +52,66 @@
                     </a>
                 <ul class="dropdown-menu shusmo-dropdown" >
                     <li><a style="color: black!important;" th:href="@{/user/add}">Add user</a></li>
-                    <li><a style="color: black!important;" href="#">Update user</a></li>
-                    <li><a style="color: black!important;" href="#">Delete user</a></li>
+                    <!--<li><a style="color: black!important;" th:href="@{/user/edit}">Edit user</a></li>-->
+                    <li><a style="color: black!important;" th:href="@{/user/list}">User list</a></li>
                 </ul>
             </li>
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="pe-7s-network"></i>
+                    <p>Category</p>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a style="color: black!important;" href="/category/add">Add Category</a></li>
+                    <li><a style="color: black!important;" href="/category/list">Categoty list</a></li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="pe-7s-car"></i>
+                    <p>Car</p>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a style="color: black!important;" href="/car/add">Add Car</a></li>
+                    <li><a style="color: black!important;" href="/car/list">Car Detail</a></li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="pe-7s-culture"></i>
+                    <p>Agency</p>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a style="color: black!important;" href="/agency/add">Agency From</a></li>
+                    <li><a style="color: black!important;" href="/agency/list">Agency list</a></li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="pe-7s-home"></i>
+                    <p>Address</p>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a style="color: black!important;" href="/address/add">Address From</a></li>
+                    <li><a style="color: black!important;" href="/address/list">Address list</a></li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="pe-7s-door-lock"></i>
+                    <p>Booking</p>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a style="color: black!important;" href="/booking/add">Booking From</a></li>
+                    <li><a style="color: black!important;" href="/booking/list">Booking Detail</a></li>
+                </ul>
+            </li>
+
             <li>
                 <a href="table.html">
                     <i class="pe-7s-note2"></i>
