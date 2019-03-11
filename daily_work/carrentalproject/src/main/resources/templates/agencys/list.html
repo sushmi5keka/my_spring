@@ -15,46 +15,46 @@
                     <thead>
                     &nbsp;&nbsp;
                     <tr>
-                        <th>Location</th>
-                        <th>City</th>
-                        <th>District</th>
-                        <th>Division</th>
-                        <th>Country</th>
+                        <th>Agency Name</th>
+                        <th>Mobile</th>
+                        <th>Email</th>
+                        <th>Owner Name</th>
+                        <th>Owner Address</th>
                         <th>Edit</th>
-                        <th>Del</th>
+                        <th>Delete</th>
 
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="address : ${list}">
-                        <td th:text="${address.location}"></td>
-                       <td th:text="${address.city}"></td>
-                        <td th:text="${address.district}"></td>
-                        <td th:text="${address.division}"></td>
-                        <td th:text="${address.country}"></td>
+                    <tr th:each="agency : ${list}">
+                        <td th:text="${agency.name}"></td>
+                       <td th:text="${agency.mobile}"></td>
+                        <td th:text="${agency.email}"></td>
+                        <td th:text="${agency.ownername}"></td>
+                        <td th:text="${agency.address}"></td>
 
                         <!--<td>-->
                             <!--<span th:each="r : ${user.roles}" th:text="${r.roleName}"></span>-->
                         <!--</td>-->
 
                         <td>
-                            <a th:href="@{'/address/edit/'+${address.id}}">Edit</a>
+                            <a th:href="@{'/agencys/edit/'+${agency.id}}">Edit</a>
                         </td>
                         <td>
-                            <a th:href="@{'/address/del/'+${address.id}}">Del</a>
+                            <a th:href="@{'/agencys/del/'+${agency.id}}">Del</a>
                         </td>
                     </tr>
 
                     </tbody>
                     <tfoot>
                     <tr>
-                        <th>Location</th>
-                        <th>City</th>
-                        <th>District</th>
-                        <th>Division</th>
-                        <th>Country</th>
+                        <th>Agency Name</th>
+                        <th>Mobile</th>
+                        <th>Email</th>
+                        <th>Owner Name</th>
+                        <th>Owner Address</th>
                         <th>Edit</th>
-                        <th>Del</th>
+                        <th>Delete</th>
                     </tr>
                     </tfoot>
                 </table>

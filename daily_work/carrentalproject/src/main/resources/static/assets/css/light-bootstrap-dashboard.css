@@ -295,7 +295,7 @@ input:focus {
     display: block;
     font-size: 18px;
     color: #FFFFFF;
-    text-align: center;
+    text-align: left;
     font-weight: 400;
     line-height: 30px;
 }
@@ -1689,7 +1689,8 @@ fieldset[disabled] .btn-neutral.active {
     font-weight: 400;
     margin: 5px 0px;
     padding: 15px 15px;
-    font-size: 20px;
+    font-size: 30px;
+    color: rgba(213,39,32,0.58);
 }
 
 .navbar .navbar-nav > li > a {
@@ -3383,11 +3384,11 @@ fieldset[disabled] .btn-neutral.active {
     }
     .navbar-collapse .nav li > a,
     .sidebar .nav li > a {
-        padding: 10px 15px;
+        padding: 5px 5px;
     }
     .navbar-collapse .nav,
     .sidebar .nav {
-        margin-top: 10px;
+        margin-top: 5px;
     }
     .nav-open .navbar-collapse,
     .nav-open .sidebar {

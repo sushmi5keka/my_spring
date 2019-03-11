@@ -31,6 +31,9 @@ public class Car {
     @JoinColumn(name = "agency_id")
     private Agency agency;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     public Car() {
     }
@@ -43,6 +46,7 @@ public class Car {
         this.dateOfManufacture = dateOfManufacture;
         this.farePerDay = farePerDay;
         this.agency = agency;
+        this.category = category;
     }
 
     public Car(Car car) {
@@ -53,6 +57,7 @@ public class Car {
         this.dateOfManufacture = dateOfManufacture;
         this.farePerDay = farePerDay;
         this.agency = agency;
+        this.category = category;
     }
 
     public Long getId() {
@@ -115,8 +120,16 @@ public class Car {
         return agency;
     }
 
-    public void setAgency(Agency agency) {
+  public void setAgency(Agency agency) {
         this.agency = agency;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     @Override
@@ -131,14 +144,13 @@ public class Car {
                 Objects.equals(color, car.color) &&
                 Objects.equals(noOfSeats, car.noOfSeats) &&
                 Objects.equals(dateOfManufacture, car.dateOfManufacture) &&
-                Objects.equals(agency, car.agency);
+                Objects.equals(agency, car.agency) &&
+                Objects.equals(category, car.category);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, carNumber, carModel, color, noOfSeats, dateOfManufacture, farePerDay, agency);
+        return Objects.hash(id, carNumber, carModel, color, noOfSeats, dateOfManufacture, farePerDay, agency, category);
     }
-
-
 }
 

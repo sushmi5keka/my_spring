@@ -14,14 +14,14 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="header">
-                            <h4 class="title">Update User</h4>
+                            <h4 class="title">Update Agency</h4>
                         </div>
                         <div class="content">
-                            <form th:object="${car}" th:action="@{/car/edit/}+${id}" method="post">
+                            <form th:object="${agency}" th:action="@{/agency/edit/}+${id}" method="post">
                                 <div class="row">
                                     <!--<div class="col-md-4">-->
                                     <!--<div class="form-group">-->
-                                    <!--<label><b>Category</b></label>-->
+                                    <!--<label><b>Role</b></label>-->
                                     <!--<div >-->
                                     <!--<select th:field="*{roles}" class="form-control" multiple>-->
 
@@ -30,53 +30,49 @@
                                     <!--</div>-->
                                     <!--</div>-->
                                     <!--</div>-->
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <label><b>Car Number</b></label>
-                                            <input type="text"  th:field="*{carNumber}" class="form-control" placeholder="Enter car number" required="true">
+                                            <label><b>Agency Name</b></label>
+                                            <input type="text"  th:field="*{name}" class="form-control" placeholder="Enter Agency Name" required="true">
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <label ><b>Car Model</b></label>
-                                            <input type="text"  th:field="*{carModel}"class="form-control"  placeholder="Enter Car Model" required="true">
+                                            <!--<label for="exampleInputEmail1">Email address</label>-->
+                                            <label ><b>Mobile No.</b></label>
+                                            <input type="text"  th:field="*{mobile}"class="form-control"  placeholder="Enter Mobile Number" required="true">
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label ><b>Color</b></label>
-                                            <input type="text"  th:field="*{color}" class="form-control"  placeholder="Enter car color" required="true">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label ><b>No. Of Seats</b></label>
-                                            <input type="text"  th:field="*{noOfSeats}" class="form-control"  placeholder="Enter number of Seats of the Car" required="true">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label ><b>Email</b></label>
+                                                <input type="email"  th:field="*{email}" class="form-control"  placeholder="Enter Email" required="true">
+                                            </div>
                                         </div>
                                     </div>
 
-                                </div>
-
-                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label ><b>Date of Manufacture</b></label>
-                                            <input type="date" th:text="${#dates.format(car.dateOfManufacture, 'yyyy-MM-dd')}" th:field="*{dateOfManufacture}"  class="fa-calendar form-control" placeholder="Enter Manufacture Date">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label ><b>Fare Per Day</b></label>
-                                            <input type="text" th:field="*{farePerDay}"  class="form-control" placeholder="Enter Per Day Fare Amount">
+                                            <label ><b>Owner Name</b></label>
+                                            <input type="text" th:field="*{ownername}"  class="form-control" placeholder="Enter Owner Name">
                                         </div>
                                     </div>
                                 </div>
 
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label ><b>Owner Address</b></label>
+                                            <input type="text" th:field="*{address}"  class="form-control" placeholder="Enter Owner address">
+                                        </div>
+                                    </div>
+                                </div>
 
-                                <button type="submit" class="btn btn-info btn-fill pull-right">Add Address</button>
+                                <button type="submit" class="btn btn-info btn-fill pull-right">Update</button>
 
                                 <span th:class="succes" th:text="${successMsg}"></span>
                                 <span th:class="err" th:text="${rejectMsg}"></span>

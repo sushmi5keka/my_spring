@@ -5,6 +5,7 @@ package com.israt.carrentalproject.Controller;
 
 import com.israt.carrentalproject.Entity.Booking;
 import com.israt.carrentalproject.Repo.BookingRepo;
+import com.israt.carrentalproject.Repo.CarRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,9 +24,13 @@ public class BookingController {
     @Autowired
     private BookingRepo bookingRepo;
 
+    @Autowired
+    private CarRepo carRepo;
+
     @GetMapping(value = "add")
     public String viewAdd(Model model) {
         model.addAttribute("booking", new Booking());
+        model.addAttribute("carlist",carRepo.findAll());
         return "bookings/add";
     }
 
@@ -34,11 +39,13 @@ public class BookingController {
     public String add(@Valid Booking booking, BindingResult result, Model model){
         if(result.hasErrors()){
             model.addAttribute("rejectMsg","Somthing is wrong");
+            model.addAttribute("carlist",carRepo.findAll());
             return "bookings/add";
         }else{
             this.bookingRepo.save(booking);
             model.addAttribute("booking",new Booking());
             model.addAttribute("successMsg","Successfully Saved!");
+            model.addAttribute("carlist",carRepo.findAll());
         }
 
         return "bookings/add";
@@ -47,6 +54,7 @@ public class BookingController {
     @GetMapping(value = "edit/{id}")
     public String viewEdit(Model model, @PathVariable("id") Long id){
         model.addAttribute("booking",bookingRepo.getOne(id));
+        model.addAttribute("carlist",carRepo.findAll());
         return "bookings/edit";
     }
 
@@ -54,12 +62,14 @@ public class BookingController {
     public String edit(@Valid Booking booking, BindingResult result, Model model,@PathVariable("id") Long id) {
         if (result.hasErrors()) {
             model.addAttribute("rejectMsg","Somthing is wrong");
+            model.addAttribute("carlist",carRepo.findAll());
             return "bookings/edit";
         } else {
 
             this.bookingRepo.save(booking);
             model.addAttribute("booking",new Booking());
             model.addAttribute("successMsg","Successfully Saved!");
+            model.addAttribute("carlist",carRepo.findAll());
             return "redirect:/booking/list";
         }
     }
