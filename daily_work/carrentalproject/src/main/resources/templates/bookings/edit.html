@@ -14,10 +14,10 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="header">
-                            <h4 class="title">Update User</h4>
+                            <h4 class="title">Update Booking</h4>
                         </div>
                         <div class="content">
-                            <form th:object="${booking}" th:action="@{/booking/add}" method="post">
+                            <form th:object="${booking}" th:action="@{/booking/edit/}+${id}" method="post">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
@@ -118,7 +118,7 @@
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-info btn-fill pull-right">Add Address</button>
+                                <button type="submit" class="btn btn-info btn-fill pull-right">Update</button>
 
                                 <span th:class="succes" th:text="${successMsg}"></span>
                                 <span th:class="err" th:text="${rejectMsg}"></span>

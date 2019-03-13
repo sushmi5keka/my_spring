@@ -28,11 +28,11 @@ public class Car {
     private double farePerDay;
 
     @ManyToOne
-    @JoinColumn(name = "agency_id")
+    @JoinColumn(name = "agency_id",nullable = false)
     private Agency agency;
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_id",nullable = false)
     private Category category;
 
     public Car() {

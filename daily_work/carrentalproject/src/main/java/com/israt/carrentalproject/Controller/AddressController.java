@@ -56,7 +56,8 @@ public class AddressController {
             model.addAttribute("rejectMsg","Somthing is wrong");
             return "addresss/edit";
         } else {
-//            address.setId(id);
+            address.setId(id);
+            address.setLocation(address.getLocation());
             this.addressRepo.save(address);
             model.addAttribute("address",new Address());
             model.addAttribute("successMsg","Successfully Saved!");

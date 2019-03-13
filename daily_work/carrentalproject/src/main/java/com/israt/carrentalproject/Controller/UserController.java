@@ -84,8 +84,9 @@ public class UserController {
             user.setId(id);
             user.setUserName(u.get().getUserName());
             user.setPassword(u.get().getPassword());
-            user.setEmail(u.get().getEmail());
             user.setRegiDate(u.get().getRegiDate());
+            user.setEnabled(true);
+            user.setConfirmationToken(u.get().getConfirmationToken());
             this.repo.save(user);
             model.addAttribute("user",new User());
             model.addAttribute("successMsg","Successfully Saved!");

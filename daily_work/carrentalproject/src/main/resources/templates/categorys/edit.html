@@ -8,7 +8,7 @@
 <body>
             <!--inner block start here-->
             <div class="inner-block min-height" layout:fragment="custom-content">
-                <h1>Update Category</h1>
+                <h1>Update Car Category</h1>
                 <span th:class="succes" th:text="${rejectMsg}"></span>
                 <form th:object="${category}" th:action="@{/category/edit/}+${id}" th:method="POST">
                     <div class="form-group">

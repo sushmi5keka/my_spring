@@ -63,7 +63,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label ><b>Date of Booking</b></label>
-                                            <input type="date" th:text="${#dates.format(booking.bookingdate, 'yyyy-MM-dd')}" th:field="*{birthDate}"  class="fa-calendar form-control" placeholder="Enter Birth Date">
+                                            <input type="date" th:text="${#dates.format(booking.bookingdate, 'yyyy-MM-dd')}" th:field="*{bookingdate}"  class="fa-calendar form-control" placeholder="Enter Birth Date">
                                         </div>
                                     </div>
                                 </div>
@@ -72,7 +72,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label ><b>Return Date</b></label>
-                                            <input type="date" th:text="${#dates.format(booking.returnDate, 'yyyy-MM-dd')}" th:field="*{birthDate}"  class="fa-calendar form-control" placeholder="Enter Birth Date">
+                                            <input type="date" th:text="${#dates.format(booking.returnDate, 'yyyy-MM-dd')}" th:field="*{returnDate}"  class="fa-calendar form-control" placeholder="Enter Birth Date">
                                         </div>
                                     </div>
                                     <div class="col-md-6">

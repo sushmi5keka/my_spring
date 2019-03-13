@@ -65,7 +65,7 @@ public class BookingController {
             model.addAttribute("carlist",carRepo.findAll());
             return "bookings/edit";
         } else {
-
+//            booking.setId(id);
             this.bookingRepo.save(booking);
             model.addAttribute("booking",new Booking());
             model.addAttribute("successMsg","Successfully Saved!");

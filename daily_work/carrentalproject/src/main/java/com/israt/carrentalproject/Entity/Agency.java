@@ -1,5 +1,9 @@
 package com.israt.carrentalproject.Entity;
 
+
+
+import org.springframework.lang.Nullable;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -18,8 +22,9 @@ public class Agency {
 
     private String ownername;
 
+
     @OneToOne
-    @JoinColumn(name = "address_id")
+    @JoinColumn(name = "address_id",nullable = false)
     private Address address;
 
     public Agency() {

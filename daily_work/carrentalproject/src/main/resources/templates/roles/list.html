@@ -15,7 +15,7 @@
                     <tr>
                         <th>SL. No</th>
                         <th>Role Name</th>
-                        <th>Edit</th>
+                        <!--<th>Edit</th>-->
                         <th>Del</th>
                     </tr>
                     </thead>
@@ -23,9 +23,9 @@
                     <tr th:each="role : ${list}">
                         <td th:text="${role.id}"></td>
                        <td th:text="${role.roleName}"></td>
-                        <td>
-                            <a th:href="@{'/role/edit/'+${role.id}}">Edit</a>
-                        </td>
+                        <!--<td>-->
+                            <!--<a th:href="@{'/role/edit/'+${role.id}}">Edit</a>-->
+                        <!--</td>-->
                         <td>
                             <a th:href="@{'/role/del/'+${role.id}}">Del</a>
                         </td>
@@ -36,7 +36,7 @@
                     <tr>
                         <th>SL. No</th>
                         <th>Role Name</th>
-                        <th>Edit</th>
+                        <!--<th>Edit</th>-->
                         <th>Del</th>
                     </tr>
                     </tfoot>

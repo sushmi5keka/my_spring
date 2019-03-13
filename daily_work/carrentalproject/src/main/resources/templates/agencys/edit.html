@@ -19,17 +19,7 @@
                         <div class="content">
                             <form th:object="${agency}" th:action="@{/agency/edit/}+${id}" method="post">
                                 <div class="row">
-                                    <!--<div class="col-md-4">-->
-                                    <!--<div class="form-group">-->
-                                    <!--<label><b>Role</b></label>-->
-                                    <!--<div >-->
-                                    <!--<select th:field="*{roles}" class="form-control" multiple>-->
 
-                                    <!--<option th:each="role : ${rolelist}" th:value="${role.id}"><span th:text="${role.roleName}"></span></option>-->
-                                    <!--</select>-->
-                                    <!--</div>-->
-                                    <!--</div>-->
-                                    <!--</div>-->
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label><b>Agency Name</b></label>
@@ -63,12 +53,13 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label ><b>Owner Address</b></label>
-                                            <input type="text" th:field="*{address}"  class="form-control" placeholder="Enter Owner address">
-                                        </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label ><b>Owner Address</b></label>
+                                        <select th:field="*{address}" class="form-control" >
+
+                                            <option th:each="address : ${addresslist}" th:value="${address.id}"><span th:text="${address.location}"></span></option>
+                                        </select>
                                     </div>
                                 </div>
 

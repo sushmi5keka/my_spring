@@ -41,8 +41,9 @@ public class Booking {
     @ManyToMany
     @JoinTable(
             name = "booking_car",
-            joinColumns = @JoinColumn(name = "booking_id"),
-            inverseJoinColumns = @JoinColumn(name = "car_id"))
+            joinColumns = @JoinColumn(name = "booking_id",nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "car_id",nullable = false))
+    //,nullable = false................(if there was a problem,then delete this)
     private Set<Car> car;
 
 

@@ -15,12 +15,13 @@
                     <thead>
                     &nbsp;&nbsp;
                     <tr>
-                        <th>SL. No</th>
+
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>User Name</th>
                         <th>Email</th>
-                        <!--<th>Mobile No.</th>-->
+                        <th>Mobile No.</th>
+                        <th>Address</th>
                         <th>Dath Of Birth</th>
                         <th>Gender</th>
                         <th>Role</th>
@@ -30,12 +31,13 @@
                     </thead>
                     <tbody>
                     <tr th:each="user : ${list}">
-                        <td th:text="${user.id}"></td>
+
                        <td th:text="${user.firstName}"></td>
                         <td th:text="${user.lastName}"></td>
                         <td th:text="${user.userName}"></td>
                         <td th:text="${user.email}"></td>
-                        <!--<td th:text="${user.mobile}"></td>-->
+                        <td th:text="${user.mobile}"></td>
+                        <td th:text="${user.address}"></td>
                         <td th:text="${user.birthDate}"></td>
                         <td th:text="${user.gender}"></td>
                         <td>
@@ -53,12 +55,13 @@
                     </tbody>
                     <tfoot>
                     <tr>
-                        <th>SL. No</th>
+
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>User Name</th>
                         <th>Email</th>
-                        <!--<th>Mobile No.</th>-->
+                        <th>Mobile No.</th>
+                        <th>Address</th>
                         <th>Dath Of Birth</th>
                         <th>Gender</th>
                         <th>Role</th>

@@ -53,12 +53,13 @@ public class CategoryController {
     @PostMapping(value = "edit/{id}")
     public String edit(@Valid Category category, BindingResult result, Model model,@PathVariable("id") Long id){
         if(result.hasErrors()){
+            model.addAttribute("rejectMsg","Somthing is wrong");
             return "categorys/edit";
-        }
-        Optional<Category> category1 = this.categoryRepo.findByName(category.getName());
-        if(category1.get().getId() != id){
-            model.addAttribute("rejectMsg","Already Have This Entry");
-            return "categorys/edit";
+//        }
+//        Optional<Category> category1 = this.categoryRepo.findByName(category.getName());
+//        if(category1.get().getId() != id){
+//            model.addAttribute("rejectMsg","Already Have This Entry");
+//            return "categorys/edit";
         }else{
             category.setId(id);
             category.setName(category.getName());

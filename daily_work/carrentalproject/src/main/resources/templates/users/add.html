@@ -54,22 +54,31 @@
                                             <input type="email"  th:field="*{email}" class="form-control"  placeholder="Enter Email" required="true">
                                         </div>
                                     </div>
-                                    <!--<div class="col-md-4">-->
-                                        <!--<div class="form-group">-->
-                                            <!--<label ><b>Mobile Number</b></label>-->
-                                            <!--<input type="text"  th:field="*{mobile}" class="form-control"  placeholder="Enter Mobile number" required="true">-->
-                                        <!--</div>-->
-                                    <!--</div>-->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label ><b>Mobile Number</b></label>
+                                            <input type="text"  th:field="*{mobile}" class="form-control"  placeholder="Enter Mobile number" required="true">
+                                        </div>
+                                    </div>
+
+                                     <div class="col-md-4">
+                                         <div class="form-group">
+                                             <label ><b>Address</b></label>
+                                             <input type="text"  th:field="*{address}" class="form-control"  placeholder="EnterAddress" required="true">
+                                         </div>
+                                     </div>
+
+                                </div>
+
+                                <div class="row">
+
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label ><b>Date of Birth</b></label>
                                             <input type="date" th:text="${#dates.format(user.birthDate, 'yyyy-MM-dd')}" th:field="*{birthDate}"  class="fa-calendar form-control" placeholder="Enter Birth Date">
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label ><b>Gender</b></label>
                                             <br/><br/>
@@ -102,28 +111,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                    <!--<div class="col-md-4">-->
-                                    <!--<div class="form-group">-->
-                                    <!--<label>Country</label>-->
-                                    <!--<input type="text" class="form-control" placeholder="Country" value="Andrew">-->
-                                    <!--</div>-->
-                                    <!--</div>-->
-                                    <!--<div class="col-md-4">-->
-                                    <!--<div class="form-group">-->
-                                    <!--<label>Postal Code</label>-->
-                                    <!--<input type="number" class="form-control" placeholder="ZIP Code">-->
-                                    <!--</div>-->
-                                    <!--</div>-->
-                                    <!--</div>-->
 
-                                    <!--<div class="row">-->
-                                    <!--<div class="col-md-12">-->
-                                    <!--<div class="form-group">-->
-                                    <!--<label>About Me</label>-->
-                                    <!--<textarea rows="5" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>-->
-                                    <!--</div>-->
-                                    <!--</div>-->
-                                    <!--</div>-->
 
 
 

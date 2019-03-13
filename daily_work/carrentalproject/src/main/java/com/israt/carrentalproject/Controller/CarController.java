@@ -1,6 +1,7 @@
 package com.israt.carrentalproject.Controller;
 
 
+import com.israt.carrentalproject.Entity.Agency;
 import com.israt.carrentalproject.Entity.Car;
 import com.israt.carrentalproject.Entity.Role;
 import com.israt.carrentalproject.Repo.AgencyRepo;
@@ -39,8 +40,7 @@ public class CarController {
     public String viewAdd(Model model) {
         model.addAttribute("car", new Car());
         model.addAttribute("categorylist", categoryRepo.findAll());
- model.addAttribute("agencylist", agencyRepo.findAll());
-//        model.addAttribute("carlist",bookingRepo.findAll());
+        model.addAttribute("agencylist", agencyRepo.findAll());
         return "cars/add";
     }
 
@@ -49,15 +49,14 @@ public class CarController {
     public String add(@Valid Car car, BindingResult result, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("rejectMsg", "Somthing is wrong");
-//            model.addAttribute("carlist",bookingRepo.findAll());
             model.addAttribute("categorylist", categoryRepo.findAll());
- model.addAttribute("agencylist", agencyRepo.findAll());
+            model.addAttribute("agencylist", agencyRepo.findAll());
             return "cars/add";
         } else {
             this.carRepo.save(car);
             model.addAttribute("car", new Car());
             model.addAttribute("successMsg", "Successfully Saved!");
-//            model.addAttribute("carlist",bookingRepo.findAll());
+
             model.addAttribute("categorylist", categoryRepo.findAll());
 
             model.addAttribute("agencylist", agencyRepo.findAll());
@@ -69,7 +68,7 @@ public class CarController {
     @GetMapping(value = "edit/{id}")
     public String viewEdit(Model model, @PathVariable("id") Long id) {
         model.addAttribute("car", carRepo.getOne(id));
-//        model.addAttribute("carlist",bookingRepo.findAll());
+
         model.addAttribute("categorylist", categoryRepo.findAll());
 
         model.addAttribute("agencylist", agencyRepo.findAll());
@@ -79,24 +78,25 @@ public class CarController {
     @PostMapping(value = "edit/{id}")
     public String edit(@Valid Car car, BindingResult result, Model model, @PathVariable("id") Long id) {
         if (result.hasErrors()) {
-//            model.addAttribute("carlist",bookingRepo.findAll());
+            model.addAttribute("rejectMsg","Somthing is wrong");
             model.addAttribute("categorylist", categoryRepo.findAll());
- model.addAttribute("agencylist", agencyRepo.findAll());
+            model.addAttribute("agencylist", agencyRepo.findAll());
             return "cars/edit";
-        }
-        Optional<Car> car1 = this.carRepo.findByCarModel(car.getCarModel());
-        if (car1.get().getId() != id) {
-            model.addAttribute("rejectMsg", "Already Have This Entry");
-//            model.addAttribute("carlist",bookingRepo.findAll());
-            model.addAttribute("categorylist", categoryRepo.findAll());
- model.addAttribute("agencylist", agencyRepo.findAll());
-            return "cars/edit";
+//        }
+//        Optional<Car> car1 = this.carRepo.findByCarModel(car.getCarModel());
+//        if (car1.get().getId() != id) {
+//            model.addAttribute("rejectMsg", "Already Have This Entry");
+//
+//            model.addAttribute("categorylist", categoryRepo.findAll());
+//            model.addAttribute("agencylist", agencyRepo.findAll());
+//            return "cars/edit";
         } else {
             car.setId(id);
             this.carRepo.save(car);
+            model.addAttribute("car",new Car());
             model.addAttribute("successMsg", "Successfully Saved!");
             model.addAttribute("categorylist", categoryRepo.findAll());
- model.addAttribute("agencylist", agencyRepo.findAll());
+            model.addAttribute("agencylist", agencyRepo.findAll());
         }
         return "redirect:/car/list";
     }
