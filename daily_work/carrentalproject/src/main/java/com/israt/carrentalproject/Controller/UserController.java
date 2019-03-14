@@ -9,18 +9,22 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 
 import javax.validation.Valid;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.UUID;
 
 @Controller
 @RequestMapping(value = "/user/")
 public class UserController {
+
+
 
     @Autowired
     private UserRepo repo;
@@ -30,6 +34,11 @@ public class UserController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private ImageOptimizer imageOptimizer;
+
+    private static String UPLOADED_FOLDER = "src/main/resources/static/assets/img/";
 
     @GetMapping(value = "add")
     public String viewAdd(Model model){
@@ -70,7 +79,7 @@ public class UserController {
         return "users/edit";
     }
     @PostMapping(value = "edit/{id}")
-    public String edit(@Valid User user, BindingResult result, Model model,@PathVariable("id") Long id){
+    public String edit(@Valid User user, BindingResult result, Model model,@PathVariable("id") Long id,@RequestParam("file") MultipartFile file){
         if(result.hasErrors()){
             model.addAttribute("rolelist",roleRepo.findAll());
             return "users/edit";
@@ -81,6 +90,18 @@ public class UserController {
             model.addAttribute("rolelist",roleRepo.findAll());
             return "users/edit";
         }else{
+            try {
+                //////////////////////For Image Upload start /////////////////////
+                byte[] bytes = file.getBytes();
+                Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+
+                Files.write(path, bytes);
+                user.setFileName("new-" + file.getOriginalFilename());
+                user.setFileSize(file.getSize());
+                // user.setFile(file.getBytes());
+                user.setFilePath("images/" + "new-" + file.getOriginalFilename());
+                user.setFileExtension(file.getContentType());
+                //////////////////////For Image Upload end/////////////////////
             user.setId(id);
             user.setUserName(u.get().getUserName());
             user.setPassword(u.get().getPassword());
@@ -91,6 +112,11 @@ public class UserController {
             model.addAttribute("user",new User());
             model.addAttribute("successMsg","Successfully Saved!");
             model.addAttribute("rolelist",roleRepo.findAll());
+                imageOptimizer.optimizeImage(UPLOADED_FOLDER, file, 0.3f, 100, 100);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         return "redirect:/user/list";

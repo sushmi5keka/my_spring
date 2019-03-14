@@ -17,9 +17,9 @@
                             <h4 class="title">Update User</h4>
                         </div>
                         <div class="content">
-                            <form th:object="${user}" th:action="@{/user/edit/}+${id}" method="post">
+                            <form th:object="${user}" th:action="@{/user/edit/}+${id}" method="post" enctype="multipart/form-data">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label><b>Role</b></label>
                                             <div >
@@ -30,6 +30,15 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label><b>First Name</b></label>
+                                            <input type="file"  name="file" class="form-control"  required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                                    <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label><b>First Name</b></label>

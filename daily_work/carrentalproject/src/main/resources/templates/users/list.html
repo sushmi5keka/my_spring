@@ -16,6 +16,7 @@
                     &nbsp;&nbsp;
                     <tr>
 
+                        <th>User Photo</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>User Name</th>
@@ -31,8 +32,8 @@
                     </thead>
                     <tbody>
                     <tr th:each="user : ${list}">
-
-                       <td th:text="${user.firstName}"></td>
+                        <td><img  th:src="@{${user.getFilePath()}}" width="100" height="100"/></td>
+                        <td th:text="${user.firstName}"></td>
                         <td th:text="${user.lastName}"></td>
                         <td th:text="${user.userName}"></td>
                         <td th:text="${user.email}"></td>
@@ -55,7 +56,7 @@
                     </tbody>
                     <tfoot>
                     <tr>
-
+                        <th>User Photo</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>User Name</th>
