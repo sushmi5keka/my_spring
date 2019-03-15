@@ -54,30 +54,34 @@
                                             <input type="email"  th:field="*{email}" class="form-control"  placeholder="Enter Email" required="true">
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label ><b>Mobile Number</b></label>
                                             <input type="text"  th:field="*{mobile}" class="form-control"  placeholder="Enter Mobile number" required="true">
                                         </div>
                                     </div>
 
-                                     <div class="col-md-4">
-                                         <div class="form-group">
-                                             <label ><b>Address</b></label>
-                                             <input type="text"  th:field="*{address}" class="form-control"  placeholder="EnterAddress" required="true">
-                                         </div>
-                                     </div>
+
 
                                 </div>
 
                                 <div class="row">
-
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label ><b>Address</b></label>
+                                            <input type="text"  th:field="*{address}" class="form-control"  placeholder="EnterAddress" required="true">
+                                        </div>
+                                    </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label ><b>Date of Birth</b></label>
                                             <input type="date" th:text="${#dates.format(user.birthDate, 'yyyy-MM-dd')}" th:field="*{birthDate}"  class="fa-calendar form-control" placeholder="Enter Birth Date">
                                         </div>
                                     </div>
+
+                                </div>
+
+                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label ><b>Gender</b></label>
@@ -101,10 +105,7 @@
                                             <br/><br/>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label><b>Password</b></label>
                                             <input type="password" th:field="*{password}" class="form-control" placeholder="enter your password">

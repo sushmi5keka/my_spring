@@ -30,17 +30,37 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right navbar-left">
-
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-globe"></i>
+                        <b class="caret hidden-lg hidden-md"></b>
+                        <p class="hidden-lg hidden-md">
+                            5 Notifications
+                            <b class="caret"></b>
+                        </p>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Notification 1</a></li>
+                        <li><a href="#">Notification 2</a></li>
+                        <li><a href="#">Notification 3</a></li>
+                        <li><a href="#">Notification 4</a></li>
+                        <li><a href="#">Another notification</a></li>
+                    </ul>
+                </li>
                 <li>
                     <a href="">
-                        <p>Account</p>
+                        <p>
+                        <i class="pe-7s-id"></i>
+                        Account</p>
                     </a>
                 </li>
                 <li class="dropdown">
+
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <p>
-                            Dropdown
                             <b class="caret"></b>
+                            Dropdown
+
                         </p>
 
                     </a>
@@ -54,6 +74,7 @@
                         <li><a href="#">Separated link</a></li>
                     </ul>
                 </li>
+
                 <li>
                     <a th:href="@{/logout}">
                         <p>Log out</p>

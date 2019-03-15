@@ -33,19 +33,19 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label><b>First Name</b></label>
+                                            <label><b>User Photo</b></label>
                                             <input type="file"  name="file" class="form-control"  required="true">
                                         </div>
                                     </div>
                                 </div>
                                     <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label><b>First Name</b></label>
                                             <input type="text"  th:field="*{firstName}" class="form-control" placeholder="Enter First Name" required="true">
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <!--<label for="exampleInputEmail1">Email address</label>-->
                                             <label ><b>Last Name</b></label>
@@ -55,7 +55,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label ><b>Email</b></label>
                                             <input type="email"  th:field="*{email}" class="form-control"  placeholder="Enter Email" required="true">
@@ -67,8 +67,9 @@
                                             <input type="text"  th:field="*{mobile}" class="form-control"  placeholder="Enter Mobile number" required="true">
                                         </div>
                                     </div>
-
-                                    <div class="col-md-4">
+                                </div>
+                                    <div class="row">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <label ><b>Address</b></label>
                                             <input type="text"  th:field="*{address}" class="form-control"  placeholder="Enter Address" required="true">
