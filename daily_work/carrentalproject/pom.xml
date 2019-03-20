@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.israt</groupId>
-    <artifactId>cartemplate</artifactId>
+    <artifactId>carrentalproject</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>cartemplate</name>
+    <name>carrentalproject</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
