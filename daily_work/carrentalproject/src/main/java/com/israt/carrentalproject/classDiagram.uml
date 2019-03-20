@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="0.0" y="146.0">com.israt.carrentalproject.Entity.Agency</node>
+    <node x="4.550000000000011" y="0.0">com.israt.carrentalproject.Entity.Address</node>
+    <node x="144.0" y="579.0">com.israt.carrentalproject.Entity.Role</node>
+    <node x="328.0" y="146.0">com.israt.carrentalproject.Entity.Category</node>
+    <node x="131.25000000000006" y="292.0">com.israt.carrentalproject.Entity.Car</node>
+    <node x="0.0" y="725.0">com.israt.carrentalproject.Entity.User</node>
+    <node x="13.650000000000034" y="438.0">com.israt.carrentalproject.Entity.Booking</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.israt.carrentalproject.Entity.User" target="com.israt.carrentalproject.Entity.Role">
+      <point x="-105.0" y="-48.0" />
+      <point x="105.0" y="700.0" />
+      <point x="177.0" y="700.0" />
+      <point x="-33.0" y="48.0" />
+    </edge>
+    <edge source="com.israt.carrentalproject.Entity.Car" target="com.israt.carrentalproject.Entity.Agency">
+      <point x="-42.50000000000003" y="-48.0" />
+      <point x="258.75" y="267.0" />
+      <point x="231.0" y="267.0" />
+      <point x="77.0" y="48.0" />
+    </edge>
+    <edge source="com.israt.carrentalproject.Entity.Booking" target="com.israt.carrentalproject.Entity.Car">
+      <point x="133.75" y="-48.0" />
+      <point x="414.90000000000003" y="413.0" />
+      <point x="386.25" y="413.0" />
+      <point x="84.99999999999997" y="48.0" />
+    </edge>
+    <edge source="com.israt.carrentalproject.Entity.Agency" target="com.israt.carrentalproject.Entity.Address">
+      <point x="77.0" y="-48.0" />
+      <point x="231.0" y="121.0" />
+      <point x="228.8" y="121.0" />
+      <point x="74.75" y="48.0" />
+    </edge>
+    <edge source="com.israt.carrentalproject.Entity.Car" target="com.israt.carrentalproject.Entity.Category">
+      <point x="42.49999999999997" y="-48.0" />
+      <point x="343.75" y="267.0" />
+      <point x="371.5" y="267.0" />
+      <point x="-43.5" y="48.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.6623067776456599" x="274.5" y="410.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

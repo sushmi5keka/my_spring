@@ -13,7 +13,13 @@
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
  */
-
+.round {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 50%!important;
+    margin-right: 5px;
+}
 /*--product start here--*/
 .product-items {
     border: 1px solid #ccc;
@@ -310,7 +316,7 @@ input:focus {
     left: 0;
     width: 260px;
     display: block;
-    z-index: 1;
+    z-index: 3;
     color: #fff;
     font-weight: 200;
     background-size: cover;
@@ -2365,7 +2371,7 @@ fieldset[disabled] .btn-neutral.active {
     width: 30px;
     height: 30px;
     overflow: hidden;
-    border-radius: 50%;
+    border-radius: 50%!important;
     margin-right: 5px;
 }
 

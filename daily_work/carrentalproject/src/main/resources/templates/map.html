@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
-$END$
+<div layout:fragment="custom-content">
+
+    <h5><i class="fa fa-map-marker"></i> Location page</h5>
+
+<!--<h4 class="logout fa fa-map-marker" style="border-radius:99px; font-size:12px;color:red"> Map Details</h4>-->
+    <div  class="float-right">
+
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d527.4059692142788!2d90.36807668319688!3d23.750475743738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755bf4e2c05cd5b%3A0xfd49cfbf95c0c749!2sNizam+Shankar+Plaza%2C+2+Satmasjid+Road%2C+Dhaka+1207!5e0!3m2!1sen!2sbd!4v1553053340833" width="950" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+        <!--<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3071.1654433297713!2d90.37276173310615!3d23.738398718154706!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1552891603990" width="1000" height="450" frameborder="0" style="border:0" allowfullscreen></iframe></div>-->
+
+
+    <!--https://www.google.com/maps/place/Jahan+Rent+A+Car/@23.7384956,90.3724118,17z/data=!4m12!1m6!3m5!1s0x3755bf3582fc36b5:0xfa238c0342778248!2sJahan+Rent+A+Car!8m2!3d23.7384811!4d90.372365!3m4!1s0x3755bf3582fc36b5:0xfa238c0342778248!8m2!3d23.7384811!4d90.372365-->
+
+    <!--<iframe src=" https://www.google.com/maps/place/Nizam+Shankar+Plaza,+2+Satmasjid+Road,+Dhaka+1207/@23.7505407,90.367032,18z/data=!4m13!1m7!3m6!1s0x3755bf4e2c05cd5b:0xfd49cfbf95c0c749!2sNizam+Shankar+Plaza,+2+Satmasjid+Road,+Dhaka+1207!3b1!8m2!3d23.7505284!4d90.3681049!3m4!1s0x3755bf4e2c05cd5b:0xfd49cfbf95c0c749!8m2!3d23.7505284!4d90.3681049" width="1000" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>-->
+    </div>
+</div>
 </body>
 </html>

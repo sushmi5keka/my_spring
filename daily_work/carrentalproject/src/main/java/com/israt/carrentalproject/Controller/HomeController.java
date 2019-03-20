@@ -24,6 +24,16 @@ public class HomeController {
     public String cars() {
         return "carsphoto";
     }
+
+    @GetMapping(value = "/map")
+    public String map() {
+        return "map";
+    }
+
+    @GetMapping(value = "/pro")
+    public String profile() {
+        return "profile";
+    }
 //
 //    @GetMapping(value = "/login")
 //    public String login() {
