@@ -9,111 +9,144 @@
 <body>
 
 <div layout:fragment="custom-content">
-   <h1>about page</h1>
-    <div class="container">
-        <div class="row m-y-2">
+    <br/><br/>
+    <div class="container-fluid">
+        <div class="row">
             <!-- edit form column -->
-            <div class="col-lg-6 text-lg-center">
-                <h3><i class="fa fa-user"><h1>Profile Summary Of <span th:text="${name}"></span></h1></i></h3>
-            </div>
-            <br>
-            <div class="col-lg-12">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="header">
+                        <h3 class="title"><i class="pe-7s-user"> Profile Summary Of <span th:text="${user.firstName} + ${user.lastName}"></span></i>
+                        </h3>
+                        <hr/>
+                    </div>
 
-            </div>
-            <div class="col-lg-8 push-lg-4 personal-info">
-                <form role="form" th:object="${user}" th:action="@{/profile/} + ${id}"  th:method="POST">
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Roles</label>
-                        <div class="col-lg-9">
+                    <!--<div class="col-lg-8 push-lg-4 personal-info">-->
+                    <div class="content">
+                        <form role="form" th:object="${user}" th:action="@{/profile/} + ${id}" th:method="POST">
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Roles</label>
+                                <div class="col-lg-9">
                                <span th:each="r : ${user.roles}" multiple>
                            <span th:text="${r.roleName}"></span>
                        </span>
-                        </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">First Name</label>
+                                <div class="col-lg-9">
+                                    <span th:text="*{firstName}"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Last Name</label>
+                                <div class="col-lg-9">
+                                    <span th:text="*{lastName}"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">User Name</label>
+                                <div class="col-lg-9">
+                                    <span th:text="*{userName}"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                                <div class="col-lg-9">
+                                    <span th:text="*{email}"></span>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Gender</label>
+                                <div class="col-lg-9">
+                                    <span th:text="*{gender}"></span>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Birth Date</label>
+                                <div class="col-lg-9">
+                                    <span th:text="*{birthDate}"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Regi Date</label>
+                                <div class="col-lg-9">
+                                    <span th:text="*{regiDate}"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Last Update</label>
+                                <div class="col-lg-9">
+                                    <span th:text="*{lastModifiedDate}"></span>
+                                </div>
+                            </div>
+
+
+                            <!--<div class="form-group row">-->
+                            <!--<label class="col-lg-3 col-form-label form-control-label">RegiDate</label>-->
+                            <!--<div class="col-lg-3">-->
+                            <!--<span th:text="*{regiDate}"></span>-->
+                            <!--</div>-->
+                            <!--<label class="col-lg-2 col-form-label form-control-label">lastModifiedDate</label>-->
+                            <!--<div class="col-lg-4">-->
+                            <!--<span th:text="*{lastModifiedDate}"></span>-->
+                            <!--</div>-->
+                            <!--</div>-->
+
+
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Status</label>
+                                <div class="col-lg-9">
+                                    <span th:text="*{enabled}"></span>
+                                </div>
+                            </div>
+
+
+                        </form>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">User Name</label>
-                        <div class="col-lg-9">
-                            <span th:text="*{userName}"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Email</label>
-                        <div class="col-lg-9">
-                            <span th:text="*{email}"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">User Name</label>
-                        <div class="col-lg-9">
-                            <span th:text="*{userName}"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Gender</label>
-                        <div class="col-lg-9">
-                            <span th:text="*{gender}"></span>
-                        </div>
-                    </div>
-
-
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Birth Date</label>
-                        <div class="col-lg-9">
-                            <span th:text="*{birthDate}"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Regi Date</label>
-                        <div class="col-lg-9">
-                            <span th:text="*{regiDate}"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Last Update</label>
-                        <div class="col-lg-9">
-                            <span th:text="*{lastModifiedDate}"></span>
-                        </div>
-                    </div>
-
-
-                    <!--<div class="form-group row">-->
-                    <!--<label class="col-lg-3 col-form-label form-control-label">RegiDate</label>-->
-                    <!--<div class="col-lg-3">-->
-                    <!--<span th:text="*{regiDate}"></span>-->
-                    <!--</div>-->
-                    <!--<label class="col-lg-2 col-form-label form-control-label">lastModifiedDate</label>-->
-                    <!--<div class="col-lg-4">-->
-                    <!--<span th:text="*{lastModifiedDate}"></span>-->
-                    <!--</div>-->
-                    <!--</div>-->
-
-
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Status</label>
-                        <div class="col-lg-9">
-                            <span th:text="*{enabled}"></span>
-                        </div>
-                    </div>
-
-
-
-                </form>
+                </div>
             </div>
-            <div class="col-lg-4 pull-lg-8 text-xs-center">
-                <img th:src="@{${user.filePath}}" class="m-x-auto img-fluid img-circle" th:alt="${user.fileName}" />
-                <br>
-                <h4>Photo Of <span th:text="${name}"></span></h4>
+            <div class="col-md-4">
+                <div class="card card-user">
+                    <div class="image">
+                        <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400"
+                             alt="..."/>
+
+                    </div>
+                    <div class="content">
+                        <div class="author">
+
+                            <img th:src="@{${user.filePath}}" class="avatar border-gray" alt="..."
+                                 th:alt="${user.fileName}"/>
+                            <br>
+                            <h4 class="title">Photo Of <span th:text="${name}"></span></h4>
 
 
-            </div>
-        </div>
+                        </div>
+                        <p class="description text-center"> Jahan Car Rental <br>
+                            "Enjoy the ride..." <br>
+
+                        </p>
+                    </div>
+
+                    <hr/>
+                    <div class="text-center">
+                        <button href="#" class="btn btn-simple"><i class="fa fa-facebook-square"></i></button>
+                        <button href="#" class="btn btn-simple"><i class="fa fa-twitter"></i></button>
+                        <button href="#" class="btn btn-simple"><i class="fa fa-google-plus-square"></i></button>
+
+                    </div>
+                </div>
+             </div>
+         </div>
     </div>
-    <hr />
-
-
 </div>
 
-
+</div>
 </body>
 </html>

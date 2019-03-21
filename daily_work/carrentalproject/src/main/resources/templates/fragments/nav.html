@@ -63,13 +63,15 @@
 
                 <li>
 
+<!--<form role="form"  th:object="${user}" th:action="@{/profile/} + ${id}" th:method="POST">-->
                     <div class="author">
 
                         <a th:href="@{/profile}">
                             <img class="round border-gray"   th:src="@{/assets/img/faces/face-8.jpg}">
+                            <!--<img class="round border-gray"   th:src="${uu.filePath}">-->
                         </a>
                     </div>
-
+<!--</form>-->
                 </li>
 
                 <li class="separator hidden-lg"></li>

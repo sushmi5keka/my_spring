@@ -30,11 +30,7 @@ public class HomeController {
         return "map";
     }
 
-//    @GetMapping(value = "/pro")
-//    public String profile() {
-//        return "profile";
-//    }
-//
+
 //    @GetMapping(value = "/login")
 //    public String login() {
 //        return "login";
