@@ -69,7 +69,7 @@ public class LoginController {
         user.setUserName(username);
         user.setEnabled(false);
         Set<Role> roles=new HashSet<>();
-        roles.add(new Role(6L));//(id:5L)
+        roles.add(new Role(1L));//(id:5L)
         user.setRegiDate(new Date());
         user.setRoles(roles);
         user.setConfirmationToken(UUID.randomUUID().toString());

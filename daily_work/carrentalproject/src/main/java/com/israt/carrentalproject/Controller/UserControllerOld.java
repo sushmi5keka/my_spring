@@ -41,10 +41,10 @@ public class UserControllerOld {
         Set<Role> roles=new HashSet<>();
         roles.add(new Role("SUPERADMIN"));
         roles.add(new Role("ADMIN"));
-        roles.add(new Role("CADMIN"));
-        roles.add(new Role("PM"));
-        roles.add(new Role("TEAMLEAD"));
-        roles.add(new Role("DEVELOPER"));
+//        roles.add(new Role("CADMIN"));
+//        roles.add(new Role("PM"));
+//        roles.add(new Role("TEAMLEAD"));
+//        roles.add(new Role("DEVELOPER"));
         roles.add(new Role("USER"));
         roles.forEach((role -> {
             roleRepo.save(role);
