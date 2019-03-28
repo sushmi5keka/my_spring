@@ -12,7 +12,9 @@
 
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
- */
+ /**/
+
+
 .round {
     width: 50px;
     height: 50px;
@@ -86,7 +88,7 @@
 /*      light colors         */
 
 .min-height{
-    min-height: 400px;
+    min-height: 500px;
 }
 
 @keyframes spin {
@@ -1759,8 +1761,8 @@ fieldset[disabled] .btn-neutral.active {
     font-weight: 400;
     margin: 5px 0px;
     padding: 15px 15px;
-    font-size: 30px;
-    color: rgba(213,39,32,0.58);
+    /*font-size: 30px; */
+    /*color: rgba(213,39,32,0.58);*/
 }
 
 .navbar .navbar-nav > li > a {
@@ -2296,6 +2298,7 @@ fieldset[disabled] .btn-neutral.active {
 
 .card .image img {
     width: 100%;
+    height: 100% ;
 }
 
 .card .filter {

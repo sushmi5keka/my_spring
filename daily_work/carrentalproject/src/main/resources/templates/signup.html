@@ -21,7 +21,7 @@
             /* The image used */
             background-image: url('../assets/img/home-bg.jpg');
 
-            min-height: 800px;
+            min-height: 850px;
 
             /* Center and scale the image nicely */
             background-position: center;
@@ -90,8 +90,10 @@
 
         h1{
 
-            color: red;
+            font-size: 45px;
+            color: Black;
             font-style: italic;
+            font-family: "Copperplate Gothic Bold";
         }
 
         .btn:hover {
@@ -154,9 +156,9 @@
         <p>
             <b>Already have an account ?
                 <br/>
-                <a th:href="@{/login}"> Login here.</a>
+                <a th:href="@{/login}">Go Back For Login</a>
                 <br/>
-                <a href="index.html">Go Back to Home</a>
+                <!--<a href="index.html">Go Back to Home</a>-->
                </b>
         </p>
         <span th:class="succes" th:text="${successMsg}"></span>

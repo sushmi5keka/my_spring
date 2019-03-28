@@ -16,7 +16,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="header">
-                        <h3 class="title"><i class="pe-7s-user"> Profile Summary Of <span th:text="${user.firstName} + ${user.lastName}"></span></i>
+                        <h3 class="title"><i class="pe-7s-user"> Profile Summary Of <b><span th:text="${user.firstName} +' '+ ${user.lastName}"></span></b></i>
                         </h3>
                         <hr/>
                     </div>
@@ -114,7 +114,7 @@
             <div class="col-md-4">
                 <div class="card card-user">
                     <div class="image">
-                        <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400"
+                        <img th:src="@{/assets/img/speed.jpg}"
                              alt="..."/>
 
                     </div>
@@ -124,10 +124,12 @@
                             <img th:src="@{${user.filePath}}" class="avatar border-gray" alt="..."
                                  th:alt="${user.fileName}"/>
                             <br>
-                            <h4 class="title">Photo Of <span th:text="${name}"></span></h4>
-
+                            <h4 class="title">Photo Of <span th:text="${user.firstName}+' '+${user.lastName}"></span></h4>
+                            <p><span th:text="${user.email}"></span></p>
+                            <p><span th:text="${user.mobile}"></span></p>
 
                         </div>
+
                         <p class="description text-center"> Jahan Car Rental <br>
                             "Enjoy the ride..." <br>
 
