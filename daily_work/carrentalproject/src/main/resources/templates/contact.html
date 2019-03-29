@@ -9,7 +9,86 @@
 <body>
 
 <div layout:fragment="custom-content">
-   <h1>contact page</h1>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <br/>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Contact Us</h4>
+                    </div>
+                    <div class="content min-height-box">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Company (disabled)</label>
+                                        <input type="text" class="form-control" disabled placeholder="Company" value="Jahan Car Rental">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Email address (disabled)</label>
+                                        <input type="email" class="form-control" disabled placeholder="email"  value="ijksu33@gmail.com">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Mobile Number (disabled)</label>
+                                        <input type="text" class="form-control" disabled placeholder="mobile"  value="01922239666">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Address (disabled)</label>
+                                        <input type="text" class="form-control" disabled placeholder="Address" value="Nizam Sangkor Plaza,4th Floor,Songkor">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>message </label>
+                                        <textarea rows="3" class="form-control" placeholder="Here you can put your message" value="jahan"></textarea>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <button type="submit" class="btn btn-info btn-fill pull-right">Submit</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+
+                <div class="card card-user">
+
+                    <div class="gif">
+                        <img th:src="@{/assets/img/faces/dulex.gif}" alt="..."/>
+
+                    </div>
+
+                    <hr>
+
+                    <div class="gif">
+                        <img th:src="@{/assets/img/faces/tt.gif}" alt="..."/>
+
+                    </div>
+
+                    <hr>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

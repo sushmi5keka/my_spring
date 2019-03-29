@@ -30,6 +30,10 @@ public class HomeController {
         return "map";
     }
 
+    @GetMapping(value = "/contact")
+    public String contact() {
+        return "contact";
+    }
 
 //    @GetMapping(value = "/login")
 //    public String login() {
