@@ -304,6 +304,7 @@ input:focus {
     text-align: center;
 }
 
+
 .margin-top {
     margin-top: 50px;
 }
@@ -1276,6 +1277,7 @@ fieldset[disabled] .btn-neutral.active {
 }
 
 .alert .close ~ span {
+
     display: block;
     max-width: 89%;
 }
@@ -1283,6 +1285,7 @@ fieldset[disabled] .btn-neutral.active {
 .alert[data-notify="container"] {
     padding: 10px 10px 10px 20px;
     border-radius: 4px;
+
 }
 
 .alert.alert-with-icon {

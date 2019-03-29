@@ -7,61 +7,73 @@
 </head>
 <body>
 <!--inner block start here-->
-            <div class="inner-block min-height" layout:fragment="custom-content">
-              <h1>Owner Address Detail</h1>
-                &nbsp;&nbsp;
-                <table id="example" class="table table-striped table-bordered" style="width:100%">
+<div class="inner-block min-height" layout:fragment="custom-content">
+    <br/>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <br/>
+    <h1>Owner Address Detail</h1>
+    &nbsp;&nbsp;
+    <table id="example" class="table table-striped table-bordered" style="width:100%">
 
-                    <thead>
-                    &nbsp;&nbsp;
-                    <tr>
-                        <th>Location</th>
-                        <th>City</th>
-                        <th>District</th>
-                        <th>Division</th>
-                        <th>Country</th>
-                        <th>Edit</th>
-                        <th>Del</th>
+        <thead>
+        &nbsp;&nbsp;
+        <tr>
+            <th>Location</th>
+            <th>City</th>
+            <th>District</th>
+            <th>Division</th>
+            <th>Country</th>
+            <th>Edit</th>
+            <th>Del</th>
 
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="address : ${list}">
-                        <td th:text="${address.location}"></td>
-                       <td th:text="${address.city}"></td>
-                        <td th:text="${address.district}"></td>
-                        <td th:text="${address.division}"></td>
-                        <td th:text="${address.country}"></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="address : ${list}">
+            <td th:text="${address.location}"></td>
+            <td th:text="${address.city}"></td>
+            <td th:text="${address.district}"></td>
+            <td th:text="${address.division}"></td>
+            <td th:text="${address.country}"></td>
 
-                        <!--<td>-->
-                            <!--<span th:each="r : ${user.roles}" th:text="${r.roleName}"></span>-->
-                        <!--</td>-->
+            <!--<td>-->
+            <!--<span th:each="r : ${user.roles}" th:text="${r.roleName}"></span>-->
+            <!--</td>-->
 
-                        <td>
-                            <a th:href="@{'/address/edit/'+${address.id}}">Edit</a>
-                        </td>
-                        <td>
-                            <a th:href="@{'/address/del/'+${address.id}}">Del</a>
-                        </td>
-                    </tr>
+            <td>
+                <a th:href="@{'/address/edit/'+${address.id}}">Edit</a>
+            </td>
+            <td>
+                <a th:href="@{'/address/del/'+${address.id}}">Del</a>
+            </td>
+        </tr>
 
-                    </tbody>
-                    <tfoot>
-                    <tr>
-                        <th>Location</th>
-                        <th>City</th>
-                        <th>District</th>
-                        <th>Division</th>
-                        <th>Country</th>
-                        <th>Edit</th>
-                        <th>Del</th>
-                    </tr>
-                    </tfoot>
-                </table>
+        </tbody>
+        <tfoot>
+        <tr>
+            <th>Location</th>
+            <th>City</th>
+            <th>District</th>
+            <th>Division</th>
+            <th>Country</th>
+            <th>Edit</th>
+            <th>Del</th>
+        </tr>
+        </tfoot>
+    </table>
 
+</div>
 
+</div>
+</div>
+</div>
+</div>
 
-            </div>
-            <!--inner block end here-->
+</div>
+<!--inner block end here-->
 </body>
 </html>
