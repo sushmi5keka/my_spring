@@ -4,6 +4,8 @@ package com.israt.carrentalproject.Controller;
 
 
 import com.israt.carrentalproject.Entity.Booking;
+import com.israt.carrentalproject.Entity.Car;
+import com.israt.carrentalproject.Entity.User;
 import com.israt.carrentalproject.Repo.BookingRepo;
 import com.israt.carrentalproject.Repo.CarRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping(value = "/booking/")
@@ -37,13 +40,16 @@ public class BookingController {
 
 
     @PostMapping(value = "add/{id}")
-    public String add(@Valid Booking booking, BindingResult result, Model model,@PathVariable("id") Long id){
+    public String add(@Valid Booking booking, BindingResult result, Model model, @PathVariable("id") Long id, @Valid Car car){
         if(result.hasErrors()){
             model.addAttribute("rejectMsg","Somthing is wrong");
             model.addAttribute("carno",carRepo.getOne(id));
             model.addAttribute("carlist",carRepo.findAll());
             return "bookings/add";
         }else{
+//            Optional<Car> c = this.carRepo.findById(car.getId());
+//            car.setFilePath(c.get().getFilePath());
+//            car.setFarePerDay(c.get().getFarePerDay());
             this.bookingRepo.save(booking);
             model.addAttribute("booking",new Booking());
             model.addAttribute("successMsg","Successfully Saved!");

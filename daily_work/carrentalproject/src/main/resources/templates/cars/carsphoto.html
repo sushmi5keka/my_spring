@@ -26,7 +26,7 @@
                 <div class="product-items">
                     <div class="project-eff">
                         <div >  <a th:href="@{'/booking/add/'+${car.id}}" data-lightbox-gallery="gallery1" ><span class="rollover1"> </span> </a></div>
-                        <img class="img-responsive" th:src="${car.filePath}" alt="" th:width="211" th:height="120">
+                        <img class="img-responsive" th:src="${car.filePath}" alt="" th:width="240" th:height="120" >
                     </div>
 
                     <div class="produ-cost">
@@ -34,6 +34,7 @@
                         <h4 th:text="${car?.category?.name}"></h4>
                         <h5 th:text="'Model : ' + ${car.carModel}"></h5>
                         <h5 th:text="${car.farePerDay} +' '+ 'Per Day'"></h5>
+                        <input type="checkbox" th:text="' '+ 'Booked'">
                     </div>
                 </div>
             </div>
