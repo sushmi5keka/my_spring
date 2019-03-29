@@ -149,7 +149,7 @@ public class LoginController {
 
         // Set new password
         user.setPassword(passwordEncoder.encode(requestParams.get("password")));
-
+        user.setTokenExpired(true);
         // Set user to enabled
         user.setEnabled(true);
 
@@ -227,6 +227,7 @@ public class LoginController {
 //
 //            sendFromGMail(from, pass, to, subject, body);
 //            repo.setTokenExpiredByEmail(false,email);
+////            repo.setPasswordAndTokenExpiredByEmail(pass,false,email);
 //            model.addAttribute("successMsg", "An e-mail has been sent to " + email);
 //        }
 //

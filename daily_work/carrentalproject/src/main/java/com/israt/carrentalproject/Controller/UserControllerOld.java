@@ -53,7 +53,7 @@ public class UserControllerOld {
         roles.add(new Role(1L));
         roles.add(new Role(2L));
 
-        User user = new User("Israt","Jahan","sushmi","sushmi@gmail.com",new Date(),true, UUID.randomUUID().toString(),roles);
+        User user = new User("Israt","Jahan","sushmi","sushmi@gmail.com",new Date(),true, UUID.randomUUID().toString(),true,roles);
         user.setPassword(passwordEncoder.encode("1234456789"));
         repo.save(user);
         return "success";

@@ -65,6 +65,8 @@ public class User {
     @Column(nullable = false)
     private String confirmationToken;
 
+    private boolean tokenExpired;
+
     //////File Upload==============
     @Column(nullable = true)
     private long fileSize;
@@ -84,7 +86,19 @@ public class User {
     public User() {
     }
 
-    public User(@NotEmpty(message = "Enter First Name") @Size(min = 1, max = 50, message = "Hey, Size must be between 1 and 50") String firstName, String lastName, @NotEmpty(message = "Enter Username") String userName, @NotEmpty @Email @NotEmpty(message = "Enter An Email") String email, Date birthDate, boolean enabled, String confirmationToken, Set<Role> roles) {
+//    public User(@NotEmpty(message = "Enter First Name") @Size(min = 1, max = 50, message = "Hey, Size must be between 1 and 50") String firstName, String lastName, @NotEmpty(message = "Enter Username") String userName, @NotEmpty @Email @NotEmpty(message = "Enter An Email") String email, Date birthDate, boolean enabled, String confirmationToken, Set<Role> roles) {
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.userName = userName;
+//        this.email = email;
+//        this.birthDate = birthDate;
+//        this.enabled = enabled;
+//        this.confirmationToken = confirmationToken;
+//        this.roles = roles;
+//    }
+
+
+    public User(@NotEmpty(message = "Enter First Name") @Size(min = 1, max = 50, message = "Hey, Size must be between 1 and 50") String firstName, String lastName, String userName, @NotEmpty @Email @NotEmpty(message = "Enter An Email") String email, Date birthDate, boolean enabled, String confirmationToken, boolean tokenExpired, Set<Role> roles) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
@@ -92,6 +106,7 @@ public class User {
         this.birthDate = birthDate;
         this.enabled = enabled;
         this.confirmationToken = confirmationToken;
+        this.tokenExpired = tokenExpired;
         this.roles = roles;
     }
 
@@ -109,6 +124,7 @@ public class User {
         this.birthDate = user.birthDate;
         this.enabled = user.enabled;
         this.confirmationToken = user.confirmationToken;
+        this.tokenExpired = tokenExpired;
         this.fileSize = user.fileSize;
         this.fileName = user.fileName;
         this.filePath = user.filePath;
@@ -224,6 +240,14 @@ public class User {
         this.confirmationToken = confirmationToken;
     }
 
+    public boolean isTokenExpired() {
+        return tokenExpired;
+    }
+
+    public void setTokenExpired(boolean tokenExpired) {
+        this.tokenExpired = tokenExpired;
+    }
+
     public long getFileSize() {
         return fileSize;
     }
@@ -284,6 +308,7 @@ public class User {
                 Objects.equals(lastModifiedDate, user.lastModifiedDate) &&
                 Objects.equals(birthDate, user.birthDate) &&
                 Objects.equals(confirmationToken, user.confirmationToken) &&
+                Objects.equals(tokenExpired, user.tokenExpired) &&
                 Objects.equals(fileName, user.fileName) &&
                 Objects.equals(filePath, user.filePath) &&
                 Objects.equals(fileExtension, user.fileExtension) &&
@@ -292,6 +317,6 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, userName, password, email, mobile, address, gender, regiDate, lastModifiedDate, birthDate, enabled, confirmationToken, fileSize, fileName, filePath, fileExtension, roles);
+        return Objects.hash(id, firstName, lastName, userName, password, email, mobile, address, gender, regiDate, lastModifiedDate, birthDate, enabled, confirmationToken, tokenExpired, fileSize, fileName, filePath, fileExtension, roles);
     }
 }
