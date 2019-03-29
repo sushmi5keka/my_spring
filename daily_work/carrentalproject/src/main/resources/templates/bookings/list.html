@@ -27,7 +27,7 @@
                         <th>Customer Email</th>
                         <th>Booking Date</th>
                         <th>Return Date</th>
-                        <th>Car Model</th>
+                        <!--<th>Car Model</th>-->
                         <th>No of Days</th>
                         <th>Fare Per Day</th>
                         <th>Tolat Fare Amount</th>
@@ -44,11 +44,14 @@
                         <td th:text="${booking.customerEmail}"></td>
                         <td th:text="${booking.bookingdate}"></td>
                         <td th:text="${booking.returnDate}"></td>
-                        <td>
-                            <span th:each="r : ${booking.car}" th:text="${r.carModel}"></span>
-                        </td>
+                        <!--<td>-->
+                            <!--<span th:each="r : ${booking.car}" th:text="${r.carModel}"></span>-->
+                        <!--</td>-->
                         <td th:text="${booking.noOfDays}"></td>
-                        <td th:text="${booking.farePerDay}"></td>
+                        <!--<td th:text="${booking.farePerDay}"></td>-->
+                        <td>
+                        <span th:each="r : ${booking.car}" th:text="${r.farePerDay}"></span>
+                        </td>
                         <td th:text="${booking.totalFareAmount}"></td>
                         <td th:text="${booking.advanceFareAmount}"></td>
                         <td th:text="${booking.dueFareAmount}"></td>
@@ -70,7 +73,7 @@
                         <th>Customer Email</th>
                         <th>Booking Date</th>
                         <th>Return Date</th>
-                        <th>Car Model</th>
+                        <!--<th>Car Model</th>-->
                         <th>No of Days</th>
                         <th>Fare Per Day</th>
                         <th>Tolat Fare Amount</th>

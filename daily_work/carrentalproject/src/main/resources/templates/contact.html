@@ -20,7 +20,7 @@
                         <h4 class="title">Contact Us</h4>
                     </div>
                     <div class="content min-height-box">
-                        <form>
+                        <form  th:object="${contact}" th:action="@{/contacts}" method="post" >
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -54,7 +54,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>message </label>
-                                        <textarea rows="3" class="form-control" placeholder="Here you can put your message" value="jahan"></textarea>
+                                        <textarea rows="3" type="text" th:field="*{message}" class="form-control" placeholder="Here you can put your message" ></textarea>
                                     </div>
 
                                 </div>

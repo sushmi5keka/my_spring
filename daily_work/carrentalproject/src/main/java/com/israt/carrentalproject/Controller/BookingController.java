@@ -31,6 +31,7 @@ public class BookingController {
     public String viewAdd(Model model,@PathVariable("id") Long id) {
         model.addAttribute("booking", new Booking());
         model.addAttribute("carno",carRepo.getOne(id));
+        model.addAttribute("carlist",carRepo.findAll());
         return "bookings/add";
     }
 
@@ -40,14 +41,14 @@ public class BookingController {
         if(result.hasErrors()){
             model.addAttribute("rejectMsg","Somthing is wrong");
             model.addAttribute("carno",carRepo.getOne(id));
-//            model.addAttribute("carlist",carRepo.findAll());
+            model.addAttribute("carlist",carRepo.findAll());
             return "bookings/add";
         }else{
             this.bookingRepo.save(booking);
             model.addAttribute("booking",new Booking());
             model.addAttribute("successMsg","Successfully Saved!");
             model.addAttribute("carno",carRepo.getOne(id));
-//            model.addAttribute("carlist",carRepo.findAll());
+            model.addAttribute("carlist",carRepo.findAll());
         }
 
         return "bookings/add";
@@ -56,6 +57,7 @@ public class BookingController {
     @GetMapping(value = "edit/{id}")
     public String viewEdit(Model model, @PathVariable("id") Long id){
         model.addAttribute("booking",bookingRepo.getOne(id));
+        model.addAttribute("carno",carRepo.getOne(id));
         model.addAttribute("carlist",carRepo.findAll());
         return "bookings/edit";
     }
@@ -64,6 +66,7 @@ public class BookingController {
     public String edit(@Valid Booking booking, BindingResult result, Model model,@PathVariable("id") Long id) {
         if (result.hasErrors()) {
             model.addAttribute("rejectMsg","Somthing is wrong");
+            model.addAttribute("carno",carRepo.getOne(id));
             model.addAttribute("carlist",carRepo.findAll());
             return "bookings/edit";
         } else {
@@ -71,6 +74,7 @@ public class BookingController {
             this.bookingRepo.save(booking);
             model.addAttribute("booking",new Booking());
             model.addAttribute("successMsg","Successfully Saved!");
+            model.addAttribute("carno",carRepo.getOne(id));
             model.addAttribute("carlist",carRepo.findAll());
             return "redirect:/booking/list";
         }

@@ -19,40 +19,44 @@
                             <h4 class="title">Booking From</h4>
                         </div>
                         <div class="content">
-                            <form th:object="${booking}" th:action="@{/booking/add}" method="post">
+                            <form th:object="${booking}" th:action="@{/booking/add/}+${id}" method="post">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label><b>Car</b></label>
-                                            <div >
-                                                <img class="img-responsive" th:src="${carno?.filePath}" alt="" th:width="211" th:height="120">
+                                            <div>
+                                                <img class="img-responsive" th:src="${carno?.filePath}"
+                                                     th:value="${carno.filePath}" alt="" th:width="211" th:height="150">
                                             </div>
                                         </div>
                                     </div>
                                     <!--<div class="col-md-4">-->
-                                        <!--<div class="form-group">-->
-                                            <!--<label><b>Car</b></label>-->
-                                            <!--<div >-->
-                                                <!--<select th:field="*{car}" class="form-control" multiple>-->
+                                    <!--<div class="form-group">-->
+                                    <!--<label><b>Car</b></label>-->
+                                    <!--<div >-->
+                                    <!--<select th:field="*{car}" class="form-control" multiple>-->
 
-                                                    <!--<option th:each="car : ${carlist}" th:value="${car.id}"><span th:text="${car.carModel}"></span></option>-->
-                                                <!--</select>-->
-                                            <!--</div>-->
-                                        <!--</div>-->
+                                    <!--<option th:each="car : ${carlist}" th:value="${car.id}"><span th:text="${car.carModel}"></span></option>-->
+                                    <!--</select>-->
                                     <!--</div>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label><b>Customer Name</b></label>
-                                            <input type="text"  th:field="*{customerName}" class="form-control" placeholder="Enter First Name" required="true">
+                                            <input type="text" th:field="*{customerName}" class="form-control"
+                                                   placeholder="Enter First Name" required="true">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <!--<label for="exampleInputEmail1">Email address</label>-->
-                                            <label ><b>Customer mobile</b></label>
-                                            <input type="text"  th:field="*{customerMobile}"class="form-control"  placeholder="Enter Last Name" required="true">
+                                            <label><b>Customer mobile</b></label>
+                                            <input type="text" th:field="*{customerMobile}" class="form-control"
+                                                   placeholder="Enter Last Name" required="true">
                                         </div>
                                     </div>
 
@@ -62,20 +66,24 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label ><b>Customer Email</b></label>
-                                            <input type="email"  th:field="*{customerEmail}" class="form-control"  placeholder="Enter Email" required="true">
+                                            <label><b>Customer Email</b></label>
+                                            <input type="email" th:field="*{customerEmail}" class="form-control"
+                                                   placeholder="Enter Email" required="true">
                                         </div>
                                     </div>
                                     <!--<div class="col-md-4">-->
-                                        <!--<div class="form-group">-->
-                                            <!--<label ><b>Mobile Number</b></label>-->
-                                            <!--<input type="text"  th:field="*{mobile}" class="form-control"  placeholder="Enter Mobile number" required="true">-->
-                                        <!--</div>-->
+                                    <!--<div class="form-group">-->
+                                    <!--<label ><b>Mobile Number</b></label>-->
+                                    <!--<input type="text"  th:field="*{mobile}" class="form-control"  placeholder="Enter Mobile number" required="true">-->
+                                    <!--</div>-->
                                     <!--</div>-->
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label ><b>Date of Booking</b></label>
-                                            <input type="date" th:text="${#dates.format(booking.bookingdate, 'yyyy-MM-dd')}" th:field="*{bookingdate}"  class="fa-calendar form-control" placeholder="Enter Birth Date">
+                                            <label><b>Date of Booking</b></label>
+                                            <input type="date"
+                                                   th:text="${#dates.format(booking.bookingdate, 'yyyy-MM-dd')}"
+                                                   th:field="*{bookingdate}" class="fa-calendar form-control"
+                                                   placeholder="Enter Birth Date">
                                         </div>
                                     </div>
                                 </div>
@@ -83,56 +91,60 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label ><b>Return Date</b></label>
-                                            <input type="date" th:text="${#dates.format(booking.returnDate, 'yyyy-MM-dd')}" th:field="*{returnDate}"  class="fa-calendar form-control" placeholder="Enter Birth Date">
+                                            <label><b>Return Date</b></label>
+                                            <input type="date"
+                                                   th:text="${#dates.format(booking.returnDate, 'yyyy-MM-dd')}"
+                                                   th:field="*{returnDate}" class="fa-calendar form-control"
+                                                   placeholder="Enter Birth Date">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label ><b>No. Of Days</b></label>
-                                            <input type="text"  th:field="*{noOfDays}" class="form-control"  placeholder="Enter Email" required="true">
+                                            <label><b>No. Of Days</b></label>
+                                            <input type="text" th:field="*{noOfDays}" class="form-control"
+                                                   placeholder="Enter Email" required="true">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label ><b>Per Day Fare</b></label>
-                                                    <input type="text" th:value="${carno.farePerDay}"  class="fa-calendar form-control" placeholder="Enter Birth Date">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label ><b>Total Fare Amount</b></label>
-                                                    <input type="text"  th:field="*{totalFareAmount}" class="form-control"  placeholder="Enter Email" required="true">
-                                                </div>
-                                            </div>
+                                            <label><b>Per Day Fare</b></label>
+                                            <input type="text" th:value="${carno.farePerDay}"
+                                                   class="fa-calendar form-control" placeholder="Enter Birth Date">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label><b>Total Fare Amount</b></label>
+                                            <input type="text" th:field="*{totalFareAmount}" class="form-control"
+                                                   placeholder="Enter Email" required="true">
                                         </div>
                                     </div>
                                 </div>
+
 
                                 <div class="row">
-                                    <div class="col-md-12">
+
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label ><b>Advancr Fare Amount</b></label>
-                                                    <input type="text" th:field="*{advanceFareAmount}"  class="fa-calendar form-control" placeholder="Enter Birth Date">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label ><b>Due Fare Amount</b></label>
-                                                    <input type="text"  th:field="*{dueFareAmount}" class="form-control"  placeholder="Enter Email" required="true">
-                                                </div>
-                                            </div>
+                                            <label><b>Advancr Fare Amount</b></label>
+                                            <input type="text" th:field="*{advanceFareAmount}"
+                                                   class="fa-calendar form-control" placeholder="Enter Birth Date">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label><b>Due Fare Amount</b></label>
+                                            <input type="text" th:field="*{dueFareAmount}" class="form-control"
+                                                   placeholder="Enter Email" required="true">
                                         </div>
                                     </div>
                                 </div>
 
-                                 <button type="submit" class="btn btn-info btn-fill pull-right">Booking</button>
+
+                                <button type="submit" class="btn btn-info btn-fill pull-right">Booking</button>
 
                                 <span th:class="succes" th:text="${successMsg}"></span>
                                 <span th:class="err" th:text="${rejectMsg}"></span>

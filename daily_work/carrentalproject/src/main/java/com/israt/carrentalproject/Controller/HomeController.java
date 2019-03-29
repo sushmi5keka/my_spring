@@ -15,7 +15,7 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping(value = "/about")
+    @GetMapping(value = "/abouts")
     public String about() {
         return "about";
     }
@@ -30,10 +30,7 @@ public class HomeController {
         return "map";
     }
 
-    @GetMapping(value = "/contact")
-    public String contact() {
-        return "contact";
-    }
+
 
 //    @GetMapping(value = "/login")
 //    public String login() {

@@ -38,7 +38,7 @@
                     </thead>
                     <tbody>
                     <tr th:each="car : ${list}">
-                        <td><img  th:src="@{${car.getFilePath()}}" width="100" height="100" alt="loading"/></td>
+                        <td><img  th:src="@{${car.getFilePath()}}" width="100" height="100" alt="Loading..."/></td>
                         <td th:text="${car.agency.name}"></td>
                         <td th:text="${car.category.name}"></td>
                         <td th:text="${car.carNumber}"></td>

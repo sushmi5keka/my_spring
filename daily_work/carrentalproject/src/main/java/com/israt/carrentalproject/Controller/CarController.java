@@ -78,8 +78,8 @@ public class CarController {
             model.addAttribute("categorylist", categoryRepo.findAll());
 
             model.addAttribute("agencylist", agencyRepo.findAll());
-                imageOptimizer.optimizeImage(UPLOADED_FOLDER, file, 0.3f, 100, 100);
-
+                imageOptimizer.optimizeImage(UPLOADED_FOLDER, file, 1.0f, 211, 150);
+//                imageOptimizer.optimizeImage(UPLOADED_FOLDER, file, 0.3f, 100, 100);
             } catch (Exception e) {
                 e.printStackTrace();
             }
