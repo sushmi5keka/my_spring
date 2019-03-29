@@ -3,11 +3,10 @@ package com.israt.carrentalproject.Controller;
 
 
 
-import com.israt.carrentalproject.Entity.Booking;
-import com.israt.carrentalproject.Entity.Car;
-import com.israt.carrentalproject.Entity.User;
+import com.israt.carrentalproject.Entity.*;
 import com.israt.carrentalproject.Repo.BookingRepo;
 import com.israt.carrentalproject.Repo.CarRepo;
+import com.israt.carrentalproject.Repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,11 +29,15 @@ public class BookingController {
     @Autowired
     private CarRepo carRepo;
 
+    @Autowired
+    private UserRepo userRepo;
+
     @GetMapping(value = "add/{id}")
     public String viewAdd(Model model,@PathVariable("id") Long id) {
         model.addAttribute("booking", new Booking());
         model.addAttribute("carno",carRepo.getOne(id));
         model.addAttribute("carlist",carRepo.findAll());
+        model.addAttribute("userlist",userRepo.findAll());
         return "bookings/add";
     }
 
@@ -45,6 +48,7 @@ public class BookingController {
             model.addAttribute("rejectMsg","Somthing is wrong");
             model.addAttribute("carno",carRepo.getOne(id));
             model.addAttribute("carlist",carRepo.findAll());
+            model.addAttribute("userlist",userRepo.findAll());
             return "bookings/add";
         }else{
             Car car1= carRepo.getOne(id);
@@ -55,11 +59,29 @@ public class BookingController {
             booking.setFileSize(car1.getFileSize());
             booking.setFileExtension(car1.getFileExtension());
 
+            booking.setCustomer(userRepo.getOne(id));
+
             this.bookingRepo.save(booking);
             model.addAttribute("booking",new Booking());
             model.addAttribute("successMsg","Successfully Saved!");
             model.addAttribute("carno",carRepo.getOne(id));
             model.addAttribute("carlist",carRepo.findAll());
+
+//            BookingSummary bookingSummary = new BookingSummary();
+//            bookingSummary.setTotalFareAmount(booking.getTotalFareAmount());
+//            bookingSummary.setAdvanceFareAmount(booking.getAdvanceFareAmount());
+//            bookingSummary.setDueFareAmount(booking.getDueFareAmount());
+//            this.bookingRepo.save(bookingSummary);
+
+//            CustomerSummary customerSummary = new CustomerSummary();
+//            customerSummary.setTotalFareAmount(booking.getTotalFareAmount());
+//            customerSummary.setAdvanceFareAmount(booking.getAdvanceFareAmount());
+//            customerSummary.setDueFareAmount(booking.getDueFareAmount());
+//            customerSummary.setNoOfBooking(booking.);
+//            customerSummary.setFirstBookingDate(booking.);
+//            customerSummary.setLastBookingDate(booking.);
+
+
         }
 
         return "bookings/add";

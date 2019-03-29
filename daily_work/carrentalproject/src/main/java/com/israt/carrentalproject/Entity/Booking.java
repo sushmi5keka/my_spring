@@ -40,8 +40,6 @@ public class Booking {
     @Column(nullable = true)
     private long fileSize;
     private String fileName;
-    //  @Lob
-    // private byte[] file;
     private String filePath;
     private String fileExtension;
 
