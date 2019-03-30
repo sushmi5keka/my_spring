@@ -2066,6 +2066,7 @@ fieldset[disabled] .btn-neutral.active {
 .footer {
     background-color: #FFFFFF;
     line-height: 20px;
+
 }
 
 .footer nav > ul {
@@ -2358,6 +2359,10 @@ fieldset[disabled] .btn-neutral.active {
 }
 
 .card .header {
+    padding: 15px 15px 0;
+}
+
+.card.card-user.footer{
     padding: 15px 15px 0;
 }
 

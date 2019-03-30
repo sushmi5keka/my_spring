@@ -106,6 +106,8 @@ public class UserController {
             user.setUserName(u.get().getUserName());
             user.setPassword(u.get().getPassword());
             user.setRegiDate(u.get().getRegiDate());
+            user.setGender(u.get().getGender());
+            user.setUserName(u.get().getUserName());
             user.setEnabled(true);
             user.setConfirmationToken(u.get().getConfirmationToken());
             this.repo.save(user);

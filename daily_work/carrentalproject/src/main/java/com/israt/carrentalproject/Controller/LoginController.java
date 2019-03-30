@@ -203,4 +203,41 @@ public class LoginController {
     }
 
 
+//    @PostMapping(value = "/forget")
+//    public String forget(@RequestParam(value = "email") String email, Model model, HttpServletRequest request) {
+//
+//
+//
+//        if (!repo.existsByEmail(email)) {
+//            model.addAttribute("rejectMsg", "This email addresss is not associated with US");
+//            return "forget";
+//        } else {
+//            Optional<User> user1=repo.findByEmail(email);
+//            //email sending
+//            // 172.16.185.51
+//            //String appUrl = request.getScheme() + "://" + request.getServerName()+":"+"8008";
+//            String appUrl = request.getScheme() + "://" + request.getRemoteAddr() + ":" + "8008";
+//            System.out.println("appUrl: " + appUrl);
+//            String from = USER_NAME;
+//            String pass = PASSWORD;
+//            String[] to = {email}; // list of recipient email addresses
+//            String subject = "Got Your Password";
+//            String body = "To confirm your e-mail address, please click the link below:\n"
+//                    + appUrl + "/confirm?token=" + user1.get().getConfirmationToken();
+//
+//            sendFromGMail(from, pass, to, subject, body);
+//            repo.setTokenExpiredByEmail(false,email);
+//            model.addAttribute("successMsg", "An e-mail has been sent to " + email);
+//        }
+//
+//
+//        return "forget";
+//    }
+//
+//    @GetMapping(value = "/forget")
+//    public String viewForgetPassword(Model model) {
+//        model.addAttribute("user", new User());
+//        return "forget";
+//    }
+
 }
