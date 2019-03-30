@@ -21,8 +21,10 @@
 
         <thead>
         &nbsp;&nbsp;
-        <tr>ng</th>
-
+        <tr>
+            <th>Customer Name</th>
+            <th>Booking Date</th>
+            <th>Return Date</th>
             <th>Tolat Fare Amount</th>
             <th>Advance Fare Amount</th>
             <th>Due Fare Amount</th>
@@ -33,6 +35,9 @@
         <tbody>
         <tr th:each="bookingsummary : ${summarys}">
 
+            <td th:text="${bookingsummary.booking.getCustomerName()}"></td>
+            <td th:text="${bookingsummary.booking.getBookingdate()}"></td>
+            <td th:text="${bookingsummary.booking.getReturnDate()}"></td>
             <td th:text="${bookingsummary.totalFareAmount}"></td>
             <td th:text="${bookingsummary.advanceFareAmount}"></td>
             <td th:text="${bookingsummary.dueFareAmount}"></td>
@@ -44,7 +49,9 @@
         </tbody>
         <tfoot>
         <tr>
-
+            <th>Customer Name</th>
+            <th>Booking Date</th>
+            <th>Return Date</th>
             <th>Tolat Fare Amount</th>
             <th>Advance Fare Amount</th>
             <th>Due Fare Amount</th>

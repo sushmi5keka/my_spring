@@ -50,12 +50,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeRequests()
                 .antMatchers(
-                        "/assets/**","/documentation/**","/user-save",
-                        "/login","/register","/sign-up","/confirm/**").permitAll()
-                .antMatchers("/role/**","/user/**").hasAnyRole("SUPERADMIN","ADMIN")
-                .antMatchers("/company/**").hasAnyRole("CADMIN","PM","TEAMLEAD","DEVELOPER")
-                .antMatchers("/super/**").hasRole("SUPERADMIN")
-                .antMatchers("/admin/**","/userprofile/**").hasRole("ADMIN")
+                        "/assets/**","/documentation/**","/user-save","/login","/register","/sign-up",
+                        "/confirm/**","/profile","/abouts","/contacts","/map","/car/cars").permitAll()
+
+                .antMatchers(
+                        "/role/**","/user/**","/address/**","/agency/**","/car/**","/category/**","/booking/list","/booking/summary"
+                        ).hasAnyRole("SUPERADMIN","ADMIN")
+
+//                .antMatchers("/booking/**").hasRole("USER")
+//                .antMatchers("/company/**").hasAnyRole("CADMIN","PM","TEAMLEAD","DEVELOPER")
+//                .antMatchers("/admin/**","/userprofile/**").hasRole("ADMIN")
 //                .antMatchers("/user/**").hasRole("USER")
                 .anyRequest()
                 .authenticated()

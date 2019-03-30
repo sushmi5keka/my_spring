@@ -4,21 +4,40 @@ package com.israt.carrentalproject.Controller;
 import com.israt.carrentalproject.Entity.Agency;
 import com.israt.carrentalproject.Entity.Car;
 import com.israt.carrentalproject.Entity.Role;
+import com.israt.carrentalproject.Jasper.MediaUtils;
+import com.israt.carrentalproject.Jasper.TaskService;
 import com.israt.carrentalproject.Repo.AgencyRepo;
 import com.israt.carrentalproject.Repo.BookingRepo;
 import com.israt.carrentalproject.Repo.CarRepo;
 import com.israt.carrentalproject.Repo.CategoryRepo;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.HtmlExporter;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleHtmlExporterOutput;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -36,6 +55,12 @@ public class CarController {
 
     @Autowired
     private ImageOptimizer imageOptimizer;
+
+    @Autowired
+    private TaskService taskService;
+
+    @Autowired
+    ServletContext context;
 
     private static String UPLOADED_FOLDER = "src/main/resources/static/ourcars/";
 
@@ -161,6 +186,73 @@ public class CarController {
     public String cars(Model model) {
         model.addAttribute("cars", this.carRepo.findAll());
         return "cars/carsphoto";
+    }
+
+    ////////////////////////////JASPER/////////////////////////////////
+
+    @RequestMapping(value = "report", method = RequestMethod.GET)
+    public void report(HttpServletResponse response) throws Exception {
+        response.setContentType("text/html");
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(taskService.carreport());
+        InputStream inputStream = this.getClass().getResourceAsStream("/report.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(inputStream);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, dataSource);
+        HtmlExporter exporter = new HtmlExporter(DefaultJasperReportsContext.getInstance());
+        exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+        exporter.setExporterOutput(new SimpleHtmlExporterOutput(response.getWriter()));
+        exporter.exportReport();
+    }
+
+    ////////////////pdf//////////////////////
+
+    //    @RequestMapping(value = "/pdf", method = RequestMethod.GET,
+//            produces = MediaType.APPLICATION_PDF_VALUE)
+    public void reportPdf() throws Exception {
+        String source = "F:\\my_git\\my_spring\\daily_work\\carrentalproject\\src\\main\\resources\\report.jrxml";
+        try {
+            JasperCompileManager.compileReportToFile(source);
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
+        String sourceFileName = "F:\\my_git\\my_spring\\daily_work\\carrentalproject\\src\\main\\resources\\report1.jasper";
+        String printFileName = null;
+        String destFileName = "F:\\my_git\\my_spring\\daily_work\\carrentalproject\\src\\main\\resources\\report.pdf";
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(taskService.carreport());
+        Map parameters = new HashMap();
+        try {
+            printFileName = JasperFillManager.fillReportToFile(sourceFileName,
+                    parameters, dataSource);
+            if (printFileName != null) {
+                JasperExportManager.exportReportToPdfFile(printFileName,
+                        destFileName);
+            }
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @RequestMapping("pdf")
+    public ResponseEntity<InputStreamResource> downloadFile1() throws IOException {
+        try {
+            reportPdf();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String fileName="F:\\\\my_git\\\\my_spring\\\\daily_work\\\\carrentalproject\\\\src\\\\main\\\\resources\\\\report.pdf";
+        MediaType mediaType = MediaUtils.getMediaTypeForFileName(this.context, fileName);
+
+        File file = new File(fileName);
+        InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
+
+        return ResponseEntity.ok()
+                // Content-Disposition
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + file.getName())
+                // Content-Type
+                .contentType(mediaType)
+                // Contet-Length
+                .contentLength(file.length()) //
+                .body(resource);
     }
 
 }

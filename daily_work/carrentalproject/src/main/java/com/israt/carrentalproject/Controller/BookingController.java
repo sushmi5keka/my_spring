@@ -81,7 +81,7 @@ public class BookingController {
             bookingSummary.setTotalFareAmount(booking.getTotalFareAmount());
             bookingSummary.setAdvanceFareAmount(booking.getAdvanceFareAmount());
             bookingSummary.setDueFareAmount(booking.getDueFareAmount());
-            bookingSummary.setCollectedAmount(booking.getTotalFareAmount()-booking.getDueFareAmount());
+            bookingSummary.setCollectedAmount(booking.getTotalFareAmount()-booking.getAdvanceFareAmount());
             bookingSummaryRepo.save(bookingSummary);
             model.addAttribute("booking",new Booking());
 //            model.addAttribute("bookinglist",bookingSummaryRepo.findAll());
@@ -150,8 +150,9 @@ public class BookingController {
 //            model.addAttribute("bookinglist",bookingSummaryRepo.findAll());
             model.addAttribute("successMsg", "Congratulations! Data save sucessfully");
 
-            return "redirect:/booking/list";
+
         }
+        return "redirect:/booking/list";
     }
 
     @GetMapping(value = "del/{id}")

@@ -1,4 +1,4 @@
-package com.example.trainreservation.jasper;
+package com.israt.carrentalproject.Jasper;
 
 import org.springframework.http.MediaType;
 

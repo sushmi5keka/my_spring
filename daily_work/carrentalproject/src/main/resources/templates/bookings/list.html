@@ -34,7 +34,7 @@
                         <th>Tolat Fare Amount</th>
                         <th>Advance Fare Amount</th>
                         <th>Due Fare Amount</th>
-                        <th>Edit</th>
+                        <!--<th>Edit</th>-->
                         <th>Del</th>
                     </tr>
                     </thead>
@@ -59,9 +59,9 @@
                         <td th:text="${booking.dueFareAmount}"></td>
 
 
-                        <td>
-                            <a th:href="@{'/booking/edit/'+${booking.id}}">Edit</a>
-                        </td>
+                        <!--<td>-->
+                            <!--<a th:href="@{'/booking/edit/'+${booking.id}}">Edit</a>-->
+                        <!--</td>-->
                         <td>
                             <a th:href="@{'/booking/del/'+${booking.id}}">Del</a>
                         </td>
@@ -82,7 +82,7 @@
                         <th>Tolat Fare Amount</th>
                         <th>Advance Fare Amount</th>
                         <th>Due Fare Amount</th>
-                        <th>Edit</th>
+                        <!--<th>Edit</th>-->
                         <th>Del</th>
                     </tr>
                     </tfoot>

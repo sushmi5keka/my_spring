@@ -1,7 +1,8 @@
-package com.example.trainreservation.jasper;
+package com.israt.carrentalproject.Jasper;
 
-import com.example.trainreservation.entity.SeatOrCabin;
-import com.example.trainreservation.repo.SeatOrCabinRepo;
+
+import com.israt.carrentalproject.Entity.Car;
+import com.israt.carrentalproject.Repo.CarRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,17 +15,18 @@ import java.util.Map;
 public class TaskServiceImpl implements TaskService {
 
     @Autowired
-    private SeatOrCabinRepo seatOrCabinRepo;
+    private CarRepo carRepo;
 
 
     @Override
-    public List<Map<String, Object>> seatreport() {
+    public List<Map<String, Object>> carreport() {
         List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
-        for (SeatOrCabin seatOrCabin : seatOrCabinRepo.findAll()) {
+        for (Car car : carRepo.findAll()) {
             Map<String, Object> item = new HashMap<String, Object>();
-            item.put("id", seatOrCabin.getId());
-            item.put("seatNo", seatOrCabin.getSeatNo());
-            item.put("cabinNo", seatOrCabin.getCabinNo());
+            item.put("id", car.getId());
+            item.put("carModel", car.getCarModel());
+            item.put("color", car.getColor());
+            item.put("noOfSeats", car.getNoOfSeats());
             //item.put("taskCriticalLevel", task.getTaskCriticalLevel().getLevel());
             // item.put("projectModule", task.getProjectModule().getTitle());
             // item.put("company", task.getCompany().getCompanyName());
@@ -33,5 +35,7 @@ public class TaskServiceImpl implements TaskService {
         }
         return result;
     }
+
+
 }
 
