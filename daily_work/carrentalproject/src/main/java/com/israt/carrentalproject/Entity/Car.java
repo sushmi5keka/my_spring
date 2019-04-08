@@ -27,6 +27,15 @@ public class Car {
 
     private double farePerDay;
 
+    //////File Upload==============
+    @Column(nullable = true)
+    private long fileSize;
+    private String fileName;
+    //  @Lob
+    // private byte[] file;
+    private String filePath;
+    private String fileExtension;
+
     @ManyToOne
     @JoinColumn(name = "agency_id",nullable = false)
     private Agency agency;
@@ -58,6 +67,10 @@ public class Car {
         this.farePerDay = farePerDay;
         this.agency = agency;
         this.category = category;
+        this.fileSize = car.fileSize;
+        this.fileName = car.fileName;
+        this.filePath = car.filePath;
+        this.fileExtension = car.fileExtension;
     }
 
     public Long getId() {
@@ -132,12 +145,45 @@ public class Car {
         this.category = category;
     }
 
+    public long getFileSize() {
+        return fileSize;
+    }
+
+    public void setFileSize(long fileSize) {
+        this.fileSize = fileSize;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public String getFileExtension() {
+        return fileExtension;
+    }
+
+    public void setFileExtension(String fileExtension) {
+        this.fileExtension = fileExtension;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
         return carNumber == car.carNumber &&
+                fileSize == car.fileSize &&
                 Double.compare(car.farePerDay, farePerDay) == 0 &&
                 Objects.equals(id, car.id) &&
                 Objects.equals(carModel, car.carModel) &&
@@ -145,12 +191,15 @@ public class Car {
                 Objects.equals(noOfSeats, car.noOfSeats) &&
                 Objects.equals(dateOfManufacture, car.dateOfManufacture) &&
                 Objects.equals(agency, car.agency) &&
-                Objects.equals(category, car.category);
+                Objects.equals(category, car.category) &&
+                Objects.equals(fileName, car.fileName) &&
+                Objects.equals(filePath, car.filePath) &&
+                Objects.equals(fileExtension, car.fileExtension) ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, carNumber, carModel, color, noOfSeats, dateOfManufacture, farePerDay, agency, category);
+        return Objects.hash(id, carNumber, carModel, color, noOfSeats, dateOfManufacture, farePerDay, agency, category,fileSize, fileName, filePath, fileExtension);
     }
 }
 

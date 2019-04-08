@@ -19,7 +19,7 @@
                             <h4 class="title">Car Register from</h4>
                         </div>
                         <div class="content">
-                            <form th:object="${car}" th:action="@{/car/add}" method="post">
+                            <form th:object="${car}" th:action="@{/car/add}" method="post"  enctype="multipart/form-data">
                                 <div class="row">
 
                                     <div class="col-md-4">
@@ -42,6 +42,12 @@
                                                     <option th:each="category : ${categorylist}" th:value="${category.id}"><span th:text="${category.name}"></span></option>
                                                 </select>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label><b>Car Photo</b></label>
+                                            <input type="file"  name="file" class="form-control"  required="true">
                                         </div>
                                     </div>
 

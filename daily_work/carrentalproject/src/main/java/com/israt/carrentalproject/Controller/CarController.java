@@ -12,12 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 
 @Controller
@@ -33,6 +34,11 @@ public class CarController {
     @Autowired
     private AgencyRepo agencyRepo;
 
+    @Autowired
+    private ImageOptimizer imageOptimizer;
+
+    private static String UPLOADED_FOLDER = "src/main/resources/static/ourcars/";
+
 //    @Autowired
 //    private BookingRepo bookingRepo;
 
@@ -46,13 +52,25 @@ public class CarController {
 
 
     @PostMapping(value = "add")
-    public String add(@Valid Car car, BindingResult result, Model model) {
+    public String add(@Valid Car car, BindingResult result, Model model,@RequestParam("file") MultipartFile file) {
         if (result.hasErrors()) {
             model.addAttribute("rejectMsg", "Somthing is wrong");
             model.addAttribute("categorylist", categoryRepo.findAll());
             model.addAttribute("agencylist", agencyRepo.findAll());
             return "cars/add";
         } else {
+            try {
+                //////////////////////For Image Upload start /////////////////////
+                byte[] bytes = file.getBytes();
+                Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+
+                Files.write(path, bytes);
+                car.setFileName("new-" + file.getOriginalFilename());
+                car.setFileSize(file.getSize());
+                // user.setFile(file.getBytes());
+                car.setFilePath("/ourcars/" + "new-" + file.getOriginalFilename());
+                car.setFileExtension(file.getContentType());
+                //////////////////////For Image Upload end/////////////////////
             this.carRepo.save(car);
             model.addAttribute("car", new Car());
             model.addAttribute("successMsg", "Successfully Saved!");
@@ -60,7 +78,13 @@ public class CarController {
             model.addAttribute("categorylist", categoryRepo.findAll());
 
             model.addAttribute("agencylist", agencyRepo.findAll());
+                imageOptimizer.optimizeImage(UPLOADED_FOLDER, file, 0.3f, 100, 100);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+
 
         return "cars/add";
     }
@@ -76,7 +100,7 @@ public class CarController {
     }
 
     @PostMapping(value = "edit/{id}")
-    public String edit(@Valid Car car, BindingResult result, Model model, @PathVariable("id") Long id) {
+    public String edit(@Valid Car car, BindingResult result, Model model, @PathVariable("id") Long id,@RequestParam("file") MultipartFile file) {
         if (result.hasErrors()) {
             model.addAttribute("rejectMsg","Somthing is wrong");
             model.addAttribute("categorylist", categoryRepo.findAll());
@@ -91,12 +115,29 @@ public class CarController {
 //            model.addAttribute("agencylist", agencyRepo.findAll());
 //            return "cars/edit";
         } else {
+            try {
+                //////////////////////For Image Upload start /////////////////////
+                byte[] bytes = file.getBytes();
+                Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+
+                Files.write(path, bytes);
+                car.setFileName("new-" + file.getOriginalFilename());
+                car.setFileSize(file.getSize());
+                // user.setFile(file.getBytes());
+                car.setFilePath("/ourcars/" + "new-" + file.getOriginalFilename());
+                car.setFileExtension(file.getContentType());
+                //////////////////////For Image Upload end/////////////////////
             car.setId(id);
             this.carRepo.save(car);
             model.addAttribute("car",new Car());
             model.addAttribute("successMsg", "Successfully Saved!");
             model.addAttribute("categorylist", categoryRepo.findAll());
             model.addAttribute("agencylist", agencyRepo.findAll());
+                imageOptimizer.optimizeImage(UPLOADED_FOLDER, file, 0.3f, 100, 100);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return "redirect:/car/list";
     }
