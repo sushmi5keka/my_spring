@@ -27,25 +27,27 @@ public class BookingController {
     @Autowired
     private CarRepo carRepo;
 
-    @GetMapping(value = "add")
-    public String viewAdd(Model model) {
+    @GetMapping(value = "add/{id}")
+    public String viewAdd(Model model,@PathVariable("id") Long id) {
         model.addAttribute("booking", new Booking());
-        model.addAttribute("carlist",carRepo.findAll());
+        model.addAttribute("carno",carRepo.getOne(id));
         return "bookings/add";
     }
 
 
-    @PostMapping(value = "add")
-    public String add(@Valid Booking booking, BindingResult result, Model model){
+    @PostMapping(value = "add/{id}")
+    public String add(@Valid Booking booking, BindingResult result, Model model,@PathVariable("id") Long id){
         if(result.hasErrors()){
             model.addAttribute("rejectMsg","Somthing is wrong");
-            model.addAttribute("carlist",carRepo.findAll());
+            model.addAttribute("carno",carRepo.getOne(id));
+//            model.addAttribute("carlist",carRepo.findAll());
             return "bookings/add";
         }else{
             this.bookingRepo.save(booking);
             model.addAttribute("booking",new Booking());
             model.addAttribute("successMsg","Successfully Saved!");
-            model.addAttribute("carlist",carRepo.findAll());
+            model.addAttribute("carno",carRepo.getOne(id));
+//            model.addAttribute("carlist",carRepo.findAll());
         }
 
         return "bookings/add";

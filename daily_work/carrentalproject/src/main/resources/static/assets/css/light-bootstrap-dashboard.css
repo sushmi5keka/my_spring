@@ -36,7 +36,7 @@
 }
 .produ-cost {
     padding: 0.8em 1.5em;
-    background: rgba(238,113,94,0.57);
+    background: darkgrey;
 }
 .produ-cost h4 {
     font-size: 1.2em;

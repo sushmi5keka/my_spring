@@ -133,7 +133,7 @@ public class CarController {
             model.addAttribute("successMsg", "Successfully Saved!");
             model.addAttribute("categorylist", categoryRepo.findAll());
             model.addAttribute("agencylist", agencyRepo.findAll());
-                imageOptimizer.optimizeImage(UPLOADED_FOLDER, file, 0.3f, 100, 100);
+                imageOptimizer.optimizeImage(UPLOADED_FOLDER, file, 1.0f, 211, 150);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -155,6 +155,12 @@ public class CarController {
     public String list(Model model) {
         model.addAttribute("list", this.carRepo.findAll());
         return "cars/list";
+    }
+
+    @GetMapping(value = "cars")
+    public String cars(Model model) {
+        model.addAttribute("cars", this.carRepo.findAll());
+        return "cars/carsphoto";
     }
 
 }

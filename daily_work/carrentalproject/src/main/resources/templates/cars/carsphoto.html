@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Our Cars</title>
+</head>
+<body>
+
+<div layout:fragment="custom-content">
+
+
+    <!--inner block start here-->
+    <div class="inner-block">
+        <div class="product-block">
+            <div class="pro-head">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <h2 class="title"><i class="pe-7s-car"></i>    Our Cars</h2>
+            </div>
+            <div class="header">
+                <h4 class="title"> &nbsp; &nbsp;
+                    Click A Car For Booking</h4>
+            </div>
+            <div class="col-md-3 product-grid" th:each="car : ${cars}">
+                <div class="product-items">
+                    <div class="project-eff">
+                        <div >  <a th:href="@{'/booking/add/'+${car.id}}" data-lightbox-gallery="gallery1" ><span class="rollover1"> </span> </a></div>
+                        <img class="img-responsive" th:src="${car.filePath}" alt="" th:width="211" th:height="120">
+                    </div>
+
+                    <div class="produ-cost">
+                        <hr/>
+                        <h4 th:text="${car?.category?.name}"></h4>
+                        <h5 th:text="'Model : ' + ${car.carModel}"></h5>
+                        <h5 th:text="${car.farePerDay} +' '+ 'Per Day'"></h5>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <!--inner block end here-->
+</div>
+</body>
+</html>

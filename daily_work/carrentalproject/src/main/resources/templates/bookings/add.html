@@ -25,29 +25,41 @@
                                         <div class="form-group">
                                             <label><b>Car</b></label>
                                             <div >
-                                                <select th:field="*{car}" class="form-control" multiple>
-
-                                                    <option th:each="car : ${carlist}" th:value="${car.id}"><span th:text="${car.carModel}"></span></option>
-                                                </select>
+                                                <img class="img-responsive" th:src="${carno?.filePath}" alt="" th:width="211" th:height="120">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <!--<div class="col-md-4">-->
+                                        <!--<div class="form-group">-->
+                                            <!--<label><b>Car</b></label>-->
+                                            <!--<div >-->
+                                                <!--<select th:field="*{car}" class="form-control" multiple>-->
+
+                                                    <!--<option th:each="car : ${carlist}" th:value="${car.id}"><span th:text="${car.carModel}"></span></option>-->
+                                                <!--</select>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label><b>Customer Name</b></label>
                                             <input type="text"  th:field="*{customerName}" class="form-control" placeholder="Enter First Name" required="true">
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <!--<label for="exampleInputEmail1">Email address</label>-->
                                             <label ><b>Customer mobile</b></label>
                                             <input type="text"  th:field="*{customerMobile}"class="form-control"  placeholder="Enter Last Name" required="true">
                                         </div>
                                     </div>
+
                                 </div>
 
                                 <div class="row">
+
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label ><b>Customer Email</b></label>
@@ -88,7 +100,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label ><b>Per Day Fare</b></label>
-                                                    <input type="text" th:field="*{farePerDay}"  class="fa-calendar form-control" placeholder="Enter Birth Date">
+                                                    <input type="text" th:value="${carno.farePerDay}"  class="fa-calendar form-control" placeholder="Enter Birth Date">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
