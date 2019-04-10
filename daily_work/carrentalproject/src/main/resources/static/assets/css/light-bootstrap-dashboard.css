@@ -2308,7 +2308,19 @@ fieldset[disabled] .btn-neutral.active {
 .card .gif {
     width: 100%;
     overflow: hidden;
-    height: 260px;
+    height: 265px;
+    border-radius: 4px 4px 0 0;
+    position: relative;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+
+.card .gif {
+    width: 100%;
+    overflow: hidden;
+    height: 300px;
     border-radius: 4px 4px 0 0;
     position: relative;
     -webkit-transform-style: preserve-3d;
@@ -2488,6 +2500,10 @@ fieldset[disabled] .btn-neutral.active {
 
 .card-user .gif {
     height: 270px;
+}
+
+.card-user .giff {
+    height: auto;
 }
 
 .card-user .image-plain {
