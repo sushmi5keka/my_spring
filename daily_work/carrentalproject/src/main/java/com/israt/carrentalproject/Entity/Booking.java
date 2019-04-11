@@ -37,6 +37,17 @@ public class Booking {
 
     private double dueFareAmount;
 
+    @Column(nullable = true)
+    private long fileSize;
+    private String fileName;
+    //  @Lob
+    // private byte[] file;
+    private String filePath;
+    private String fileExtension;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id",nullable = false)
+    private User customer;
 
     @ManyToMany
     @JoinTable(
@@ -62,20 +73,26 @@ public class Booking {
         this.advanceFareAmount = advanceFareAmount;
         this.dueFareAmount = dueFareAmount;
         this.car = car;
+        this.customer = customer;
     }
 
     public Booking(Booking booking) {
-        this.customerName = customerName;
-        this.customerMobile = customerMobile;
-        this.customerEmail = customerEmail;
-        this.bookingdate = bookingdate;
-        this.returnDate = returnDate;
-        this.noOfDays = noOfDays;
-        this.farePerDay = farePerDay;
-        this.totalFareAmount = totalFareAmount;
-        this.advanceFareAmount = advanceFareAmount;
-        this.dueFareAmount = dueFareAmount;
-        this.car = car;
+        this.customerName = booking.customerName;
+        this.customerMobile = booking.customerMobile;
+        this.customerEmail = booking.customerEmail;
+        this.bookingdate = booking.bookingdate;
+        this.returnDate = booking.returnDate;
+        this.noOfDays = booking.noOfDays;
+        this.farePerDay = booking.farePerDay;
+        this.totalFareAmount = booking.totalFareAmount;
+        this.advanceFareAmount = booking.advanceFareAmount;
+        this.dueFareAmount = booking.dueFareAmount;
+        this.car = booking.car;
+        this.customer = booking.customer;
+        this.fileSize = booking.fileSize;
+        this.fileName = booking.fileName;
+        this.filePath = booking.filePath;
+        this.fileExtension = booking.fileExtension;
     }
 
     public Long getId() {
@@ -166,6 +183,46 @@ public class Booking {
         this.dueFareAmount = dueFareAmount;
     }
 
+    public User getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(User customer) {
+        this.customer = customer;
+    }
+
+    public long getFileSize() {
+        return fileSize;
+    }
+
+    public void setFileSize(long fileSize) {
+        this.fileSize = fileSize;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public String getFileExtension() {
+        return fileExtension;
+    }
+
+    public void setFileExtension(String fileExtension) {
+        this.fileExtension = fileExtension;
+    }
+
     public Set<Car> getCar() {
         return car;
     }
@@ -180,6 +237,7 @@ public class Booking {
         if (o == null || getClass() != o.getClass()) return false;
         Booking booking = (Booking) o;
         return noOfDays == booking.noOfDays &&
+                fileSize == booking.fileSize &&
                 Double.compare(booking.farePerDay, farePerDay) == 0 &&
                 Double.compare(booking.totalFareAmount, totalFareAmount) == 0 &&
                 Double.compare(booking.advanceFareAmount, advanceFareAmount) == 0 &&
@@ -190,11 +248,15 @@ public class Booking {
                 Objects.equals(customerEmail, booking.customerEmail) &&
                 Objects.equals(bookingdate, booking.bookingdate) &&
                 Objects.equals(returnDate, booking.returnDate) &&
+                Objects.equals(fileName, booking.fileName) &&
+                Objects.equals(filePath, booking.filePath) &&
+                Objects.equals(fileExtension, booking.fileExtension) &&
+                Objects.equals(customer,booking.customer) &&
                 Objects.equals(car, booking.car);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, customerName, customerMobile, customerEmail, bookingdate, returnDate, noOfDays, farePerDay, totalFareAmount, advanceFareAmount, dueFareAmount, car);
+        return Objects.hash(id, customerName, customerMobile, customerEmail, bookingdate, returnDate, noOfDays, farePerDay, totalFareAmount, advanceFareAmount, dueFareAmount,fileSize, fileName, filePath, fileExtension,customer, car);
     }
 }

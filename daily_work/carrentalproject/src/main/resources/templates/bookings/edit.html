@@ -4,6 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Update Booking</title>
+
+    <script>
+        function callToatl() {
+            document.getElementById("totalFareAmount").value = document.getElementById("noOfDay").value * document.getElementById("perDayFare").value;
+            document.getElementById("dueFare").value = document.getElementById("totalFareAmount").value - document.getElementById("advanceFare").value;
+            // document.getElementById("noOfDay").value = document.getElementById("bookingDate").value * document.getElementById("returnDate").value;
+        }
+    </script>
 </head>
 <body>
 <div layout:fragment="custom-content">
@@ -54,10 +62,12 @@
                                 </div>
 
                                 <div class="row">
+
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label ><b>Customer Email</b></label>
-                                            <input type="email"  th:field="*{customerEmail}" class="form-control"  placeholder="Enter Email" required="true">
+                                            <label><b>Customer Email</b></label>
+                                            <input type="email" th:field="*{customerEmail}" class="form-control"
+                                                   placeholder="Enter Email" required="true">
                                         </div>
                                     </div>
                                     <!--<div class="col-md-4">-->
@@ -68,8 +78,11 @@
                                     <!--</div>-->
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label ><b>Date of Booking</b></label>
-                                            <input type="date" th:text="${#dates.format(booking.bookingdate, 'yyyy-MM-dd')}" th:field="*{bookingdate}"  class="fa-calendar form-control" placeholder="Enter Birth Date">
+                                            <label><b>Date of Booking</b></label>
+                                            <input type="date" id="bookingDate"
+                                                   th:text="${#dates.format(booking.bookingdate, 'yyyy-MM-dd')}"
+                                                   th:field="*{bookingdate}" class="fa-calendar form-control"
+                                                   placeholder="Enter Birth Date">
                                         </div>
                                     </div>
                                 </div>
@@ -77,51 +90,55 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label ><b>Return Date</b></label>
-                                            <input type="date" th:text="${#dates.format(booking.returnDate, 'yyyy-MM-dd')}" th:field="*{returnDate}"  class="fa-calendar form-control" placeholder="Enter Birth Date">
+                                            <label><b>Return Date</b></label>
+                                            <input type="date" id="returnDate"
+                                                   th:text="${#dates.format(booking.returnDate, 'yyyy-MM-dd')}"
+                                                   th:field="*{returnDate}" class="fa-calendar form-control"
+                                                   placeholder="Enter Birth Date">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label ><b>No. Of Days</b></label>
-                                            <input type="text"  th:field="*{noOfDays}" class="form-control"  placeholder="Enter Email" required="true">
+                                            <label><b>No. Of Days</b></label>
+                                            <input id="noOfDay" type="text" th:field="*{noOfDays}" class="form-control"
+                                                   placeholder="Enter Email" oninput="callToatl()" required="true">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label ><b>Per Day Fare</b></label>
-                                                    <input type="text" th:value="${carno.farePerDay}"  class="fa-calendar form-control" placeholder="Enter Birth Date">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label ><b>Total Fare Amount</b></label>
-                                                    <input type="text"  th:field="*{totalFareAmount}" class="form-control"  placeholder="Enter Email" required="true">
-                                                </div>
-                                            </div>
+                                            <label><b>Per Day Fare</b></label>
+                                            <input id="perDayFare" type="text" th:value="${carno.getFarePerDay()}"
+                                                   class="fa-calendar form-control" oninput="callToatl()" placeholder="Enter fare per day">
+                                            <!--th:value="${carno.farePerDay}"-->
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label><b>Total Fare Amount</b></label>
+                                            <input id="totalFareAmount" type="text" th:field="*{totalFareAmount}" class="form-control"
+                                                   oninput="callToatl()" placeholder="Enter Email"  required="true">
                                         </div>
                                     </div>
                                 </div>
 
+
                                 <div class="row">
-                                    <div class="col-md-12">
+
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label ><b>Advancr Fare Amount</b></label>
-                                                    <input type="text" th:field="*{advanceFareAmount}"  class="fa-calendar form-control" placeholder="Enter Birth Date">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label ><b>Due Fare Amount</b></label>
-                                                    <input type="text"  th:field="*{dueFareAmount}" class="form-control"  placeholder="Enter Email" required="true">
-                                                </div>
-                                            </div>
+                                            <label><b>Advancr Fare Amount</b></label>
+                                            <input id="advanceFare" type="text" th:field="*{advanceFareAmount}" oninput="callToatl()"
+                                                   class="fa-calendar form-control" placeholder="Enter Birth Date">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label><b>Due Fare Amount</b></label>
+                                            <input id="dueFare" type="text" th:field="*{dueFareAmount}" class="form-control"
+                                                   placeholder="Enter Email" required="true">
                                         </div>
                                     </div>
                                 </div>
@@ -139,19 +156,19 @@
                 <div class="col-md-4">
                     <div class="card card-user">
 
-                        <div class="gif">
-                            <img th:src="@{/assets/img/faces/robi.gif}" alt="..."/>
+                        <div class="giff">
+                            <img th:src="@{/assets/img/faces/car.gif}" alt="..." height="700px" width="290px"/>
 
                         </div>
 
                         <hr>
 
-                        <div class="gif">
-                            <img th:src="@{/assets/img/faces/pure.gif}" alt="..."/>
+                        <!--<div class="gif">-->
+                            <!--<img th:src="@{/assets/img/faces/pure.gif}" alt="..."/>-->
 
-                        </div>
+                        <!--</div>-->
 
-                        <hr>
+                        <!--<hr>-->
 
                     </div>
                 </div>

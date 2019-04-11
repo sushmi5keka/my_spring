@@ -59,14 +59,14 @@ public class Car {
     }
 
     public Car(Car car) {
-        this.carNumber = carNumber;
-        this.carModel = carModel;
-        this.color = color;
-        this.noOfSeats = noOfSeats;
-        this.dateOfManufacture = dateOfManufacture;
-        this.farePerDay = farePerDay;
-        this.agency = agency;
-        this.category = category;
+        this.carNumber = car.carNumber;
+        this.carModel = car.carModel;
+        this.color = car.color;
+        this.noOfSeats = car.noOfSeats;
+        this.dateOfManufacture = car.dateOfManufacture;
+        this.farePerDay = car.farePerDay;
+        this.agency = car.agency;
+        this.category = car.category;
         this.fileSize = car.fileSize;
         this.fileName = car.fileName;
         this.filePath = car.filePath;

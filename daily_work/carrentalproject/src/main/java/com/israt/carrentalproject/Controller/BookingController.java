@@ -47,9 +47,14 @@ public class BookingController {
             model.addAttribute("carlist",carRepo.findAll());
             return "bookings/add";
         }else{
-//            Optional<Car> c = this.carRepo.findById(car.getId());
-//            car.setFilePath(c.get().getFilePath());
-//            car.setFarePerDay(c.get().getFarePerDay());
+            Car car1= carRepo.getOne(id);
+
+            booking.setFarePerDay(car1.getFarePerDay());
+            booking.setFilePath(car1.getFilePath());
+            booking.setFileName(car1.getFileName());
+            booking.setFileSize(car1.getFileSize());
+            booking.setFileExtension(car1.getFileExtension());
+
             this.bookingRepo.save(booking);
             model.addAttribute("booking",new Booking());
             model.addAttribute("successMsg","Successfully Saved!");
@@ -76,6 +81,13 @@ public class BookingController {
             model.addAttribute("carlist",carRepo.findAll());
             return "bookings/edit";
         } else {
+            Car car1= carRepo.getOne(id);
+
+            booking.setFarePerDay(car1.getFarePerDay());
+            booking.setFilePath(car1.getFilePath());
+            booking.setFileName(car1.getFileName());
+            booking.setFileSize(car1.getFileSize());
+            booking.setFileExtension(car1.getFileExtension());
 //            booking.setId(id);
             this.bookingRepo.save(booking);
             model.addAttribute("booking",new Booking());
