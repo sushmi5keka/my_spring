@@ -4,10 +4,10 @@ package com.israt.carrentalproject.Controller;
 
 
 import com.israt.carrentalproject.Entity.*;
-import com.israt.carrentalproject.Repo.BookingRepo;
-import com.israt.carrentalproject.Repo.CarRepo;
-import com.israt.carrentalproject.Repo.UserRepo;
+import com.israt.carrentalproject.Repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,6 +32,12 @@ public class BookingController {
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
+    private BookingSummaryRepo bookingSummaryRepo;
+
+    @Autowired
+    private CustomerSummaryRepo customerSummaryRepo;
+
     @GetMapping(value = "add/{id}")
     public String viewAdd(Model model,@PathVariable("id") Long id) {
         model.addAttribute("booking", new Booking());
@@ -49,6 +55,7 @@ public class BookingController {
             model.addAttribute("carno",carRepo.getOne(id));
             model.addAttribute("carlist",carRepo.findAll());
             model.addAttribute("userlist",userRepo.findAll());
+//            model.addAttribute("bookingist",bookingSummaryRepo.findAll());
             return "bookings/add";
         }else{
             Car car1= carRepo.getOne(id);
@@ -59,9 +66,11 @@ public class BookingController {
             booking.setFileSize(car1.getFileSize());
             booking.setFileExtension(car1.getFileExtension());
 
-            booking.setCustomer(userRepo.getOne(id));
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            booking.setCustomer(userRepo.findByUserName(authentication.getName()));
 
             this.bookingRepo.save(booking);
+
             model.addAttribute("booking",new Booking());
             model.addAttribute("successMsg","Successfully Saved!");
             model.addAttribute("carno",carRepo.getOne(id));
@@ -71,8 +80,9 @@ public class BookingController {
 //            bookingSummary.setTotalFareAmount(booking.getTotalFareAmount());
 //            bookingSummary.setAdvanceFareAmount(booking.getAdvanceFareAmount());
 //            bookingSummary.setDueFareAmount(booking.getDueFareAmount());
-//            this.bookingRepo.save(bookingSummary);
-
+//            model.addAttribute("bookingist",bookingSummaryRepo.findAll());
+//            this.bookingSummaryRepo.save(bookingSummary);
+//
 //            CustomerSummary customerSummary = new CustomerSummary();
 //            customerSummary.setTotalFareAmount(booking.getTotalFareAmount());
 //            customerSummary.setAdvanceFareAmount(booking.getAdvanceFareAmount());
@@ -80,6 +90,8 @@ public class BookingController {
 //            customerSummary.setNoOfBooking(booking.);
 //            customerSummary.setFirstBookingDate(booking.);
 //            customerSummary.setLastBookingDate(booking.);
+//            model.addAttribute("userlist",userRepo.findAll());
+//            this.customerSummaryRepo.save(customerSummary);
 
 
         }
@@ -92,15 +104,17 @@ public class BookingController {
         model.addAttribute("booking",bookingRepo.getOne(id));
         model.addAttribute("carno",carRepo.getOne(id));
         model.addAttribute("carlist",carRepo.findAll());
+        model.addAttribute("userlist",userRepo.findAll());
         return "bookings/edit";
     }
 
     @PostMapping(value = "edit/{id}")
-    public String edit(@Valid Booking booking, BindingResult result, Model model,@PathVariable("id") Long id) {
+    public String edit(@Valid Booking booking, BindingResult result, Model model,@PathVariable("id") Long id,@Valid Car car) {
         if (result.hasErrors()) {
             model.addAttribute("rejectMsg","Somthing is wrong");
             model.addAttribute("carno",carRepo.getOne(id));
             model.addAttribute("carlist",carRepo.findAll());
+            model.addAttribute("userlist",userRepo.findAll());
             return "bookings/edit";
         } else {
             Car car1= carRepo.getOne(id);
@@ -110,7 +124,10 @@ public class BookingController {
             booking.setFileName(car1.getFileName());
             booking.setFileSize(car1.getFileSize());
             booking.setFileExtension(car1.getFileExtension());
-//            booking.setId(id);
+
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            booking.setCustomer(userRepo.findByUserName(authentication.getName()));
+
             this.bookingRepo.save(booking);
             model.addAttribute("booking",new Booking());
             model.addAttribute("successMsg","Successfully Saved!");
@@ -134,4 +151,9 @@ public class BookingController {
         return "bookings/list";
     }
 
+//    @GetMapping(value = "summary")
+//    public String bsummary(Model model){
+//        model.addAttribute("summary",this.bookingSummaryRepo.findAll());
+//        return "bookings/bsummary";
+//    }
 }

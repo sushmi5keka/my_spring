@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layoutlist.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking Detail</title>
+</head>
+<body>
+<!--inner block start here-->
+<div class="inner-block min-height" layout:fragment="custom-content">
+    <!--<br/>-->
+    <!--<div class="content">-->
+    <!--<div class="container-fluid">-->
+    <!--<div class="row">-->
+    <!--<div class="col-md-12">-->
+    <!--<div class="card">-->
+    <!--<br/>-->
+    <h1>Booking Summary</h1>
+    &nbsp;&nbsp;
+    <table id="example" class="table table-striped table-bordered" style="width: 100%">
+
+        <thead>
+        &nbsp;&nbsp;
+        <tr>
+
+            <th>Tolat Fare Amount</th>
+            <th>Advance Fare Amount</th>
+            <th>Due Fare Amount</th>
+            <!--<th>Edit</th>-->
+            <!--<th>Del</th>-->
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="bookingsummary : ${summary}">
+
+            <td th:text="${bookingsummary.totalFareAmount}"></td>
+            <td th:text="${bookingsummary.advanceFareAmount}"></td>
+            <td th:text="${bookingsummary.dueFareAmount}"></td>
+
+
+            <!--<td>-->
+                <!--<a th:href="@{'/booking/edit/'+${booking.id}}">Edit</a>-->
+            <!--</td>-->
+            <!--<td>-->
+                <!--<a th:href="@{'/booking/del/'+${booking.id}}">Del</a>-->
+            <!--</td>-->
+        </tr>
+
+        </tbody>
+        <tfoot>
+        <tr>
+
+            <th>Tolat Fare Amount</th>
+            <th>Advance Fare Amount</th>
+            <th>Due Fare Amount</th>
+            <!--<th>Edit</th>-->
+            <!--<th>Del</th>-->
+        </tr>
+        </tfoot>
+    </table>
+
+</div>
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--</div>-->
+<!--inner block end here-->
+</body>
+</html>
