@@ -16,6 +16,8 @@ public class BookingSummary {
 
     private double dueFareAmount;
 
+    private double collectedAmount;
+
 
     @OneToOne
     @JoinColumn(name = "booking_id",nullable = false)
@@ -31,10 +33,19 @@ public class BookingSummary {
         this.booking = booking;
     }
 
+    public BookingSummary(double totalFareAmount, double advanceFareAmount, double dueFareAmount, double collectedAmount, Booking booking) {
+        this.totalFareAmount = totalFareAmount;
+        this.advanceFareAmount = advanceFareAmount;
+        this.dueFareAmount = dueFareAmount;
+        this.collectedAmount = collectedAmount;
+        this.booking = booking;
+    }
+
     public BookingSummary(BookingSummary bookingSummary) {
         this.totalFareAmount = bookingSummary.totalFareAmount;
         this.advanceFareAmount = bookingSummary.advanceFareAmount;
         this.dueFareAmount = bookingSummary.dueFareAmount;
+        this.collectedAmount = bookingSummary.collectedAmount;
         this.booking = bookingSummary.booking;
     }
 
@@ -70,6 +81,14 @@ public class BookingSummary {
         this.dueFareAmount = dueFareAmount;
     }
 
+    public double getCollectedAmount() {
+        return collectedAmount;
+    }
+
+    public void setCollectedAmount(double collectedAmount) {
+        this.collectedAmount = collectedAmount;
+    }
+
     public Booking getBooking() {
         return booking;
     }
@@ -86,12 +105,13 @@ public class BookingSummary {
         return Double.compare(that.totalFareAmount, totalFareAmount) == 0 &&
                 Double.compare(that.advanceFareAmount, advanceFareAmount) == 0 &&
                 Double.compare(that.dueFareAmount, dueFareAmount) == 0 &&
+                Double.compare(that.collectedAmount, collectedAmount) == 0 &&
                 Objects.equals(id, that.id) &&
                 Objects.equals(booking, that.booking);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, totalFareAmount, advanceFareAmount, dueFareAmount, booking);
+        return Objects.hash(id, totalFareAmount, advanceFareAmount, dueFareAmount, collectedAmount, booking);
     }
 }

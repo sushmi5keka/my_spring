@@ -49,13 +49,13 @@ public class BookingController {
 
 
     @PostMapping(value = "add/{id}")
-    public String add(@Valid Booking booking, BindingResult result, Model model, @PathVariable("id") Long id, @Valid Car car){
+    public String add(@Valid Booking booking,@Valid BookingSummary bookingSum, BindingResult result, Model model, @PathVariable("id") Long id, @Valid Car car){
         if(result.hasErrors()){
             model.addAttribute("rejectMsg","Somthing is wrong");
             model.addAttribute("carno",carRepo.getOne(id));
             model.addAttribute("carlist",carRepo.findAll());
             model.addAttribute("userlist",userRepo.findAll());
-//            model.addAttribute("bookingist",bookingSummaryRepo.findAll());
+//            model.addAttribute("bookinglist",bookingSummaryRepo.findAll());
             return "bookings/add";
         }else{
             Car car1= carRepo.getOne(id);
@@ -76,13 +76,18 @@ public class BookingController {
             model.addAttribute("carno",carRepo.getOne(id));
             model.addAttribute("carlist",carRepo.findAll());
 
-//            BookingSummary bookingSummary = new BookingSummary();
-//            bookingSummary.setTotalFareAmount(booking.getTotalFareAmount());
-//            bookingSummary.setAdvanceFareAmount(booking.getAdvanceFareAmount());
-//            bookingSummary.setDueFareAmount(booking.getDueFareAmount());
-//            model.addAttribute("bookingist",bookingSummaryRepo.findAll());
-//            this.bookingSummaryRepo.save(bookingSummary);
-//
+
+            BookingSummary bookingSummary = new BookingSummary(booking.getTotalFareAmount(), booking.getAdvanceFareAmount(), booking.getDueFareAmount(),booking);
+            bookingSummary.setTotalFareAmount(booking.getTotalFareAmount());
+            bookingSummary.setAdvanceFareAmount(booking.getAdvanceFareAmount());
+            bookingSummary.setDueFareAmount(booking.getDueFareAmount());
+            bookingSummary.setCollectedAmount(booking.getTotalFareAmount()-booking.getDueFareAmount());
+            bookingSummaryRepo.save(bookingSummary);
+            model.addAttribute("booking",new Booking());
+//            model.addAttribute("bookinglist",bookingSummaryRepo.findAll());
+            model.addAttribute("successMsg", "Congratulations! Data save sucessfully");
+
+
 //            CustomerSummary customerSummary = new CustomerSummary();
 //            customerSummary.setTotalFareAmount(booking.getTotalFareAmount());
 //            customerSummary.setAdvanceFareAmount(booking.getAdvanceFareAmount());
@@ -133,6 +138,18 @@ public class BookingController {
             model.addAttribute("successMsg","Successfully Saved!");
             model.addAttribute("carno",carRepo.getOne(id));
             model.addAttribute("carlist",carRepo.findAll());
+
+
+            BookingSummary bookingSummary = new BookingSummary(booking.getTotalFareAmount(), booking.getAdvanceFareAmount(), booking.getDueFareAmount(),booking);
+            bookingSummary.setTotalFareAmount(booking.getTotalFareAmount());
+            bookingSummary.setAdvanceFareAmount(booking.getAdvanceFareAmount());
+            bookingSummary.setDueFareAmount(booking.getDueFareAmount());
+            bookingSummary.setCollectedAmount(booking.getTotalFareAmount()-booking.getDueFareAmount());
+            bookingSummaryRepo.save(bookingSummary);
+            model.addAttribute("booking",new Booking());
+//            model.addAttribute("bookinglist",bookingSummaryRepo.findAll());
+            model.addAttribute("successMsg", "Congratulations! Data save sucessfully");
+
             return "redirect:/booking/list";
         }
     }
@@ -151,9 +168,9 @@ public class BookingController {
         return "bookings/list";
     }
 
-//    @GetMapping(value = "summary")
-//    public String bsummary(Model model){
-//        model.addAttribute("summary",this.bookingSummaryRepo.findAll());
-//        return "bookings/bsummary";
-//    }
+    @GetMapping(value = "summary")
+    public String bsummary(Model model){
+        model.addAttribute("summarys",this.bookingSummaryRepo.findAll());
+        return "bookings/bsummary";
+    }
 }

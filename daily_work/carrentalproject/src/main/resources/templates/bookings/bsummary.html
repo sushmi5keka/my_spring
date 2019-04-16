@@ -21,29 +21,24 @@
 
         <thead>
         &nbsp;&nbsp;
-        <tr>
+        <tr>ng</th>
 
             <th>Tolat Fare Amount</th>
             <th>Advance Fare Amount</th>
             <th>Due Fare Amount</th>
-            <!--<th>Edit</th>-->
-            <!--<th>Del</th>-->
+            <th>Collected Amount</th>
+
         </tr>
         </thead>
         <tbody>
-        <tr th:each="bookingsummary : ${summary}">
+        <tr th:each="bookingsummary : ${summarys}">
 
             <td th:text="${bookingsummary.totalFareAmount}"></td>
             <td th:text="${bookingsummary.advanceFareAmount}"></td>
             <td th:text="${bookingsummary.dueFareAmount}"></td>
+            <td th:text="${bookingsummary.collectedAmount}"></td>
 
 
-            <!--<td>-->
-                <!--<a th:href="@{'/booking/edit/'+${booking.id}}">Edit</a>-->
-            <!--</td>-->
-            <!--<td>-->
-                <!--<a th:href="@{'/booking/del/'+${booking.id}}">Del</a>-->
-            <!--</td>-->
         </tr>
 
         </tbody>
@@ -53,8 +48,8 @@
             <th>Tolat Fare Amount</th>
             <th>Advance Fare Amount</th>
             <th>Due Fare Amount</th>
-            <!--<th>Edit</th>-->
-            <!--<th>Del</th>-->
+            <th>Collected Amount</th>
+
         </tr>
         </tfoot>
     </table>
